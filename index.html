@@ -1,327 +1,628 @@
 <!DOCTYPE html>
+
 <html>
+
   <head>
+
     <meta charset=UTF-8 />
+
    
+
 <style>
+
 body {
+
   font-family: "Lato", sans-serif;
+
   transition: background-color .5s;
+
 }
+
+
 
 .sidenav {
+
   height: 100%;
+
   width: 0;
+
   position: fixed;
+
   z-index: 1;
+
   top: 0;
+
   left: 0;
+
   background-color: gray;
+    
   opacity: 0.7;
+
   overflow-x: hidden;
+
   transition: 0.5s;
+
   padding-top: 60px;
+
 }
+
+
 
 .sidenav a {
+
   padding: 8px 8px 8px 32px;
+
   text-decoration: none;
+
   font-size: 100px;
+
   color: white;
+
   display: block;
+
   transition: 0.3s;
+
 }
-    
-.sidenav h1{
-        margin-bottom: 3cm;
-    }
+.sidenav h1 {
+  margin-bottom: 3cm;
+}
+
+
 
 .sidenav a:hover {
+
   color: #f1f1f1;
+
 }
+
+
 
 .sidenav .closebtn {
+
   position: absolute;
+
   top: 0;
+
   right: 25px;
+
   font-size: 150px;
+
   margin-left: 50px;
+
 }
+
+
 
 #main {
-  transition: margin-left .50s;
+
+  transition: margin-left 0.5s;
+
   padding: 16px;
+
   position: absolute;
+
 background: 0xdddddd;
+
     z-index: 99;
+
     left: 5%;
+
     top: 5%;
+
 }
+
+
 
 @media screen and (max-height: 450px) {
+
   .sidenav {padding-top: 15px;}
+
   .sidenav a {font-size: 18px;}
+
 }
+
 </style>
+
       
+
   </head>
+
   <body>
+
     
+
     
+
     <div id="mySidenav" class="sidenav">
+
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  
+
   <h1></h1>
- 
-  <a></a>
+        
   <a href="index.html">Übersicht</a>
+
   <a href="befunde.html">Befunde</a>
+
   <a href="briefe.html">Arztbriefe</a>
+
   <a href="status.html">Impfstatus</a>
+
 </div>
+
+
 
 <div id="main">
+
   <span style="font-size:150px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
 </div>
+
       
+
       
+
     <script src="js/three.min.js"></script>
+
     <script src="js/GLTFLoader.js"></script>
+
     <script src="js/OrbitControls.js"></script>
+
     <script src="js/Projector.js"></script>
+
     <script src="js/threex.domevents.js"></script>  
+
     
+
     <script>
+
       
+
       //menu functions
-<<<<<<< HEAD
-function openNav() {
-  document.getElementById("mySidenav").style.width = window.innerWidth;
-  document.getElementById("main").style.marginLeft = "250px";
-=======
+
      function openNav() {
+
   document.getElementById("mySidenav").style.width = "550px";
+
   document.getElementById("main").style.marginLeft = "2500px";
->>>>>>> fix
+
   document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+
 }
 
+
+
 function closeNav() {
+
   document.getElementById("mySidenav").style.width = "0";
+
   document.getElementById("main").style.marginLeft= "0";
+
   document.body.style.backgroundColor = "white";
+
 }
+
         
+
      
+
         
+
     
+
         
+
       let scene, camera, renderer, car, sphere, sphere2, line, endPoint;
+
+
 
       function init() {
 
+
+
         scene = new THREE.Scene();
+
         scene.background = new THREE.Color(0xdddddd);
 
+
+
         camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
+
         camera.rotation.y = 90/180*Math.PI;
+
         //camera.rotation.x = 90/180*Math.PI;
+
         camera.position.x = 0.121519859005498;
+
         camera.position.y = 34.9674507837999;
+
         camera.position.z = 75.14307996752143;
+
         camera.up = new THREE.Vector3(0,0,0);
+
         camera.lookAt(new THREE.Vector3(100,100,100));
+
 		
+
         renderer = new THREE.WebGLRenderer({antialias:true});
+
         renderer.setSize(window.innerWidth,window.innerHeight);
+
         document.body.appendChild(renderer.domElement);
+
 		
+
         //adjust window size 
+
         window.addEventListener('resize', function(){
+
             var width = window.innerWidth;
+
             var height = window.innerHeight;
+
             renderer.setSize(width, height);
+
             camera.aspect = width / height;
+
             camera.updateProjectionMatrix();
+
         });
+
           
+
         controls = new THREE.OrbitControls(camera, renderer.domElement);
+
         controls.enableZoom = false;
+
         controls.enablePan = false;
+
         controls.enableRotate = false;
+
           
+
+
 
         hlight = new THREE.AmbientLight (0x404040,3);
+
         scene.add(hlight);
 
+
+
           
+
         //Mouse Event
+
           
+
         var geom = new THREE.SphereGeometry(1,20,20);
+
         var mat = new THREE.MeshPhongMaterial( {specular: "#fdfb57", color: "#fd2b28",  side: THREE.DoubleSide} );
+
         sphere = new THREE.Mesh(geom,mat);
+
         sphere.name = "hand";
+
         sphere.position.x = 6.5; 
+
         sphere.position.y = 0; 
+
         sphere.position.z = 20;  
+
         sphere.text = "Die hand ist kaputt";
+
         scene.add(sphere);
+
           
+
         geom = new THREE.SphereGeometry(1,20,20);
+
         mat = new THREE.MeshPhongMaterial( {specular: "#fdfb57", color: "#fd2b28",  side: THREE.DoubleSide} );
+
         sphere2 = new THREE.Mesh(geom,mat);
+
         sphere2.name = "shoulder";
+
         sphere2.position.x = 3.5; 
+
         sphere2.position.y = 1; 
+
         sphere2.position.z = 33;
+
         sphere2.text = "Die Schulter ist kaputt";
+
         scene.add(sphere2);
+
         
+
         const domEvents = new THREEx.DomEvents(camera,renderer.domElement);
+
         domEvents.addEventListener(sphere, 'click', event =>{
+
             endPoint = scene.getObjectByName( "hand" );
+
             write(sphere.text);
 
+
+
         })
+
           
+
           
+
         domEvents.addEventListener(sphere, 'touchstart', event =>{
+
             endPoint = scene.getObjectByName( "hand" );
+
             write(sphere.text);
 
+
+
         })
+
           
+
         domEvents.addEventListener(sphere2, 'click', event =>{
+
             endPoint = scene.getObjectByName( "shoulder" );
+
             write("Schulter kaputt");
 
+
+
         })
+
           
+
         domEvents.addEventListener(sphere2, 'touchstart', event =>{
+
             endPoint = scene.getObjectByName( "shoulder" );
+
             write("Schulter kaputt");
 
+
+
         })
+
         
+
         
+
           
+
        directionalLight = new THREE.DirectionalLight(0xffffff,3);
+
         directionalLight.position.set(0,1,0);
+
         directionalLight.castShadow = true;
+
         scene.add(directionalLight);
+
         /*light = new THREE.PointLight(0xc4c4c4,10);
+
         light.position.set(0,300,500);
+
         scene.add(light);
+
         light2 = new THREE.PointLight(0xc4c4c4,10);
+
         light2.position.set(500,100,0);
+
         scene.add(light2);
+
         light3 = new THREE.PointLight(0xc4c4c4,10);
+
         light3.position.set(0,100,-500);
+
         scene.add(light3);
+
         light4 = new THREE.PointLight(0xc4c4c4,10);
+
         light4.position.set(-500,300,500);
+
         scene.add(light4);*/
 
+
+
        
+
           
+
           
+
         //init line
+
         endPoint = scene.getObjectByName( "hand" );
+
         write(scene.getObjectByName( "hand" ).text);
+
           
+
         var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+
         var points = [];
+
         points.push( new THREE.Vector3( - 100, 100, 100 ) );
+
         p =  sphere.position ;
+
         points.push(p);
 
+
+
         var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
         line = new THREE.Line( geometry, material );
+
         line.name = "testname";
+
         scene.add( line );
+
         
+
           
+
+
 
         let loader = new THREE.GLTFLoader();
+
         loader.load('skeleton/scene.gltf', function(gltf){
+
           car = gltf.scene.children[0];
+
           car.scale.set(1,1,1);
+
           car.add(sphere);
+
           car.add(sphere2);
+
           scene.add(gltf.scene);
+
           animate();
+
         });
+
       }
+
       function animate() {
+
         
+
         car.rotateZ(0.01);
+
           
+
         //get world coordinate of ball
+
         car.updateMatrixWorld();
+
         var vector = new THREE.Vector3();
+
         vector.setFromMatrixPosition( endPoint.matrixWorld );
+
          
+
         var vector2 = new THREE.Vector3();
+
         vector2.setFromMatrixPosition( scene.getObjectByName( "sprite" ).matrixWorld );
+
     
+
         //console.log(vector);
+
         
+
         //add line 
+
         scene.remove( scene.getObjectByName( "testname" ));
+
         
+
         var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+
         var points = [];
+
         //points.push( new THREE.Vector3( - 20, 23, 0 ) );
+
         points.push(vector2);
+
         points.push(vector);
 
+
+
         var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
         line = new THREE.Line( geometry, material );
+
         line.name = "testname";
+
         scene.add( line );
+
           
+
         renderer.render(scene,camera);
+
         requestAnimationFrame(animate);
+
       }
+
         
+
         
+
      function write(text){
+
         
+
         scene.remove( scene.getObjectByName( "sprite" ));
+
         var canvas = document.createElement('canvas');
+
         var size = 256; // CHANGED
+
         canvas.width = size;
+
         canvas.height = size;
+
         var context = canvas.getContext('2d');
+
           
+
         context.rect(0, 0, 256, 256);
+
         context.fillStyle = "gray";
+
         context.fill();
+
           
+
         context.fillStyle = 'white'; 
+
         context.textAlign = 'center';
+
         context.font = '24px Arial';
+
         context.fillText(text, size / 2, size / 2);
 
+
+
         var amap = new THREE.Texture(canvas);
+
         amap.needsUpdate = true;
 
+
+
         var mat = new THREE.SpriteMaterial({
+
             map: amap,
+
             transparent: false,
+
             color: 0xffffff 
+
         });
 
-        var sp = new THREE.Sprite(mat);
-        sp.name = "sprite";
-        sp.scale.set( 7, 7, 1 );
-        //sp.position.set(- 20, 25, 10);
-        sp.position.set(0, 5, 17);
-        scene.add(sp);
-     }    
-        
-      init();
-    </script>
-  </body>
-</html>
 
+
+        var sp = new THREE.Sprite(mat);
+
+        sp.name = "sprite";
+
+        sp.scale.set( 7, 7, 1 );
+
+        //sp.position.set(- 20, 25, 10);
+
+        sp.position.set(0, 5, 17);
+
+        scene.add(sp);
+
+     }    
+
+        
+
+      init();
+
+    </script>
+
+  </body>
+
+</html>
