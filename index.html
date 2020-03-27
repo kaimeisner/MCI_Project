@@ -8,6 +8,9 @@
               
               charset=UTF-8 
               
+              name='viewport' 
+              
+              content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' 
         
         />
 
@@ -273,7 +276,7 @@
             }
         
             .year18 {
-                text-indent: 22px;
+                text-indent: 24px;
                 color: white;
                 font-size: 70px;
                 position:absolute;
@@ -282,7 +285,7 @@
             }
             
              .year19 {
-                text-indent: 22px;
+                text-indent: 24px;
                 color: white;
                 font-size: 70px;
                 position:absolute;
@@ -292,7 +295,7 @@
             }
             
              .year20 {
-                text-indent: 22px;
+                text-indent: 24px;
                 color: white;
                 font-size: 70px;
                 position:absolute;
@@ -302,7 +305,7 @@
             
             
              .all {
-                text-indent: 50px;
+                text-indent: 52px;
                 color: white;
                 font-size: 70px;
                 position:absolute;
@@ -332,8 +335,6 @@
                 cursor: pointer; /* Cursor on hover */
             
             }
-
-
             
     
         </style>
@@ -345,7 +346,7 @@
     
     
     <body>
-
+        
         <!-- side navigation menu -->
         
         <div id="mySidenav" class="sidenav">
@@ -380,7 +381,7 @@
         
         <div id="myFilter" class="filter">
             
-            <a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">&times;</a>
+            f<a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">&times;</a>
             
         
             <!-- slider -->
@@ -388,12 +389,17 @@
             <div class="slidecontainer">
             
                 <span class="year18">&ensp;&ensp;2018&nbsp;&nbsp;&nbsp; &#8722;&#8722;</span>
+                
                 <span class="year19">&ensp;&ensp;2019&nbsp;&nbsp;&nbsp; &#8722;&#8722;</span>
+                
                 <span class="year20">&ensp;&ensp;2020&nbsp;&nbsp;&nbsp; &#8722;&#8722;</span>
+                
                 <span class="all">&ensp;&nbsp;alle&ensp;&nbsp;&nbsp;&nbsp; &#8722;&#8722;</span>
-                <input type="range" min="1" max="4" value="2" class="slider" id="myRange">
+                
+                <input type="range" min="1" max="4" value="4" class="slider" id="myRange">
             
             </div>
+            
             
         </div>
         
@@ -432,11 +438,11 @@
 
             // Update the current slider value (each time you drag the slider handle)
             
-            slider.oninput = function() {
+            /*slider.oninput = function() {
             
                 console.log(this.value);
             
-            } 
+            } */
             
             
             // function for opening the side menu 
@@ -498,6 +504,132 @@
                 document.getElementById("main2").style.visibility='visible';
 
                 document.body.style.backgroundColor = "white";
+                
+                
+                //handle slider input and display required spheres
+                
+               var value = slider.value;
+                
+                console.log(value)
+                // value is 4 <-> all
+                
+                if(value == 4){    
+                    
+                    if(scene.getObjectByName('hand') == undefined){
+                        
+                        scene.add(sphere);
+
+                        model.add(sphere);
+                    
+                    }
+                    
+                    if(scene.getObjectByName('shoulder') == undefined){
+                        
+                        scene.add(sphere2);
+
+                        model.add(sphere2);
+                        
+                    }
+                    
+                    if(scene.getObjectByName('knee') == undefined){
+                        
+                        scene.add(sphere3);
+
+                        model.add(sphere3);
+                         
+                    }
+                        
+                }
+                
+                // value is 3 <-> 2020
+                
+                if(value == 3){
+                     
+                    
+                    if(scene.getObjectByName('hand') == undefined){
+                        
+                        scene.add(sphere);
+
+                        model.add(sphere);
+                    
+                    }
+                    
+                    if(scene.getObjectByName('shoulder') != undefined){
+                        
+                        model.remove( scene.getObjectByName( 'shoulder' ));
+                        
+                        scene.remove( scene.getObjectByName( 'shoulder' ));
+                        
+                    }
+                    
+                    if(scene.getObjectByName('knee') == undefined){
+                        
+                        scene.add(sphere3);
+
+                        model.add(sphere3);
+                         
+                    }
+                }
+                
+                
+                // value is 2 <-> 2019
+                
+                 if(value == 2){
+                     
+                    
+                    if(scene.getObjectByName('hand') != undefined){
+                        
+                        model.remove( scene.getObjectByName( 'hand' ));
+                        
+                        scene.remove( scene.getObjectByName( 'hand' ));
+                    
+                    }
+                    
+                    if(scene.getObjectByName('shoulder') == undefined){
+                        
+                        scene.add(sphere2);
+
+                        model.add(sphere2);
+                        
+                    }
+                    
+                    if(scene.getObjectByName('knee') != undefined){
+                        
+                        model.remove( scene.getObjectByName( 'knee' ));
+                        
+                        scene.remove( scene.getObjectByName( 'knee' ));
+                         
+                    }
+                }
+                
+                
+                 if(value == 1){
+                     
+                    
+                    if(scene.getObjectByName('hand') != undefined){
+                        
+                        model.remove( scene.getObjectByName( 'hand' ));
+                        
+                        scene.remove( scene.getObjectByName( 'hand' ));
+                    
+                    }
+                    
+                    if(scene.getObjectByName('shoulder') != undefined){
+                        
+                         model.remove( scene.getObjectByName( 'shoulder' ));
+                        
+                        scene.remove( scene.getObjectByName( 'shoulder' ));
+                        
+                    }
+                    
+                    if(scene.getObjectByName('knee') != undefined){
+                        
+                        model.remove( scene.getObjectByName( 'knee' ));
+                        
+                        scene.remove( scene.getObjectByName( 'knee' ));
+                         
+                    }
+                }
 
             }
 
@@ -506,13 +638,14 @@
             // locale variables for 3d-rendering
             
             let scene, camera, renderer, model, sphere, sphere2, line, endPoint;
+        
 
             
             
             // initialise scene
 
             function init() {
-
+                
                 scene = new THREE.Scene();
 
                 scene.background = new THREE.Color(0xdddddd);
@@ -608,16 +741,13 @@
 
                 sphere.position.z = 20;  
 
-                sphere.text = "Die Hand ist kaputt";
+                sphere.text = "Hand gebrochen";
                 
                 sphere.date = new Date("2020-05-30");
 
                 scene.add(sphere);
           
 
-                geom = new THREE.SphereGeometry(1,20,20);
-
-                mat = new THREE.MeshPhongMaterial( {specular: "#fdfb57", color: "#fd2b28",  side: THREE.DoubleSide} );
 
                 sphere2 = new THREE.Mesh(geom,mat);
 
@@ -629,11 +759,30 @@
 
                 sphere2.position.z = 33;
 
-                sphere2.text = "Die Schulter ist kaputt";
+                sphere2.text = "Schulter ausgekugelt";
                 
-                sphere2.date = new Date("2017-12-26");
+                sphere2.date = new Date("2019-12-26");
 
                 scene.add(sphere2);
+                
+                
+                
+                sphere3 = new THREE.Mesh(geom,mat);
+
+                sphere3.name = "knee";
+
+                sphere3.position.x = 1.5; 
+
+                sphere3.position.y = 0; 
+
+                sphere3.position.z = 12.5;
+
+                sphere3.text = "Knie geprellt";
+                
+                sphere3.date = new Date("2020-07-04");
+
+                scene.add(sphere3);
+
 
         
 
@@ -673,6 +822,23 @@
                     endPoint = scene.getObjectByName( "shoulder" );
 
                     write(sphere2.text, sphere2.date);
+                })
+                
+                
+                domEvents.addEventListener(sphere3, 'click', event =>{
+
+                    endPoint = scene.getObjectByName( "knee" );
+
+                    write(sphere3.text, sphere3.date);
+
+                })
+                
+                
+                domEvents.addEventListener(sphere3, 'touchstart', event =>{
+
+                    endPoint = scene.getObjectByName( "knee" );
+
+                    write(sphere3.text, sphere3.date);
                 })
 
         
@@ -715,6 +881,8 @@
                     model.add(sphere);
 
                     model.add(sphere2);
+                    
+                    model.add(sphere3);
 
                     scene.add(gltf.scene);
 
@@ -770,7 +938,7 @@
             line.name = "line";
 
             scene.add( line );
-
+            
           
             // render new scene
             
