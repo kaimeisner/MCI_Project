@@ -21,7 +21,8 @@
             }
 
 
-
+            /* style for navigation menu */
+            
             .sidenav {
 
                 height: 100%;
@@ -34,7 +35,7 @@
 
                 top: 0;
 
-                left: 0;
+                left: 0; 
 
                 background-color: gray;
 
@@ -102,7 +103,7 @@
 
             #main {
 
-                transition: margin-left 0.5s;
+                transition: margin-left 0.5s; /*change left to right*/
 
                 padding: 16px;
 
@@ -112,7 +113,7 @@
 
                 z-index: 99;
 
-                left: 5%;
+                left: 5%; 
 
                 top: 5%;
 
@@ -127,6 +128,107 @@
                 .sidenav a {font-size: 18px;}
 
             }
+            
+            
+            
+            /* style for filter menu */ 
+            
+           .filter {
+
+                height: 100%;
+
+                width: 0;
+
+                position: fixed;
+
+                z-index: 1;
+
+                top: 0;
+
+                right: 0; 
+
+                background-color: gray;
+
+                opacity: 0.7;
+
+                overflow-x: hidden;
+
+                transition: 0.5s;
+
+                padding-top: 60px;
+
+            }
+
+
+
+            .filter a {
+
+                padding: 8px 8px 8px 32px;
+
+                text-decoration: none;
+
+                font-size: 100px;
+
+                color: white;
+
+                display: block;
+
+                transition: 0.3s;
+
+            }
+
+            
+            
+            .filter h1 {
+                
+                margin-bottom: 3cm;
+            
+            }
+
+            
+
+            .filter a:hover {
+
+                color: #f1f1f1;
+
+            }
+
+
+
+            .filter .closebtn {
+
+                position: absolute;
+
+                top: 0;
+
+                right: 25px;
+
+                font-size: 150px;
+
+                margin-left: 50px;
+
+            }
+
+
+            
+             #main2 {
+
+                transition: margin-right 0.5s; 
+
+                padding: 16px;
+
+                position: absolute;
+
+                background: 0xdddddd;
+
+                z-index: 99;
+
+                right: 5%; 
+                 
+                top: 7%;
+
+            }
+            
 
         </style>
 
@@ -158,7 +260,7 @@
 
 
 
-        <!-- button for side navigatio menu -->
+        <!-- button for side navigation menu -->
         
         <div id="main">
 
@@ -166,7 +268,27 @@
 
         </div>
 
+        
+        
+        <!-- filter menu  -->
+        
+        <div id="myFilter" class="filter">
+            
+            <a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">&times;</a>
+            
+        </div>
+        
+        
       
+        <!-- button for filter menu  -->
+        
+        <div id="main2">
+
+            <span style="font-size:150px;cursor:pointer" onclick="openFilter()">&#89; </span>
+
+        </div>
+            
+        
 
         <!-- scripts from Three.js; used to import, display and interact with the 3D-model -->
 
@@ -191,15 +313,31 @@
 
                 document.getElementById("mySidenav").style.width = "550px";
 
-                document.getElementById("main").style.marginLeft = "250px";
+                document.getElementById("main").style.marginLeft = "250px"; 
          
                 document.getElementById("main").style.visibility='hidden';
 
                 document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 
             }
+            
+            
+            
+            // function for opening filter menu
+            
+             function openFilter() {
 
+                document.getElementById("myFilter").style.width = "550px";
 
+                document.getElementById("main2").style.marginRight = "250px";
+         
+                document.getElementById("main2").style.visibility='hidden';
+
+                document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+
+            }
+
+            
             
             // function for closing the side menu 
 
@@ -207,9 +345,25 @@
 
                 document.getElementById("mySidenav").style.width = "0";
 
-                document.getElementById("main").style.marginLeft= "0";
+                document.getElementById("main").style.marginLeft= "0"; 
        
                 document.getElementById("main").style.visibility='visible';
+
+                document.body.style.backgroundColor = "white";
+
+            }
+            
+            
+            
+            // function for closing filter menu
+            
+            function closeFilter() {
+
+                document.getElementById("myFilter").style.width = "0";
+
+                document.getElementById("main2").style.marginRight= "0"; 
+       
+                document.getElementById("main2").style.visibility='visible';
 
                 document.body.style.backgroundColor = "white";
 
