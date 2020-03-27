@@ -4,7 +4,15 @@
 
     <head>
 
-        <meta charset=UTF-8 />
+        <meta 
+              
+              charset=UTF-8 
+              
+              name='viewport' 
+              
+              content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' 
+        
+        />
 
         
         <link rel="shortcut icon" href="">
@@ -259,7 +267,7 @@
                 
                 outline: none; /* Remove outline */
                 
-                opacity: 0.9; /* Set transparency (for mouse-over effects on hover) */
+                opacity: 1; /* Set transparency (for mouse-over effects on hover) */
                 
                 -webkit-transition: .2s; /* 0.2 seconds transition on hover */
                 
@@ -267,51 +275,45 @@
        
             }
         
-            .lastMonth {
-            
-                color: white;
-                font-size: 35px;
-                position:absolute;
-                left: 20px;
-                top: 600px;
-            }
-            
-             .lastHalf {
-                
+            .year18 {
+                text-indent: 22px;
                 color: white;
                 font-size: 70px;
                 position:absolute;
                 left: 20px;
-                top: 420px;
+                top: 810px;
+            }
+            
+             .year19 {
+                text-indent: 22px;
+                color: white;
+                font-size: 70px;
+                position:absolute;
+                left: 20px;
+                top: 595px;
                 
             }
             
-             .lastYear {
-            
+             .year20 {
+                text-indent: 22px;
                 color: white;
-                font-size: 65px;
+                font-size: 70px;
                 position:absolute;
                 left: 20px;
-                top: 260px;
+                top: 385px;
             }
             
             
              .all {
-            
+                text-indent: 50px;
                 color: white;
-                font-size: 55px;
+                font-size: 70px;
                 position:absolute;
                 left: 20px;
-                top: 120px;
+                top: 170px;
             }
             /* Mouse-over effects */
             
-            .slider:hover {
-                
-                opacity: 1.5; /* Fully shown on mouse-over */
-                
-            }
-
             
             
             /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
@@ -388,10 +390,10 @@
             
             <div class="slidecontainer">
             
-                <span class="lastMonth">letzten Monat</span>
-                <span class="lastHalf">letztes halbes <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Jahr</span>
-                <span class="lastYear">&nbsp;&nbsp;letztes Jahr</span>
-                <span class="all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alle</span>
+                <span class="year18">&ensp;&ensp;2018&nbsp;&nbsp;&nbsp; &#8722;&#8722;</span>
+                <span class="year19">&ensp;&ensp;2019&nbsp;&nbsp;&nbsp; &#8722;&#8722;</span>
+                <span class="year20">&ensp;&ensp;2020&nbsp;&nbsp;&nbsp; &#8722;&#8722;</span>
+                <span class="all">&ensp;&nbsp;alle&ensp;&nbsp;&nbsp;&nbsp; &#8722;&#8722;</span>
                 <input type="range" min="1" max="4" value="2" class="slider" id="myRange">
             
             </div>
