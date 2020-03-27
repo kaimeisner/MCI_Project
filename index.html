@@ -2,600 +2,535 @@
 
 <html>
 
-  <head>
+    <head>
 
-    <meta charset=UTF-8 />
+        <meta charset=UTF-8 />
 
    
 
-<style>
+        <style>
 
-body {
+            body {
 
-  font-family: "Lato", sans-serif;
+                font-family: "Lato", sans-serif;
 
-  transition: background-color .5s;
+                transition: background-color .5s;
 
-}
-
-
-
-.sidenav {
-
-  height: 100%;
-
-  width: 0;
-
-  position: fixed;
-
-  z-index: 1;
-
-  top: 0;
-
-  left: 0;
-
-  background-color: gray;
-    
-  opacity: 0.7;
-
-  overflow-x: hidden;
-
-  transition: 0.5s;
-
-  padding-top: 60px;
-
-}
+            }
 
 
 
-.sidenav a {
+            .sidenav {
 
-  padding: 8px 8px 8px 32px;
+                height: 100%;
 
-  text-decoration: none;
+                width: 0;
 
-  font-size: 100px;
+                position: fixed;
 
-  color: white;
+                z-index: 1;
 
-  display: block;
+                top: 0;
 
-  transition: 0.3s;
+                left: 0;
 
-}
-.sidenav h1 {
-  margin-bottom: 3cm;
-}
+                background-color: gray;
 
+                opacity: 0.7;
 
+                overflow-x: hidden;
 
-.sidenav a:hover {
+                transition: 0.5s;
 
-  color: #f1f1f1;
+                padding-top: 60px;
 
-}
-
-
-
-.sidenav .closebtn {
-
-  position: absolute;
-
-  top: 0;
-
-  right: 25px;
-
-  font-size: 150px;
-
-  margin-left: 50px;
-
-}
+            }
 
 
 
-#main {
+            .sidenav a {
 
-  transition: margin-left 0.5s;
+                padding: 8px 8px 8px 32px;
 
-  padding: 16px;
+                text-decoration: none;
 
-  position: absolute;
+                font-size: 100px;
 
-background: 0xdddddd;
+                color: white;
 
-    z-index: 99;
+                display: block;
 
-    left: 5%;
+                transition: 0.3s;
 
-    top: 5%;
+            }
 
-}
+            
+            
+            .sidenav h1 {
+                
+                margin-bottom: 3cm;
+            
+            }
+
+            
+
+            .sidenav a:hover {
+
+                color: #f1f1f1;
+
+            }
 
 
 
-@media screen and (max-height: 450px) {
+            .sidenav .closebtn {
 
-  .sidenav {padding-top: 15px;}
+                position: absolute;
 
-  .sidenav a {font-size: 18px;}
+                top: 0;
 
-}
+                right: 25px;
 
-</style>
+                font-size: 150px;
+
+                margin-left: 50px;
+
+            }
+
+
+
+            #main {
+
+                transition: margin-left 0.5s;
+
+                padding: 16px;
+
+                position: absolute;
+
+                background: 0xdddddd;
+
+                z-index: 99;
+
+                left: 5%;
+
+                top: 5%;
+
+            }
+
+
+
+            @media screen and (max-height: 450px) {
+
+                .sidenav {padding-top: 15px;}
+
+                .sidenav a {font-size: 18px;}
+
+            }
+
+        </style>
 
       
 
-  </head>
-
-  <body>
+    </head>
 
     
-
     
+    <body>
 
-    <div id="mySidenav" class="sidenav">
-
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-  <h1></h1>
+        <!-- side navigation menu -->
         
-  <a href="index.html">Übersicht</a>
+        <div id="mySidenav" class="sidenav">
 
-  <a href="befunde.html">Befunde</a>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-  <a href="briefe.html">Arztbriefe</a>
+            <h1></h1>
+        
+            <a href="index.html">Übersicht</a>
 
-  <a href="status.html">Impfstatus</a>
+            <a href="befunde.html">Befunde</a>
 
-</div>
+            <a href="briefe.html">Arztbriefe</a>
+
+            <a href="status.html">Impfstatus</a>
+
+        </div>
 
 
 
-<div id="main">
+        <!-- button for side navigatio menu -->
+        
+        <div id="main">
 
-  <span style="font-size:150px;cursor:pointer" onclick="openNav()">&#9776; </span>
+            <span style="font-size:150px;cursor:pointer" onclick="openNav()">&#9776; </span>
 
-</div>
+        </div>
 
       
 
-      
+        <!-- scripts from Three.js; used to import, display and interact with the 3D-model -->
 
-    <script src="js/three.min.js"></script>
+        <script src="js/three.min.js"></script>
 
-    <script src="js/GLTFLoader.js"></script>
+        <script src="js/GLTFLoader.js"></script>
 
-    <script src="js/OrbitControls.js"></script>
+        <script src="js/OrbitControls.js"></script>
 
-    <script src="js/Projector.js"></script>
+        <script src="js/Projector.js"></script>
 
-    <script src="js/threex.domevents.js"></script>  
+        <script src="js/threex.domevents.js"></script>  
 
     
 
-    <script>
+        <script>
 
-      
+            
+            // function for opening the side menu 
+                
+            function openNav() {
 
-      //menu functions
+                document.getElementById("mySidenav").style.width = "550px";
 
-     function openNav() {
-
-  document.getElementById("mySidenav").style.width = "550px";
-
-  document.getElementById("main").style.marginLeft = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
          
-  document.getElementById("main").style.visibility='hidden';
+                document.getElementById("main").style.visibility='hidden';
 
-  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+                document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 
-}
+            }
 
 
+            
+            // function for closing the side menu 
 
-function closeNav() {
+            function closeNav() {
 
-  document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("mySidenav").style.width = "0";
 
-  document.getElementById("main").style.marginLeft= "0";
-    
-    document.getElementById("main").style.visibility='visible';
-
-  document.body.style.backgroundColor = "white";
-
-}
-
-        
-
-     
-
-        
-
-    
-
-        
-
-      let scene, camera, renderer, car, sphere, sphere2, line, endPoint;
-
-
-
-      function init() {
-
-
-
-        scene = new THREE.Scene();
-
-        scene.background = new THREE.Color(0xdddddd);
-
-
-
-        camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
-
-        camera.rotation.y = 90/180*Math.PI;
-
-        //camera.rotation.x = 90/180*Math.PI;
-
-        camera.position.x = 0.121519859005498;
-
-        camera.position.y = 34.9674507837999;
-
-        camera.position.z = 75.14307996752143;
-
-        camera.up = new THREE.Vector3(0,0,0);
-
-        camera.lookAt(new THREE.Vector3(100,100,100));
-
-		
-
-        renderer = new THREE.WebGLRenderer({antialias:true});
-
-        renderer.setSize(window.innerWidth,window.innerHeight);
-
-        document.body.appendChild(renderer.domElement);
-
-		
-
-        //adjust window size 
-
-        window.addEventListener('resize', function(){
-
-            var width = window.innerWidth;
-
-            var height = window.innerHeight;
-
-            renderer.setSize(width, height);
-
-            camera.aspect = width / height;
-
-            camera.updateProjectionMatrix();
-
-        });
-
-          
-
-        controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-        controls.enableZoom = false;
-
-        controls.enablePan = false;
-
-        controls.enableRotate = false;
-
-          
-
-
-
-        hlight = new THREE.AmbientLight (0x404040,3);
-
-        scene.add(hlight);
-
-
-
-          
-
-        //Mouse Event
-
-          
-
-        var geom = new THREE.SphereGeometry(1,20,20);
-
-        var mat = new THREE.MeshPhongMaterial( {specular: "#fdfb57", color: "#fd2b28",  side: THREE.DoubleSide} );
-
-        sphere = new THREE.Mesh(geom,mat);
-
-        sphere.name = "hand";
-
-        sphere.position.x = 6.5; 
-
-        sphere.position.y = 0; 
-
-        sphere.position.z = 20;  
-
-        sphere.text = "Die hand ist kaputt";
-
-        scene.add(sphere);
-
-          
-
-        geom = new THREE.SphereGeometry(1,20,20);
-
-        mat = new THREE.MeshPhongMaterial( {specular: "#fdfb57", color: "#fd2b28",  side: THREE.DoubleSide} );
-
-        sphere2 = new THREE.Mesh(geom,mat);
-
-        sphere2.name = "shoulder";
-
-        sphere2.position.x = 3.5; 
-
-        sphere2.position.y = 1; 
-
-        sphere2.position.z = 33;
-
-        sphere2.text = "Die Schulter ist kaputt";
-
-        scene.add(sphere2);
-
-        
-
-        const domEvents = new THREEx.DomEvents(camera,renderer.domElement);
-
-        domEvents.addEventListener(sphere, 'click', event =>{
-
-            endPoint = scene.getObjectByName( "hand" );
-
-            write(sphere.text);
-
-
-
-        })
-
-          
-
-          
-
-        domEvents.addEventListener(sphere, 'touchstart', event =>{
-
-            endPoint = scene.getObjectByName( "hand" );
-
-            write(sphere.text);
-
-
-
-        })
-
-          
-
-        domEvents.addEventListener(sphere2, 'click', event =>{
-
-            endPoint = scene.getObjectByName( "shoulder" );
-
-            write("Schulter kaputt");
-
-
-
-        })
-
-          
-
-        domEvents.addEventListener(sphere2, 'touchstart', event =>{
-
-            endPoint = scene.getObjectByName( "shoulder" );
-
-            write("Schulter kaputt");
-
-
-
-        })
-
-        
-
-        
-
-          
-
-       directionalLight = new THREE.DirectionalLight(0xffffff,3);
-
-        directionalLight.position.set(0,1,0);
-
-        directionalLight.castShadow = true;
-
-        scene.add(directionalLight);
-
-        /*light = new THREE.PointLight(0xc4c4c4,10);
-
-        light.position.set(0,300,500);
-
-        scene.add(light);
-
-        light2 = new THREE.PointLight(0xc4c4c4,10);
-
-        light2.position.set(500,100,0);
-
-        scene.add(light2);
-
-        light3 = new THREE.PointLight(0xc4c4c4,10);
-
-        light3.position.set(0,100,-500);
-
-        scene.add(light3);
-
-        light4 = new THREE.PointLight(0xc4c4c4,10);
-
-        light4.position.set(-500,300,500);
-
-        scene.add(light4);*/
-
-
-
+                document.getElementById("main").style.marginLeft= "0";
        
+                document.getElementById("main").style.visibility='visible';
+
+                document.body.style.backgroundColor = "white";
+
+            }
+
+        
+            
+            // locale variables for 3d-rendering
+            
+            let scene, camera, renderer, model, sphere, sphere2, line, endPoint;
+
+            
+            
+            // initialise scene
+
+            function init() {
+
+                scene = new THREE.Scene();
+
+                scene.background = new THREE.Color(0xdddddd);
+
+                
+                camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
+
+                camera.rotation.y = 90/180*Math.PI;
+
+                camera.position.x = 0.121519859005498;
+
+                camera.position.y = 34.9674507837999;
+                
+                camera.position.z = 75.14307996752143;
+                
+                camera.up = new THREE.Vector3(0,0,0);
+                
+                camera.lookAt(new THREE.Vector3(100,100,100));
+
+		
+                renderer = new THREE.WebGLRenderer({antialias:true});
+
+                renderer.setSize(window.innerWidth,window.innerHeight);
+
+                document.body.appendChild(renderer.domElement);
+
+                
+		
+                // setup light for the scene
+
+                hlight = new THREE.AmbientLight (0x404040,3);
+
+                scene.add(hlight);
+
+                
+                directionalLight = new THREE.DirectionalLight(0xffffff,3);
+
+                directionalLight.position.set(0,1,0);
+                
+                directionalLight.castShadow = true;
+
+                scene.add(directionalLight);
+                
+
+                
+                // make sure scene gets adjusted to window size  
+
+                window.addEventListener('resize', function(){
+
+                    var width = window.innerWidth;
+
+                    var height = window.innerHeight;
+
+                    renderer.setSize(width, height);
+
+                    camera.aspect = width / height;
+
+                    camera.updateProjectionMatrix();
+
+                });
 
           
+                
+                // setup controler; disable controling by the user (can be adjusted by chaning 'false' to 'true')
+                
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
 
+                controls.enableZoom = false;
+
+                controls.enablePan = false;
+
+                controls.enableRotate = false;
+
+                
+          
+                /* setup the spheres which are used to display the users diseases and injuries (one sphere for each)
+                
+                   .name contains the name, used to find the element within the scene 
+                
+                   .text contains the text, displayed when clicking the sphere */
+
+                var geom = new THREE.SphereGeometry(1,20,20);
+
+                var mat = new THREE.MeshPhongMaterial( {specular: "#fdfb57", color: "#fd2b28",  side: THREE.DoubleSide} );
+
+                sphere = new THREE.Mesh(geom,mat);
+                
+                sphere.name = "hand";
+
+                sphere.position.x = 6.5; 
+
+                sphere.position.y = 0; 
+
+                sphere.position.z = 20;  
+
+                sphere.text = "Die hand ist kaputt";
+
+                scene.add(sphere);
           
 
-        //init line
+                geom = new THREE.SphereGeometry(1,20,20);
 
-        endPoint = scene.getObjectByName( "hand" );
+                mat = new THREE.MeshPhongMaterial( {specular: "#fdfb57", color: "#fd2b28",  side: THREE.DoubleSide} );
 
-        write(scene.getObjectByName( "hand" ).text);
+                sphere2 = new THREE.Mesh(geom,mat);
 
-          
+                sphere2.name = "shoulder";
 
-        var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+                sphere2.position.x = 3.5; 
 
-        var points = [];
+                sphere2.position.y = 1; 
 
-        points.push( new THREE.Vector3( - 100, 100, 100 ) );
+                sphere2.position.z = 33;
 
-        p =  sphere.position ;
+                sphere2.text = "Die Schulter ist kaputt";
 
-        points.push(p);
-
-
-
-        var geometry = new THREE.BufferGeometry().setFromPoints( points );
-
-        line = new THREE.Line( geometry, material );
-
-        line.name = "testname";
-
-        scene.add( line );
+                scene.add(sphere2);
 
         
 
+                // domEvents handles clicking on a sphere (as well as touching)
+                
+                const domEvents = new THREEx.DomEvents(camera,renderer.domElement);
+
+                domEvents.addEventListener(sphere, 'click', event =>{
+
+                    endPoint = scene.getObjectByName( "hand" );
+
+                    write(sphere.text);
+
+                })
+
+                
+                domEvents.addEventListener(sphere, 'touchstart', event =>{
+
+                    endPoint = scene.getObjectByName( "hand" );
+
+                    write(sphere.text);
+
+                })
           
 
+                domEvents.addEventListener(sphere2, 'click', event =>{
 
+                    endPoint = scene.getObjectByName( "shoulder" );
 
-        let loader = new THREE.GLTFLoader();
+                    write("Schulter kaputt");
 
-        loader.load('skeleton/scene.gltf', function(gltf){
-
-          car = gltf.scene.children[0];
-
-          car.scale.set(1,1,1);
-
-          car.add(sphere);
-
-          car.add(sphere2);
-
-          scene.add(gltf.scene);
-
-          animate();
-
-        });
-
-      }
-
-      function animate() {
-
-        
-
-        car.rotateZ(0.01);
-
+                })
           
 
-        //get world coordinate of ball
+                domEvents.addEventListener(sphere2, 'touchstart', event =>{
 
-        car.updateMatrixWorld();
+                    endPoint = scene.getObjectByName( "shoulder" );
 
-        var vector = new THREE.Vector3();
-
-        vector.setFromMatrixPosition( endPoint.matrixWorld );
-
-         
-
-        var vector2 = new THREE.Vector3();
-
-        vector2.setFromMatrixPosition( scene.getObjectByName( "sprite" ).matrixWorld );
-
-    
-
-        //console.log(vector);
+                    write("Schulter kaputt");
+                })
 
         
 
-        //add line 
+                //initialise line which connects the sphere and info box
 
-        scene.remove( scene.getObjectByName( "testname" ));
+                endPoint = scene.getObjectByName( "hand" );
 
+                write(scene.getObjectByName( "hand" ).text);
+                
+
+                var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+
+                var points = [];
+
+                points.push( new THREE.Vector3( - 100, 100, 100 ) );
+
+                p =  sphere.position ;
+
+                points.push(p);
+
+
+                var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+                line = new THREE.Line( geometry, material );
+
+                line.name = "line";
         
 
-        var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+                // initialise loader and load 3d-model
+                
+                let loader = new THREE.GLTFLoader();
 
-        var points = [];
+                loader.load('skeleton/scene.gltf', function(gltf){
 
-        //points.push( new THREE.Vector3( - 20, 23, 0 ) );
+                    model = gltf.scene.children[0];
 
-        points.push(vector2);
+                    model.scale.set(1,1,1);
 
-        points.push(vector);
+                    model.add(sphere);
 
+                    model.add(sphere2);
 
+                    scene.add(gltf.scene);
 
-        var geometry = new THREE.BufferGeometry().setFromPoints( points );
+                    animate();
 
-        line = new THREE.Line( geometry, material );
+                });
 
-        line.name = "testname";
-
-        scene.add( line );
-
-          
-
-        renderer.render(scene,camera);
-
-        requestAnimationFrame(animate);
-
-      }
+        }
 
         
-
         
+        // animate is called every frame and renders the scene
+            
+        function animate() {
 
-     function write(text){
 
-        
-
-        scene.remove( scene.getObjectByName( "sprite" ));
-
-        var canvas = document.createElement('canvas');
-
-        var size = 256; // CHANGED
-
-        canvas.width = size;
-
-        canvas.height = size;
-
-        var context = canvas.getContext('2d');
+            // let the model rotate
+            
+            model.rotateZ(0.01);
 
           
 
-        context.rect(0, 0, 256, 256);
+            // find out vectors in order to connect the endPoint (sphere) with the info box (sprite)
 
-        context.fillStyle = "gray";
+            model.updateMatrixWorld();
 
-        context.fill();
+            var vector = new THREE.Vector3();
+
+            vector.setFromMatrixPosition( endPoint.matrixWorld );
+
+            var vector2 = new THREE.Vector3();
+
+            vector2.setFromMatrixPosition( scene.getObjectByName( "sprite" ).matrixWorld );
+
+        
+
+            //remove old connection between info box and sphere and add the new one  
+
+            scene.remove( scene.getObjectByName( "line" ));
+
+            var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+
+            var points = [];
+
+            points.push(vector2);
+
+            points.push(vector);
+            
+            var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+            line = new THREE.Line( geometry, material );
+
+            line.name = "line";
+
+            scene.add( line );
 
           
+            // render new scene
+            
+            renderer.render(scene,camera);
 
-        context.fillStyle = 'white'; 
+            requestAnimationFrame(animate);
 
-        context.textAlign = 'center';
+        }
 
-        context.font = '24px Arial';
+        
 
-        context.fillText(text, size / 2, size / 2);
+        // function which allows to write text into info box 
+
+        function write(text){
+            
+        
+            scene.remove( scene.getObjectByName( "sprite" ));
+
+            var canvas = document.createElement('canvas');
+
+            var size = 256; 
+
+            canvas.width = size;
+
+            canvas.height = size;
+
+            var context = canvas.getContext('2d');
+
+          
+            context.rect(0, 0, 256, 256);
+
+            context.fillStyle = "gray";
+
+            context.fill();
+
+        
+
+            context.fillStyle = 'white'; 
+
+            context.textAlign = 'center';
+
+            context.font = '24px Arial';
+
+            context.fillText(text, size / 2, size / 2);
 
 
+            var amap = new THREE.Texture(canvas);
 
-        var amap = new THREE.Texture(canvas);
-
-        amap.needsUpdate = true;
-
+            amap.needsUpdate = true;
 
 
-        var mat = new THREE.SpriteMaterial({
+            var mat = new THREE.SpriteMaterial({
 
             map: amap,
 
@@ -603,27 +538,22 @@ function closeNav() {
 
             color: 0xffffff 
 
-        });
+            });
 
 
+            var sp = new THREE.Sprite(mat);
 
-        var sp = new THREE.Sprite(mat);
+            sp.name = "sprite";
 
-        sp.name = "sprite";
+            sp.scale.set( 7, 7, 1 );
 
-        sp.scale.set( 7, 7, 1 );
+            sp.position.set(0, 5, 17);
 
-        //sp.position.set(- 20, 25, 10);
+            scene.add(sp);
 
-        sp.position.set(0, 5, 17);
+        }            
 
-        scene.add(sp);
-
-     }    
-
-        
-
-      init();
+        init();
 
     </script>
 
