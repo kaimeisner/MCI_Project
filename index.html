@@ -6,8 +6,10 @@
 
         <meta charset=UTF-8 />
 
-   
+        
+        <link rel="shortcut icon" href="">
 
+        
         <style>
 
             body {
@@ -320,7 +322,9 @@
 
                 sphere.position.z = 20;  
 
-                sphere.text = "Die hand ist kaputt";
+                sphere.text = "Die Hand ist kaputt";
+                
+                sphere.date = new Date("2020-03-30");
 
                 scene.add(sphere);
           
@@ -340,6 +344,8 @@
                 sphere2.position.z = 33;
 
                 sphere2.text = "Die Schulter ist kaputt";
+                
+                sphere2.date = new Date("2017-01-26");
 
                 scene.add(sphere2);
 
@@ -353,7 +359,7 @@
 
                     endPoint = scene.getObjectByName( "hand" );
 
-                    write(sphere.text);
+                    write(sphere.text, sphere.date);
 
                 })
 
@@ -362,7 +368,7 @@
 
                     endPoint = scene.getObjectByName( "hand" );
 
-                    write(sphere.text);
+                    write(sphere.text, sphere.date);
 
                 })
           
@@ -371,7 +377,7 @@
 
                     endPoint = scene.getObjectByName( "shoulder" );
 
-                    write("Schulter kaputt");
+                    write(sphere2.text, sphere2.date);
 
                 })
           
@@ -380,7 +386,7 @@
 
                     endPoint = scene.getObjectByName( "shoulder" );
 
-                    write("Schulter kaputt");
+                    write(sphere2.text, sphere2.date);
                 })
 
         
@@ -389,7 +395,7 @@
 
                 endPoint = scene.getObjectByName( "hand" );
 
-                write(scene.getObjectByName( "hand" ).text);
+                write(scene.getObjectByName( "hand" ).text, scene.getObjectByName( "hand" ).date);
                 
 
                 var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
@@ -492,7 +498,7 @@
 
         // function which allows to write text into info box 
 
-        function write(text){
+        function write(text, date){
             
             scene.remove( scene.getObjectByName( "sprite" ));
             
@@ -522,9 +528,13 @@
             
             context.textBaseline = "middle";
 
-            context.font = '56px Arial';
-
-            context.fillText(text, width / 2, height / 2);
+            context.font = '80px Arial';
+            
+            var dateText = date.getDate().toString() + '.' + date.getMonth().toString() + '.' + date.getFullYear().toString();
+            
+            context.fillText(dateText, width / 2, height * 1 / 3);
+            
+            context.fillText(text, width / 2, height * 2 / 3);
             
 
             var amap = new THREE.Texture(canvas);
