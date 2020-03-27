@@ -494,36 +494,38 @@
 
         function write(text){
             
-        
             scene.remove( scene.getObjectByName( "sprite" ));
-
+            
             var canvas = document.createElement('canvas');
 
-            var size = 256; 
+            var width = 1024;
+            
+            var height = 512;
 
-            canvas.width = size;
+            canvas.width = width;
 
-            canvas.height = size;
+            canvas.height = height;
 
             var context = canvas.getContext('2d');
 
           
-            context.rect(0, 0, 256, 256);
+            context.rect(0, 0, width, height);
 
             context.fillStyle = "gray";
 
             context.fill();
-
         
 
             context.fillStyle = 'white'; 
 
             context.textAlign = 'center';
+            
+            context.textBaseline = "middle";
 
-            context.font = '24px Arial';
+            context.font = '56px Arial';
 
-            context.fillText(text, size / 2, size / 2);
-
+            context.fillText(text, width / 2, height / 2);
+            
 
             var amap = new THREE.Texture(canvas);
 
@@ -545,7 +547,7 @@
 
             sp.name = "sprite";
 
-            sp.scale.set( 7, 7, 1 );
+            sp.scale.set( 14, 7, 1);
 
             sp.position.set(0, 5, 17);
 
