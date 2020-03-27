@@ -271,44 +271,77 @@
        
             }
         
+            
+            
             .year18 {
+                
                 text-indent: 24px;
+                
                 color: white;
+                
                 font-size: 70px;
+                
                 position:absolute;
+                
                 left: 20px;
+                
                 top: 810px;
             }
             
-             .year19 {
+            
+            
+            .year19 {
+                
                 text-indent: 24px;
+                
                 color: white;
+                
                 font-size: 70px;
+                
                 position:absolute;
+                
                 left: 20px;
+                
                 top: 595px;
+                
                 
             }
             
-             .year20 {
+            
+            
+            .year20 {
+                
                 text-indent: 24px;
+                
                 color: white;
+                
                 font-size: 70px;
+                
                 position:absolute;
+                
                 left: 20px;
+                
                 top: 385px;
+            
             }
+        
             
             
-             .all {
+            .all {
+                
                 text-indent: 52px;
+                
                 color: white;
+                
                 font-size: 70px;
+                
                 position:absolute;
+                
                 left: 20px;
+                
                 top: 170px;
+            
             }
-            /* Mouse-over effects */
             
             
             
@@ -552,9 +585,17 @@
                     
                     if(scene.getObjectByName('shoulder') != undefined){
                         
-                        model.remove( scene.getObjectByName( 'shoulder' ));
+                        var obj = scene.getObjectByName( 'shoulder' )
                         
-                        scene.remove( scene.getObjectByName( 'shoulder' ));
+                        if(obj == endPoint){
+                            
+                            endPoint = undefined;
+                            
+                        }
+                        
+                        model.remove( obj );
+                        
+                        scene.remove( obj );
                         
                     }
                     
@@ -575,9 +616,17 @@
                     
                     if(scene.getObjectByName('hand') != undefined){
                         
-                        model.remove( scene.getObjectByName( 'hand' ));
+                        var obj = scene.getObjectByName( 'hand' )
                         
-                        scene.remove( scene.getObjectByName( 'hand' ));
+                        if(obj == endPoint){
+                            
+                            endPoint = undefined;
+                            
+                        }
+                        
+                        model.remove( obj );
+                        
+                        scene.remove( obj );
                     
                     }
                     
@@ -591,9 +640,17 @@
                     
                     if(scene.getObjectByName('knee') != undefined){
                         
-                        model.remove( scene.getObjectByName( 'knee' ));
+                        var obj = scene.getObjectByName( 'knee' )
                         
-                        scene.remove( scene.getObjectByName( 'knee' ));
+                        if(obj == endPoint){
+                            
+                            endPoint = undefined;
+                            
+                        }
+                        
+                        model.remove( obj );
+                        
+                        scene.remove( obj );
                          
                     }
                 }
@@ -604,25 +661,49 @@
                     
                     if(scene.getObjectByName('hand') != undefined){
                         
-                        model.remove( scene.getObjectByName( 'hand' ));
+                        var obj = scene.getObjectByName( 'hand' )
                         
-                        scene.remove( scene.getObjectByName( 'hand' ));
+                        if(obj == endPoint){
+                            
+                            endPoint = undefined;
+                            
+                        }
+                        
+                        model.remove( obj );
+                        
+                        scene.remove( obj );
                     
                     }
                     
                     if(scene.getObjectByName('shoulder') != undefined){
                         
-                         model.remove( scene.getObjectByName( 'shoulder' ));
+                        var obj = scene.getObjectByName( 'shoulder' )
                         
-                        scene.remove( scene.getObjectByName( 'shoulder' ));
+                        if(obj == endPoint){
+                            
+                            endPoint = undefined;
+                            
+                        }
+                        
+                        model.remove( obj );
+                        
+                        scene.remove( obj );
                         
                     }
                     
                     if(scene.getObjectByName('knee') != undefined){
                         
-                        model.remove( scene.getObjectByName( 'knee' ));
+                        var obj = scene.getObjectByName( 'knee' )
                         
-                        scene.remove( scene.getObjectByName( 'knee' ));
+                        if(obj == endPoint){
+                            
+                            endPoint = undefined;
+                            
+                        }
+                        
+                        model.remove( obj );
+                        
+                        scene.remove( obj );
                          
                     }
                 }
@@ -837,32 +918,6 @@
                     write(sphere3.text, sphere3.date);
                 })
 
-        
-
-                //initialise line which connects the sphere and info box
-
-                endPoint = scene.getObjectByName( "hand" );
-
-                write(scene.getObjectByName( "hand" ).text, scene.getObjectByName( "hand" ).date);
-                
-
-                var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
-
-                var points = [];
-
-                points.push( new THREE.Vector3( - 100, 100, 100 ) );
-
-                p =  sphere.position ;
-
-                points.push(p);
-
-
-                var geometry = new THREE.BufferGeometry().setFromPoints( points );
-
-                line = new THREE.Line( geometry, material );
-
-                line.name = "line";
-        
 
                 // initialise loader and load 3d-model
                 
@@ -898,42 +953,52 @@
             // let the model rotate
             
             model.rotateZ(0.01);
-
-          
-
-            // find out vectors in order to connect the endPoint (sphere) with the info box (sprite)
-
-            model.updateMatrixWorld();
-
-            var vector = new THREE.Vector3();
-
-            vector.setFromMatrixPosition( endPoint.matrixWorld );
-
-            var vector2 = new THREE.Vector3();
-
-            vector2.setFromMatrixPosition( scene.getObjectByName( "sprite" ).matrixWorld );
-
         
 
             //remove old connection between info box and sphere and add the new one  
 
-            scene.remove( scene.getObjectByName( "line" ));
-
-            var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
-
-            var points = [];
-
-            points.push(vector2);
-
-            points.push(vector);
+            if(scene.getObjectByName( "line" ) != undefined){
+                
+                scene.remove( scene.getObjectByName( "line" ));
+                
+            }
             
-            var geometry = new THREE.BufferGeometry().setFromPoints( points );
+            if(endPoint != undefined){
+                
+                 // find out vectors in order to connect the endPoint (sphere) with the info box (sprite)
 
-            line = new THREE.Line( geometry, material );
+                model.updateMatrixWorld();
 
-            line.name = "line";
+                var vector = new THREE.Vector3();
 
-            scene.add( line );
+                vector.setFromMatrixPosition( endPoint.matrixWorld );
+
+                var vector2 = new THREE.Vector3();
+
+                vector2.setFromMatrixPosition( scene.getObjectByName( "sprite" ).matrixWorld );
+                
+                
+                var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+
+                var points = [];
+
+                points.push(vector2);
+
+                points.push(vector);
+            
+                var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+                line = new THREE.Line( geometry, material );
+
+                line.name = "line";
+
+                scene.add( line );
+           
+            }
+            
+            else{
+                write(undefined, undefined);
+            }
             
           
             // render new scene
@@ -980,12 +1045,14 @@
 
             context.font = '80px Arial';
             
-            var dateText = date.getDate().toString() + '.' + date.getMonth().toString() + '.' + date.getFullYear().toString();
+            if(text != undefined ){
+                var dateText = date.getDate().toString() + '.' + date.getMonth().toString() + '.' + date.getFullYear().toString();
             
-            context.fillText(dateText, width / 2, height * 1 / 3);
+                context.fillText(dateText, width / 2, height * 1 / 3);
             
-            context.fillText(text, width / 2, height * 2 / 3);
+                context.fillText(text, width / 2, height * 2 / 3);
             
+            }
 
             var amap = new THREE.Texture(canvas);
 
