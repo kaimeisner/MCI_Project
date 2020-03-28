@@ -1,1 +1,137 @@
-<h1>Befunde</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Befunde</title>
+<style>
+table.paleBlueRows {
+  font-family: Arial, Helvetica, sans-serif;
+  border: 0px solid #FFFFFF;
+  width: 350px;
+  height: 200px;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.paleBlueRows td, table.paleBlueRows th {
+  border: 0px solid #FFFFFF;
+  padding: 3px 3px;
+}
+table.paleBlueRows tbody td {
+  font-size: 16px;
+}
+table.paleBlueRows tr:nth-child(even) {
+  background: #D8D8D8;
+}
+table.paleBlueRows thead {
+  background: #FF8000;
+  border-bottom: 5px solid #FFFFFF;
+}
+table.paleBlueRows thead th {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: left;
+  border-left: 2px solid #FFFFFF;
+}
+table.paleBlueRows thead th:first-child {
+  border-left: none;
+}
+
+table.paleBlueRows tfoot td {
+  font-size: 14px;
+}
+    
+    
+</style>
+</head>
+
+<body>
+<table class="paleBlueRows"  align= "center" id="Befunde">
+<thead>
+<tr>
+<th id="td-header" rowspan="1">Befund</th>
+<th>Datum</th>
+<th>Arzt</th>
+<th>Standort</th>
+</tr>
+</thead>
+<tbody>
+<tr id="td-data-1" style="display:">
+<td>Knie geprellt</td>
+<td>04.06.2020</td>
+<td>Dr.Best</td>
+<td>Unibw München</td>
+</tr>
+<tr id="td-data-2" style="display:">
+<td>Schulter ausgekugelt</td>
+<td>26.11.2019</td>
+<td>Dr.Best</td>
+<td>Unibw München</td>
+<tr id="td-data-3" style="display:">
+<td>Hand gebrochen</td>
+<td>30.04.2020</td>
+<td>Dr.Best</td>
+<td>Unibw München</td>
+</tr>
+<tr id="td-data-4" style="display:none">
+<td>TESTTESTTEST</td>
+<td>26.11.2019</td>
+<td>Dr.Best</td>
+<td>Unibw München</td>
+</tr>
+
+
+</tbody>
+</table>
+    
+<script>
+    
+    
+    
+    var table = document.getElementById("Befunde");
+    if (table != null) {
+        for (var i = 0; i < table.rows.length; i++) {
+            for (var j = 0; j < table.rows[i].cells.length; j++)
+            table.rows[i].cells[j].onclick = function () {
+                tableText(this);
+            };
+        }
+    }
+
+    function tableText(tableCell) {
+        alert(tableCell.innerHTML);
+        toggle(4)
+        
+    }
+    
+    function toggle(rowCount) {
+    myHead = document.getElementById("td-header");
+    myRowSpan = myHead.rowSpan;
+    
+    if (myHead.rowSpan==rowCount+1) {
+    // zuklappen
+        for (i=4;i<=rowCount;i++) {
+            currentTr = document.getElementById("td-data-"+i);     
+            currentTr.style.display = "none";
+        }
+        myHead.rowSpan=1;
+
+    } else {
+        // aufklappen
+        for (i=3;i<=rowCount;i++) {
+            currentTr = document.getElementById("td-data-"+i);     
+            currentTr.style.display = "";
+        }
+        myHead.rowSpan=rowCount+1;
+    }  
+}  
+    
+    
+    
+    
+    
+    
+</script>
+</body>
+
+</html>

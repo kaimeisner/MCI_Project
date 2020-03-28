@@ -1,1 +1,48 @@
-<h1>Arztbriefe</h1>
+<html>
+<head>
+<script type="text/javascript">
+function toggle(rowCount) {
+    myHead = document.getElementById("td-header");
+    myRowSpan = myHead.rowSpan;
+    
+    if (myHead.rowSpan==rowCount+1) {
+    // zuklappen
+        for (i=1;i<=rowCount;i++) {
+            currentTr = document.getElementById("td-data-"+i);     
+            currentTr.style.display = "none";
+        }
+        myHead.rowSpan=1;
+
+    } else {
+        // aufklappen
+        for (i=1;i<=rowCount;i++) {
+            currentTr = document.getElementById("td-data-"+i);     
+            currentTr.style.display = "";
+        }
+        myHead.rowSpan=rowCount+1;
+    }    
+}
+
+
+</script>
+<title>Tabelle aufklappen</title>
+</head>
+<body>
+
+<table border="1">
+  <tr>
+    <td id="td-header" rowSpan="1">...</td>
+    <td>...</td>
+    <td>...</td>
+  </tr>
+  <tr id="td-data-1" style="display:none">
+    <td>...</td>
+    <td>...</td>
+  </tr>
+  <tr id="td-data-2" style="display:none">
+     <td>...</td>
+     <td>...</td>
+   </tr>
+</table>
+<a href="#" onclick="toggle(2)">Toggle</a>
+</body>
