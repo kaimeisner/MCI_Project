@@ -531,183 +531,53 @@
                 document.getElementById("main2").style.marginRight= "0"; 
        
                 document.getElementById("main2").style.visibility='visible';
-
+                
                 document.body.style.backgroundColor = "white";
                 
                 
                 //handle slider input and display required spheres
                 
-               var value = slider.value;
+                var value = parseInt(slider.value);
                 
-                console.log(value)
-                // value is 4 <-> all
-                
-                if(value == 4){    
+                switch(value){
                     
-                    if(scene.getObjectByName('hand') == undefined){
+                    case 4: addSphere(sphere);      // all
+                            
+                            addSphere(sphere2);
+                            
+                            addSphere(sphere3);
                         
-                        scene.add(sphere);
-
-                        model.add(sphere);
+                            break;
                     
-                    }
-                    
-                    if(scene.getObjectByName('shoulder') == undefined){
                         
-                        scene.add(sphere2);
-
-                        model.add(sphere2);
+                    case 3: addSphere(sphere);      // 2020
+                            
+                            removeSphere(sphere2);
                         
-                    }
-                    
-                    if(scene.getObjectByName('knee') == undefined){
+                            addSphere(sphere3);
                         
-                        scene.add(sphere3);
-
-                        model.add(sphere3);
-                         
-                    }
+                            break;
+                        
+                        
+                    case 2: removeSphere(sphere);   // 2019
+                            
+                            addSphere(sphere2);
+                        
+                            removeSphere(sphere3);
+                        
+                            break;
+                        
+                        
+                    case 1: removeSphere(sphere);   // 2018
+                            
+                            removeSphere(sphere2);
+                        
+                            removeSphere(sphere3);
+                        
+                            break;
                         
                 }
                 
-                // value is 3 <-> 2020
-                
-                if(value == 3){
-                     
-                    
-                    if(scene.getObjectByName('hand') == undefined){
-                        
-                        scene.add(sphere);
-
-                        model.add(sphere);
-                    
-                    }
-                    
-                    if(scene.getObjectByName('shoulder') != undefined){
-                        
-                        var obj = scene.getObjectByName( 'shoulder' )
-                        
-                        if(obj == endPoint){
-                            
-                            endPoint = undefined;
-                            
-                        }
-                        
-                        model.remove( obj );
-                        
-                        scene.remove( obj );
-                        
-                    }
-                    
-                    if(scene.getObjectByName('knee') == undefined){
-                        
-                        scene.add(sphere3);
-
-                        model.add(sphere3);
-                         
-                    }
-                }
-                
-                
-                // value is 2 <-> 2019
-                
-                 if(value == 2){
-                     
-                    
-                    if(scene.getObjectByName('hand') != undefined){
-                        
-                        var obj = scene.getObjectByName( 'hand' )
-                        
-                        if(obj == endPoint){
-                            
-                            endPoint = undefined;
-                            
-                        }
-                        
-                        model.remove( obj );
-                        
-                        scene.remove( obj );
-                    
-                    }
-                    
-                    if(scene.getObjectByName('shoulder') == undefined){
-                        
-                        scene.add(sphere2);
-
-                        model.add(sphere2);
-                        
-                    }
-                    
-                    if(scene.getObjectByName('knee') != undefined){
-                        
-                        var obj = scene.getObjectByName( 'knee' )
-                        
-                        if(obj == endPoint){
-                            
-                            endPoint = undefined;
-                            
-                        }
-                        
-                        model.remove( obj );
-                        
-                        scene.remove( obj );
-                         
-                    }
-                }
-                
-                
-                 if(value == 1){
-                     
-                    
-                    if(scene.getObjectByName('hand') != undefined){
-                        
-                        var obj = scene.getObjectByName( 'hand' )
-                        
-                        if(obj == endPoint){
-                            
-                            endPoint = undefined;
-                            
-                        }
-                        
-                        model.remove( obj );
-                        
-                        scene.remove( obj );
-                    
-                    }
-                    
-                    if(scene.getObjectByName('shoulder') != undefined){
-                        
-                        var obj = scene.getObjectByName( 'shoulder' )
-                        
-                        if(obj == endPoint){
-                            
-                            endPoint = undefined;
-                            
-                        }
-                        
-                        model.remove( obj );
-                        
-                        scene.remove( obj );
-                        
-                    }
-                    
-                    if(scene.getObjectByName('knee') != undefined){
-                        
-                        var obj = scene.getObjectByName( 'knee' )
-                        
-                        if(obj == endPoint){
-                            
-                            endPoint = undefined;
-                            
-                        }
-                        
-                        model.remove( obj );
-                        
-                        scene.remove( obj );
-                         
-                    }
-                }
-
             }
 
         
@@ -1080,7 +950,51 @@
 
             scene.add(sp);
 
-        }            
+        }    
+            
+            
+        
+        // function to remove a specific sphere from the scene
+            
+        function removeSphere(sphereObj){
+            
+            var name = sphereObj.name 
+            
+            if(scene.getObjectByName( name ) != undefined){
+                        
+                        var obj = scene.getObjectByName( name )
+                        
+                        if(obj == endPoint){
+                            
+                            endPoint = undefined;
+                            
+                        }
+                        
+                        model.remove( obj );
+                        
+                        scene.remove( obj );
+                    
+                    }
+                  
+        }
+            
+            
+            
+        // function to add existing sphere to the scene
+            
+        function addSphere(sphereObj){
+              
+            var name = sphereObj.name;
+                
+            if(scene.getObjectByName(name) == undefined){
+                        
+                scene.add(sphereObj);
+
+                model.add(sphereObj);
+                        
+            }
+        
+        }
 
         init();
 
