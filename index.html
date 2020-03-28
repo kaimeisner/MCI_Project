@@ -464,20 +464,17 @@
             
             var slider = document.getElementById("myRange");
             
-
-            // Update the current slider value (each time you drag the slider handle)
-            
-            /*slider.oninput = function() {
-            
-                console.log(this.value);
-            
-            } */
             
             
             // function for opening the side menu 
                 
             function openNav() {
-
+                
+                if(open == true){
+                    
+                    closeFilter();
+                }
+                
                 document.getElementById("mySidenav").style.width = "550px";
 
                 document.getElementById("main").style.marginLeft = "250px"; 
@@ -485,6 +482,8 @@
                 document.getElementById("main").style.visibility='hidden';
 
                 document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+                    
+                open = true;
 
             }
             
@@ -494,13 +493,21 @@
             
              function openFilter() {
 
-                document.getElementById("myFilter").style.width = "550px";
+                if(open == true){
+                    
+                    closeNav();
+                    
+                }
+                 
+                 document.getElementById("myFilter").style.width = "550px";
 
                 document.getElementById("main2").style.marginRight = "250px";
          
                 document.getElementById("main2").style.visibility='hidden';
 
                 document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+                    
+                open = true;
 
             }
 
@@ -517,6 +524,8 @@
                 document.getElementById("main").style.visibility='visible';
 
                 document.body.style.backgroundColor = "white";
+                
+                open = false;
 
             }
             
@@ -533,6 +542,8 @@
                 document.getElementById("main2").style.visibility='visible';
                 
                 document.body.style.backgroundColor = "white";
+                
+                open = false;
                 
                 
                 //handle slider input and display required spheres
@@ -584,7 +595,7 @@
             
             // locale variables for 3d-rendering
             
-            let scene, camera, renderer, model, sphere, sphere2, line, endPoint;
+            let scene, camera, renderer, model, line, endPoint, open;
         
 
             
@@ -810,6 +821,12 @@
                     animate();
 
                 });
+                
+                
+                
+                // both menus are closed
+                
+                open = false;
 
         }
 
