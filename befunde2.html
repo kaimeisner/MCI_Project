@@ -194,26 +194,28 @@
             </tr>
     </thead>
         <tbody>
-            <tr>
+            <tr onclick="onRowClick(event, this)" id= "tr-1">
                 <td>2020-06-04</td>
                 <td>Knie geprellt</td>
                 <td>Dr. Best</td>
                 <td>UniBw München</td>
             </tr>
             
-             <tr>
+            <tr onclick="onRowClick(event, this)" id= "tr-2">
                 <td>2020-04-30</td>
                 <td>Hand gebrochen</td>
                 <td>Dr. Best</td>
                 <td>UniBw München</td>
             </tr>
-            
-            <tr>
+         
+            <tr onclick="onRowClick(event, this)" id= "tr-3">
                 <td>2019-11-26</td>
                 <td>Schulter ausgekugelt</td>
                 <td>Dr. Best</td>
                 <td>UniBw München</td>
             </tr>
+            
+            
         </tbody>
         
       
@@ -272,7 +274,64 @@
             }
     
     
+        function onRowClick(e, that) {
+            var tooltip = document.getElementById("clickToolTip");
+            tooltip.querySelector("#innertooltip").innerHTML = that.getAttribute("tooltiptext");
+            var ttwidth = tooltip.clientWidth;
+            tooltip.style.left = e.clientX-ttwidth/2;
+            tooltip.style.top = e.clientY;
+            tooltip.style.display = "block";
+            tooltip.style.zIndex = 1000;
+            
+            
+        }
+        function closeToolTip(){
+            var tooltip = document.getElementById("clickToolTip");
+            tooltip.style.display = "none";
+            tooltip.style.zIndex = -1000;
+            
+        }
+        //initially set tooltip texts
+        document.addEventListener("DOMContentLoaded", function(){
+            document.getElementById("tr-1").setAttribute("tooltiptext", 
+                                                         "<h4 style = 'color:#e65c00;'>Knie geprellt</h4><br>"
+                                                        +"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam");
+            document.getElementById("tr-2").setAttribute("tooltiptext", 
+                                                         "<h4 style = 'color:#e65c00;'>Hand gebrochen</h4><br>"
+                                                        +"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam");
+            document.getElementById("tr-3").setAttribute("tooltiptext", 
+                                                         "<h4 style = 'color:#e65c00;'> Schulter ausgekugelt</h4><br>"
+                                                        +"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam");
+        });
+        
     </script>
+    <div id= "clickToolTip" class = "tooltipdiv">
+        <div class = "closetooltip" onclick="closeToolTip()">x</div>
+        <div id = "innertooltip"></div>
+    </div>
+    <style>
+        .tooltipdiv{
+            position:absolute;
+            display: none;
+            background-color: darkgray;
+            border-radius: 7px;
+            border-style: outset;
+            border-width: 3px;
+            color: black;
+            border-color: darkgray;
+            max-width: 500px;    
+        }
+        .closetooltip{
+            position: relative;
+            right: 0;
+            top: 5px;
+            width: 20px;
+            float: right;
+        }
+    
+    
+    </style>
+    
 
 
 
