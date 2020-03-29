@@ -53,8 +53,6 @@
 
                 background-color: gray;
 
-                opacity: 0.7;
-
                 overflow-x: hidden;
 
                 transition: 0.5s;
@@ -133,7 +131,7 @@
 
                 left: 5%; 
 
-                top: 5%;
+                top: 90px;
 
             }
 
@@ -146,7 +144,6 @@
                 .sidenav a {font-size: 18px;}
 
             }
-            
             
     
 </style>
@@ -179,6 +176,10 @@
 
         </div>
 
+    
+
+    <canvas height="100"></canvas>
+   
     
     
     <table class="cell-border stripe hover" id="myTable" style="width:100%">
@@ -214,14 +215,7 @@
                 <td>UniBw München</td>
             </tr>
         </tbody>
-        <tfoot>
-            <tr>
-                <th>Datum</th>
-                <th>Befund</th>
-                <th>Arzt</th>
-                <th>Einheit</th>
-            </tr>
-        </tfoot>
+        
       
     <script>
         let table;
@@ -256,11 +250,6 @@
     <script>
          function openNav() {
                 
-                if(open == true){
-                    
-                    closeFilter();
-                }
-                
                 document.getElementById("mySidenav").style.width = "550px";
 
                 document.getElementById("main").style.marginLeft = "250px"; 
@@ -268,8 +257,6 @@
                 document.getElementById("main").style.visibility='hidden';
 
                 document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-                    
-                open = true;
 
             }
     
@@ -282,10 +269,8 @@
        
                 document.getElementById("main").style.visibility='visible';
 
-                document.body.style.backgroundColor = "white";
+                document.body.style.backgroundColor = "lightgray";
                 
-                open = false;
-
             }
     
     
