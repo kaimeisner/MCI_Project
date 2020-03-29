@@ -1,0 +1,63 @@
+<head>
+    
+</head>
+
+
+<script src="js/jQuery.js"></script>
+<script src="js/jQuery.datatables.js"></script>
+
+
+<table class="display" id="example" style="width:100%">
+        <thead>
+            <link rel="stylesheet" type="text/css"href="styles/jquery.dataTables.css">
+            <tr>
+                <th>Datum</th>
+                <th>Befund</th>
+                <th>Arzt</th>
+                <th>Einheit</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>04.06.2020</td>
+                <td>Knie geprellt</td>
+                <td>Dr.Best</td>
+                <td>Unibw München</td>
+            </tr>
+            
+            <tr>
+                <td>26.11.2019</td>
+                <td>Schulter ausgekugelt</td>
+                <td>Dr.Best</td>
+                <td>Unibw München</td>
+            </tr>
+            
+            <tr>
+                <td>30.04.2020</td>
+                <td>Hand gebrochen</td>
+                <td>Dr.Best</td>
+                <td>Unibw München</td>
+            </tr>
+            
+            
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Datum</th>
+                <th>Befund</th>
+                <th>Arzt</th>
+                <th>Einheit</th>
+            </tr>
+        </tfoot>
+    
+    <script>
+    
+        $(document).ready(function() {
+            $('#example').DataTable();
+            console.log("test");
+            } );
+    
+    
+    </script>
+    </table>
