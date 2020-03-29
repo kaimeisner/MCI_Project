@@ -1,15 +1,24 @@
+<!-- ToDo: get images for top row and add them to css -->
+
+
 <head>
-    
+     
+    <meta charset=UTF-8 />
+
+    <link rel="shortcut icon" href="">
+
 </head>
 
 
 <script src="js/jQuery.js"></script>
 <script src="js/jQuery.datatables.js"></script>
+<script src="js/jQuery.ui.js"></script>
 
 
-<table class="display" id="example" style="width:100%">
+<table class="cell-border compact stripe" id="myTable" style="width:100%">
         <thead>
-            <link rel="stylesheet" type="text/css"href="styles/jquery.dataTables.css">
+            <link rel="stylesheet" type="text/css"href="styles/dataTables.jqueryui.min.css">
+            <link rel="stylesheet" type="text/css"href="styles/jquery-ui.css">
             <tr>
                 <th>Datum</th>
                 <th>Befund</th>
@@ -54,10 +63,19 @@
     <script>
     
         $(document).ready(function() {
-            $('#example').DataTable();
-            console.log("test");
+            $('#myTable').DataTable({
+                columnDefs: [
+                    {
+                        targets: "_all",
+                        className: 'dt-body-center'
+                    }
+                ]
+                
+            });
+            
             } );
     
+       
     
     </script>
     </table>
