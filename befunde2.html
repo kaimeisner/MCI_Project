@@ -14,9 +14,20 @@
 <script src="js/jQuery.datatables.js"></script>
 <script src="js/jQuery.ui.js"></script>
 
+
 <img src="images/unibw.png" width=75% height=auto>
 
 <style>
+    body {
+
+                font-family: "Lato", sans-serif;
+
+                transition: background-color .5s;
+        
+                background-color: lightgray;
+
+            }
+    
     img{
         display: block;
         margin-left: auto;
@@ -24,45 +35,184 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
+    
+    
+     .sidenav {
+
+                height: 100%;
+
+                width: 0;
+
+                position: fixed;
+
+                z-index: 1;
+
+                top: 0;
+
+                left: 0; 
+
+                background-color: gray;
+
+                opacity: 0.7;
+
+                overflow-x: hidden;
+
+                transition: 0.5s;
+
+                padding-top: 60px;
+
+            }
+
+
+
+            .sidenav a {
+
+                padding: 8px 8px 8px 32px;
+
+                text-decoration: none;
+
+                font-size: 100px;
+
+                color: white;
+
+                display: block;
+
+                transition: 0.3s;
+
+            }
+
+            
+            
+            .sidenav h1 {
+                
+                margin-bottom: 3cm;
+            
+            }
+
+            
+
+            .sidenav a:hover {
+
+                color: #f1f1f1;
+
+            }
+
+
+
+            .sidenav .closebtn {
+
+                position: absolute;
+
+                top: 0;
+
+                right: 25px;
+
+                font-size: 150px;
+
+                margin-left: 50px;
+
+            }
+
+            #current{
+                
+                color: #ee7202;
+                
+            }
+
+            #main {
+
+                transition: margin-left 0.5s; /*change left to right*/
+
+                padding: 16px;
+
+                position: absolute;
+
+                background: 0xdddddd;
+
+                z-index: 99;
+
+                left: 5%; 
+
+                top: 5%;
+
+            }
+
+
+
+            @media screen and (max-height: 450px) {
+
+                .sidenav {padding-top: 15px;}
+
+                .sidenav a {font-size: 18px;}
+
+            }
+            
+            
+    
 </style>
 
-<table class="cell-border stripe" id="myTable" style="width:100%">
-        <thead>
-            <link rel="stylesheet" type="text/css"href="styles/dataTables.jqueryui.min.css">
-            <link rel="stylesheet" type="text/css"href="styles/jquery-ui.css">
-            <tr>
+<body>
+    
+    
+     <div id="mySidenav" class="sidenav">
+
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+            <h1></h1>
+        
+            <a href="index.html" >Übersicht</a>
+
+            <a id="current">Befunde</a>
+
+            <a href="briefe.html">Arztbriefe</a>
+
+            <a href="status.html">Impfstatus</a>
+
+        </div>
+    
+    
+    <!-- button for side navigation menu -->
+        
+        <div id="main">
+
+            <span style="font-size:150px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
+        </div>
+
+    
+    
+    <table class="cell-border stripe hover" id="myTable" style="width:100%">
+    <thead>
+         <link rel="stylesheet" type="text/css"href="styles/dataTables.jqueryui.min.css">
+         <link rel="stylesheet" type="text/css"href="styles/jquery-ui.css">
+          <tr>
                 <th>Datum</th>
                 <th>Befund</th>
                 <th>Arzt</th>
                 <th>Einheit</th>
             </tr>
-        </thead>
-
+    </thead>
         <tbody>
             <tr>
                 <td>2020-06-04</td>
                 <td>Knie geprellt</td>
-                <td>Dr.Best</td>
-                <td>Unibw München</td>
+                <td>Dr. Best</td>
+                <td>UniBw München</td>
             </tr>
             
              <tr>
                 <td>2020-04-30</td>
                 <td>Hand gebrochen</td>
-                <td>Dr.Best</td>
-                <td>Unibw München</td>
+                <td>Dr. Best</td>
+                <td>UniBw München</td>
             </tr>
             
             <tr>
                 <td>2019-11-26</td>
                 <td>Schulter ausgekugelt</td>
-                <td>Dr.Best</td>
-                <td>Unibw München</td>
+                <td>Dr. Best</td>
+                <td>UniBw München</td>
             </tr>
-            
-           
-            
-            
         </tbody>
         <tfoot>
             <tr>
@@ -72,25 +222,102 @@
                 <th>Einheit</th>
             </tr>
         </tfoot>
-    
+      
     <script>
-    
+        let table;
+        
         $(document).ready(function() {
-            $('#myTable').DataTable({
+           table =  $('#myTable').DataTable({
                 columnDefs: [
                     {
                         targets: "_all",
-                        className: 'dt-center'
-                        
+                        className: 'dt-center', 
                     }
                     
                 ]
                 
             });
-            
-            } );
+            });
     
        
+        
+        
+        $('#myTable').on('click', 'tbody td', function() {
+            
+            console.log(this); 
+              
+        })
+        
     
     </script>
     </table>
+
+    
+    <script>
+         function openNav() {
+                
+                if(open == true){
+                    
+                    closeFilter();
+                }
+                
+                document.getElementById("mySidenav").style.width = "550px";
+
+                document.getElementById("main").style.marginLeft = "250px"; 
+         
+                document.getElementById("main").style.visibility='hidden';
+
+                document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+                    
+                open = true;
+
+            }
+    
+    
+         function closeNav() {
+
+                document.getElementById("mySidenav").style.width = "0";
+
+                document.getElementById("main").style.marginLeft= "0"; 
+       
+                document.getElementById("main").style.visibility='visible';
+
+                document.body.style.backgroundColor = "white";
+                
+                open = false;
+
+            }
+    
+    
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
