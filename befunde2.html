@@ -1,5 +1,6 @@
 <!-- ToDo: get images for top row and add them to css -->
-
+<!DOCTYPE html>
+<html>
 
 <head>
      
@@ -232,9 +233,13 @@
                         className: 'dt-center', 
                     }
                     
-                ]
+                ],
                 
-            });
+            "bPaginate": false,
+    "bLengthChange": false,
+    "bFilter": true,
+    "bInfo": false,
+    "bAutoWidth": false});
             });
     
        
@@ -347,7 +352,24 @@
         #myTable .sorting {
             background-color: lightgray;
         }
-    
+        
+        .dataTables_wrapper .ui-toolbar{
+                font-size: 40px !important;
+            
+            }
+       
+        .dataTables_filter input { 
+                width: 350px; 
+                height: 40px;
+                top: 30px;
+                float: right;
+                font-size: 30px;
+        }
+        
+        
+        
+
+        
     </style>
     
     
@@ -364,7 +386,7 @@
 
 </body>
     
-    
+</html>  
     
 
 
