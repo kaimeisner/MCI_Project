@@ -146,8 +146,6 @@
                 .sidenav a {font-size: 18px;}
 
             }
-         
-    
     
 </style>
 
@@ -187,8 +185,9 @@
     
     <table class="cell-border stripe hover" id="myTable" style="width:100%">
     <thead>
-         <link rel="stylesheet" type="text/css"href="styles/dataTables.jqueryui.min.css">
-         <link rel="stylesheet" type="text/css"href="styles/jquery-ui.css">
+        <link rel="stylesheet" type="text/css"href="styles/jquery-ui.css"> 
+        <link rel="stylesheet" type="text/css"href="styles/dataTables.jqueryui.min.css">
+         
           <tr>
                 <th>Datum</th>
                 <th>Befund</th>
@@ -335,10 +334,23 @@
             cursor: pointer;
         }
     
+        
+        #myTable thead .sorting_asc {
+            background-color: orange;
+        }
+        
+        #myTable thead .sorting_desc {
+            background-color: orange;
+            icon: url(/images/filter.png);
+            background-size: 20px 20px;
+        }
+        #myTable .sorting {
+            background-color: lightgray;
+        }
     
     </style>
     
-
+    
 
 
 
