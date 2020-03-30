@@ -25,6 +25,8 @@
                 transition: background-color .5s;
         
                 background-color: lightgray;
+        
+                font-size: 20px;
 
             }
     
@@ -144,7 +146,8 @@
                 .sidenav a {font-size: 18px;}
 
             }
-            
+         
+    
     
 </style>
 
@@ -278,8 +281,8 @@
             var tooltip = document.getElementById("clickToolTip");
             tooltip.querySelector("#innertooltip").innerHTML = that.getAttribute("tooltiptext");
             var ttwidth = tooltip.clientWidth;
-            tooltip.style.left = e.clientX-ttwidth/2;
-            tooltip.style.top = e.clientY;
+            tooltip.style.left = window.innerHeight/2-window.innerHeight*0.75/2;//e.clientX-ttwidth/2;
+            tooltip.style.top = window.innerHeight/2//;e.clientY;
             tooltip.style.display = "block";
             tooltip.style.zIndex = 1000;
             
@@ -294,19 +297,19 @@
         //initially set tooltip texts
         document.addEventListener("DOMContentLoaded", function(){
             document.getElementById("tr-1").setAttribute("tooltiptext", 
-                                                         "<h4 style = 'color:#e65c00;'>Knie geprellt</h4><br>"
-                                                        +"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam");
+                                                         "<h4 style = 'color:#e65c00;font-size: 50px;'>Knie geprellt</h4><br>"
+                                                        +"<p style = 'font-size: 50px; margin-top: 10px;'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam </p>");
             document.getElementById("tr-2").setAttribute("tooltiptext", 
-                                                         "<h4 style = 'color:#e65c00;'>Hand gebrochen</h4><br>"
-                                                        +"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam");
+                                                         "<h4 style = 'color:#e65c00;font-size: 50px;'>Hand gebrochen</h4><br>"
+                                                        +"<p style = 'font-size: 50px; margin-top: 10px;'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam </p>");
             document.getElementById("tr-3").setAttribute("tooltiptext", 
-                                                         "<h4 style = 'color:#e65c00;'> Schulter ausgekugelt</h4><br>"
-                                                        +"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam");
+                                                         "<h4 style = 'color:#e65c00;font-size: 50px;'> Schulter ausgekugelt</h4><br>"
+                                                         +"<p style = 'font-size: 50px; margin-top: 10px;'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam </p>");
         });
         
     </script>
     <div id= "clickToolTip" class = "tooltipdiv">
-        <div class = "closetooltip" onclick="closeToolTip()">x</div>
+        <div class = "closetooltip" onclick="closeToolTip()"><p style = 'font-size: 80px; margin-top: 10px; margin-left:-50px;'>x</p></div>
         <div id = "innertooltip"></div>
     </div>
     <style>
@@ -319,7 +322,7 @@
             border-width: 3px;
             color: black;
             border-color: darkgray;
-            max-width: 500px;    
+            max-width: 75%;/*500px;*/  
         }
         .closetooltip{
             position: relative;
@@ -327,6 +330,9 @@
             top: 5px;
             width: 20px;
             float: right;
+        }
+        .closetooltip:hover{
+            cursor: pointer;
         }
     
     
