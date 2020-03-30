@@ -8,9 +8,10 @@ Check out our progress at https://kaimeisner.github.io/MCI_Project/. \
 
 ## References
 JQuery: https://github.com/jquery/jquery \
+Filter icon is taken from https://fontawesome.com/ \
 3D-model is imported via Three.js: https://github.com/mrdoob/three.js/ \
 Table is integrated via DataTables: https://github.com/DataTables/DataTables \
-3D-model is taken from https://sketchfab.com/3d-models/skeleton-rig-ee87f94159cf4767b1977659db3fb7aa \
+3D-model is taken from https://sketchfab.com/3d-models/skeleton-rig-ee87f94159cf4767b1977659db3fb7aa 
 
 
 
