@@ -459,8 +459,10 @@
         <script src="js/three.min.js"></script>
 
         <script src="js/GLTFLoader.js"></script>
-
-        <script src="js/OrbitControls.js"></script>
+        
+        <script src="js/TrackballControls.js"></script>
+        
+        <script src="js/alloy_touch.js"></script>
 
         <script src="js/Projector.js"></script>
 
@@ -671,13 +673,9 @@
                 
                 // setup controler; disable controling by the user (can be adjusted by chaning 'false' to 'true')
                 
-                controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-                controls.enableZoom = false;
-
-                controls.enablePan = false;
-
-                controls.enableRotate = false;
+                controls = new THREE.TrackballControls(camera,renderer.domElement);
+               
+                
 
                 
           
@@ -809,7 +807,7 @@
                 loader.load('skeleton/scene.gltf', function(gltf){
 
                     model = gltf.scene.children[0];
-
+                    
                     model.scale.set(1,1,1);
 
                     model.add(sphere);
@@ -819,6 +817,22 @@
                     model.add(sphere3);
 
                     scene.add(gltf.scene);
+                    
+                      new AlloyTouch({
+                    
+                touch: document,	//touch the whole document
+                
+                vertical: false,	//monitor horizontal touch
+                
+                target: model.rotation,	//animate mesh.rotation's y property
+                
+                property: "z",		
+                
+                factor: 0.08,		//friction coefficient
+                
+                moveFactor: 0.2		//touch move friction coefficient
+                
+            })
 
                     animate();
 
@@ -837,11 +851,14 @@
         // animate is called every frame and renders the scene
             
         function animate() {
-
-
+            
+          
+            
             // let the model rotate
             
             model.rotateZ(0.01);
+            
+            console.log(model.rotation);
         
 
             //remove old connection between info box and sphere and add the new one  
@@ -886,7 +903,9 @@
             }
             
             else{
+                
                 write(undefined, undefined);
+                
             }
             
           
