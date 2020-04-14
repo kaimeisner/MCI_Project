@@ -986,10 +986,12 @@
                 
             localStorage.setItem("befund", befund);
                 
+            //event listener for clicking on infobox and get to "befunde.html"
+                
             domEvents.addEventListener(sp, 'click', event =>{
                     
-                    console.log(befund);
-                    
+                    //if there is a local storage, then there is a sprite shown which is clickable
+                
                     if(localStorage.getItem("befund") != undefined){
                         
                          location.replace("befunde.html");
@@ -999,6 +1001,21 @@
                    
                    
             })
+                
+            domEvents.addEventListener(sp, 'touch', event =>{
+                    
+                    //if there is a local storage, then there is a sprite shown which is clickable
+                
+                    if(localStorage.getItem("befund") != undefined){
+                        
+                         location.replace("befunde.html");
+                        
+                    }
+                    
+                   
+                   
+            })
+            
             
             }
 
