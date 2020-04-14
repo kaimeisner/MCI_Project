@@ -1,9 +1,10 @@
 1. add option to make an appointment 
-2. rotate the model by touching it 				(done, but could be improved)
+2. rotate the model by touching it 				(deleted due to bugs)
 3. zoom in / out ? 
 4. different colors for injuries (e.g. green if recovered)
 5. instant change of spheres if you select the year 		(done)
 6. profile of user
+7. click on info to get to 'befunde'				(done)
 
 Provide current state report on May 10th. 
 Final deadline on June 10th.
