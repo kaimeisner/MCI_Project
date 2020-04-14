@@ -1,0 +1,9 @@
+1. add option to make an appointment 
+2. rotate the model by touching it 
+3. zoom in / out ? 
+4. different colors for injuries (e.g. green if recovered)
+5. instant change of spheres if you select the year 
+6. profile of user
+
+Provide current state report on May 10th. 
+Final deadline on June 10th.
