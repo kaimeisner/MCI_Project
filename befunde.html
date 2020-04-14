@@ -202,21 +202,21 @@
             </tr>
     </thead>
         <tbody>
-            <tr onclick="onRowClick(event, this)" id= "tr-1">
+            <tr onclick="onRowClick(event, this)" id= "knie">
                 <td>2020-06-04</td>
                 <td>Knie geprellt</td>
                 <td>Dr. Best</td>
                 <td>UniBw München</td>
             </tr>
             
-            <tr onclick="onRowClick(event, this)" id= "tr-2">
+            <tr onclick="onRowClick(event, this)" id= "hand">
                 <td>2020-04-30</td>
                 <td>Hand gebrochen</td>
                 <td>Dr. Best</td>
                 <td>UniBw München</td>
             </tr>
          
-            <tr onclick="onRowClick(event, this)" id= "tr-3">
+            <tr onclick="onRowClick(event, this)" id= "schulter">
                 <td>2019-11-26</td>
                 <td>Schulter ausgekugelt</td>
                 <td>Dr. Best</td>
@@ -229,9 +229,18 @@
      <script> 
         
        window.onload = function() {
-                var test = localStorage.getItem("befund");
+        
+                var befund = localStorage.getItem("befund");
+                
                 localStorage.removeItem("befund");
-                console.log(test);
+                
+                if(befund != undefined){
+                 
+                    var item = document.getElementById(befund)
+           
+                    onRowClick(undefined, item)
+                    
+                }    
         };
          
     </script>   
@@ -298,6 +307,7 @@
     
         function onRowClick(e, that) {
             var tooltip = document.getElementById("clickToolTip");
+            console.log(that.getAttribute("tooltiptext"));
             tooltip.querySelector("#innertooltip").innerHTML = that.getAttribute("tooltiptext");
             var ttwidth = tooltip.clientWidth;
             tooltip.style.left = window.innerHeight/2-window.innerHeight*0.75/2;//e.clientX-ttwidth/2;
@@ -315,13 +325,13 @@
         }
         //initially set tooltip texts
         document.addEventListener("DOMContentLoaded", function(){
-            document.getElementById("tr-1").setAttribute("tooltiptext", 
+            document.getElementById("knie").setAttribute("tooltiptext", 
                                                          "<h4 style = 'color:#e65c00;font-size: 50px;'>Knie geprellt</h4><br>"
                                                         +"<p style = 'font-size: 50px; margin-top: 10px;'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam </p>");
-            document.getElementById("tr-2").setAttribute("tooltiptext", 
+            document.getElementById("hand").setAttribute("tooltiptext", 
                                                          "<h4 style = 'color:#e65c00;font-size: 50px;'>Hand gebrochen</h4><br>"
                                                         +"<p style = 'font-size: 50px; margin-top: 10px;'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam </p>");
-            document.getElementById("tr-3").setAttribute("tooltiptext", 
+            document.getElementById("schulter").setAttribute("tooltiptext", 
                                                          "<h4 style = 'color:#e65c00;font-size: 50px;'> Schulter ausgekugelt</h4><br>"
                                                          +"<p style = 'font-size: 50px; margin-top: 10px;'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam </p>");
         });

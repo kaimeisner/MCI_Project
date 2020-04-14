@@ -597,7 +597,7 @@
             
             // locale variables for 3d-rendering
             
-            let scene, camera, renderer, model, line, endPoint, open, domEvents;
+            let scene, camera, renderer, model, line, endPoint, open, domEvents, befund;
         
 
             
@@ -768,7 +768,7 @@
 
                     endPoint = scene.getObjectByName( "shoulder" );
 
-                    write(sphere2.text, sphere2.date, "shoulder");
+                    write(sphere2.text, sphere2.date, "schulter");
 
                 })
           
@@ -777,7 +777,7 @@
 
                     endPoint = scene.getObjectByName( "shoulder" );
 
-                    write(sphere2.text, sphere2.date, "shoulder");
+                    write(sphere2.text, sphere2.date, "schulter");
                 })
                 
                 
@@ -785,7 +785,7 @@
 
                     endPoint = scene.getObjectByName( "knee" );
 
-                    write(sphere3.text, sphere3.date, "knee");
+                    write(sphere3.text, sphere3.date, "knie");
 
                 })
                 
@@ -794,7 +794,7 @@
 
                     endPoint = scene.getObjectByName( "knee" );
 
-                    write(sphere3.text, sphere3.date, "knee");
+                    write(sphere3.text, sphere3.date, "knie");
                 })
 
 
@@ -915,7 +915,7 @@
 
         // function which allows to write text into info box 
         
-        function write(text, date, befund){
+        function write(text, date, b){
             
             scene.remove( scene.getObjectByName( "sprite" ));
             
@@ -947,7 +947,7 @@
 
             context.font = '80px Arial';
             
-            if(text != undefined ){
+            if(text != undefined ){ 
                 
                 var dateText = date.getDate().toString() + '.' + date.getMonth().toString() + '.' + date.getFullYear().toString();
             
@@ -972,18 +972,7 @@
             });
 
 
-            var sp = new THREE.Sprite(mat);
-                
-            if(text != undefined ){
-             
-                domEvents.addEventListener(sp, 'click', event =>{
-
-                    localStorage.setItem("befund", befund); 
-                    location.replace("befunde.html") 
-                    
-                })
-                
-            }
+            var sp = new THREE.Sprite(mat);    
 
             sp.name = "sprite";
 
@@ -992,11 +981,33 @@
             sp.position.set(0, 5, 17);
             
             scene.add(sp);
+                
+            befund = b;
+                
+            localStorage.setItem("befund", befund);
+                
+            domEvents.addEventListener(sp, 'click', event =>{
+                    
+                    console.log(befund);
+                    
+                    if(localStorage.getItem("befund") != undefined){
+                        
+                         location.replace("befunde.html");
+                        
+                    }
+                    
+                   
+                   
+            })
             
             }
 
-           
+           else{
+               
+               localStorage.removeItem("befund");
+           }
 
+             
         }    
             
             
