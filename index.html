@@ -242,38 +242,33 @@
             }
             
             
-            
-            /*slider*/
-            
             .slidecontainer {
                 
-                width: 100%; /* Width of the outside container */
+                width: 100%;
             }
             
-            
-            /* The slider itself */
-            
+               
             .slider {
                 
-                -webkit-appearance: none;  /* Override default CSS styles */
+                -webkit-appearance: none;  
                 
-                -webkit-transform: rotate(-90deg); /* Rotate by 90 degree */
+                -webkit-transform: rotate(-90deg); 
                 
-                width: 140%; /* Full-width */
+                width: 140%; 
                 
-                height: 40px; /* Specified height */
+                height: 40px; 
                 
                 margin-top: 450px;
                 
                 border-radius: 5px;
                 
-                background: #d3d3d3; /* Grey background */
+                background: #d3d3d3; 
                 
-                outline: none; /* Remove outline */
+                outline: none; 
                 
-                opacity: 1; /* Set transparency (for mouse-over effects on hover) */
+                opacity: 1;
                 
-                -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+                -webkit-transition: .2s; 
                 
                 transition: opacity .2s;
        
@@ -351,25 +346,23 @@
             
             }
             
-            
-            
-            /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+        
 
             .slider::-webkit-slider-thumb {
                
-                -webkit-appearance: none; /* Override default look */
+                -webkit-appearance: none; 
                 
                 appearance: none;
                 
-                width: 130px; /* Set a specific slider handle width */
+                width: 130px; 
                 
-                height: 130px; /* Slider handle height */
+                height: 130px;
                 
                 border-radius: 50%;
                 
-                background: #ee7202; /* Orange background */
+                background: #ee7202;
                 
-                cursor: pointer; /* Cursor on hover */
+                cursor: pointer; 
             
             }
             
@@ -418,7 +411,7 @@
         
         <div id="myFilter" class="filter">
             
-            f<a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">&times;</a>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">&times;</a>
             
         
             <!-- slider -->
@@ -476,7 +469,11 @@
             
             var slider = document.getElementById("myRange");
             
-            
+            slider.oninput = function() {
+                
+                filter();
+                
+            }
             
             // function for opening the side menu 
                 
@@ -549,9 +546,10 @@
                 
                 open = false;
                 
-                
-                //handle slider input and display required spheres
-                
+            }
+            
+            function filter(){
+                 
                 var value = parseInt(slider.value);
                 
                 switch(value){
@@ -592,7 +590,6 @@
                             break;
                         
                 }
-                
             }
 
         
@@ -858,8 +855,6 @@
             
             model.rotateZ(0.01);
             
-            console.log(model.rotation);
-        
 
             //remove old connection between info box and sphere and add the new one  
 
@@ -1032,12 +1027,17 @@
                         
                 scene.add(sphereObj);
 
+
                 model.add(sphereObj);
                         
             }
         
         }
 
+        function test(){
+            console.log("test");
+        }
+            
         init();
 
     </script>
