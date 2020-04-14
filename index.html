@@ -440,7 +440,9 @@
         <div id="main2">
 
             <span style="font-size:150px;cursor:pointer" onclick="openFilter()"> 
+                
                 <img src="images/filter.png" width="160px"> 
+           
             </span>
 
         </div>
@@ -461,10 +463,9 @@
 
         <script src="js/threex.domevents.js"></script>  
 
-    
 
         <script>
-
+            
             // function for slider
             
             var slider = document.getElementById("myRange");
@@ -506,7 +507,7 @@
                     
                 }
                  
-                 document.getElementById("myFilter").style.width = "550px";
+                document.getElementById("myFilter").style.width = "550px";
 
                 document.getElementById("main2").style.marginRight = "250px";
          
@@ -596,7 +597,7 @@
             
             // locale variables for 3d-rendering
             
-            let scene, camera, renderer, model, line, endPoint, open;
+            let scene, camera, renderer, model, line, endPoint, open, domEvents;
         
 
             
@@ -743,13 +744,13 @@
 
                 // domEvents handles clicking on a sphere (as well as touching)
                 
-                const domEvents = new THREEx.DomEvents(camera,renderer.domElement);
+                domEvents = new THREEx.DomEvents(camera,renderer.domElement);
 
                 domEvents.addEventListener(sphere, 'click', event =>{
 
                     endPoint = scene.getObjectByName( "hand" );
 
-                    write(sphere.text, sphere.date);
+                    write(sphere.text, sphere.date, "hand");
 
                 })
 
@@ -758,7 +759,7 @@
 
                     endPoint = scene.getObjectByName( "hand" );
 
-                    write(sphere.text, sphere.date);
+                    write(sphere.text, sphere.date, "hand");
 
                 })
           
@@ -767,7 +768,7 @@
 
                     endPoint = scene.getObjectByName( "shoulder" );
 
-                    write(sphere2.text, sphere2.date);
+                    write(sphere2.text, sphere2.date, "shoulder");
 
                 })
           
@@ -776,7 +777,7 @@
 
                     endPoint = scene.getObjectByName( "shoulder" );
 
-                    write(sphere2.text, sphere2.date);
+                    write(sphere2.text, sphere2.date, "shoulder");
                 })
                 
                 
@@ -784,7 +785,7 @@
 
                     endPoint = scene.getObjectByName( "knee" );
 
-                    write(sphere3.text, sphere3.date);
+                    write(sphere3.text, sphere3.date, "knee");
 
                 })
                 
@@ -793,7 +794,7 @@
 
                     endPoint = scene.getObjectByName( "knee" );
 
-                    write(sphere3.text, sphere3.date);
+                    write(sphere3.text, sphere3.date, "knee");
                 })
 
 
@@ -849,8 +850,6 @@
             
         function animate() {
             
-          
-            
             // let the model rotate
             
             model.rotateZ(0.01);
@@ -899,7 +898,7 @@
             
             else{
                 
-                write(undefined, undefined);
+                write(undefined, undefined, undefined);
                 
             }
             
@@ -915,8 +914,8 @@
         
 
         // function which allows to write text into info box 
-
-        function write(text, date){
+        
+        function write(text, date, befund){
             
             scene.remove( scene.getObjectByName( "sprite" ));
             
@@ -949,38 +948,49 @@
             context.font = '80px Arial';
             
             if(text != undefined ){
+                
                 var dateText = date.getDate().toString() + '.' + date.getMonth().toString() + '.' + date.getFullYear().toString();
             
-                context.fillText(dateText, width / 2, height * 1 / 3);
+                context.fillText(dateText, width / 2, height * 1 / 4);
             
-                context.fillText(text, width / 2, height * 2 / 3);
+                context.fillText(text, width / 2, height * 2 / 4);
                 
-                
+                context.fillText("Für Befund klicken", width / 2, height * 3 / 4);
                 
                 var amap = new THREE.Texture(canvas);
 
                 amap.needsUpdate = true;
 
-
                 var mat = new THREE.SpriteMaterial({
 
-            map: amap,
+                    map: amap,
 
-            transparent: false,
+                    transparent: false,
 
-            color: 0xffffff 
+                    color: 0xffffff 
 
             });
 
 
             var sp = new THREE.Sprite(mat);
+                
+            if(text != undefined ){
+             
+                domEvents.addEventListener(sp, 'click', event =>{
+
+                    localStorage.setItem("befund", befund); 
+                    location.replace("befunde.html") 
+                    
+                })
+                
+            }
 
             sp.name = "sprite";
 
             sp.scale.set( 14, 7, 1);
 
             sp.position.set(0, 5, 17);
-
+            
             scene.add(sp);
             
             }
@@ -1035,7 +1045,9 @@
         }
 
         function test(){
+           
             console.log("test");
+            
         }
             
         init();
