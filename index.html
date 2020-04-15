@@ -455,7 +455,7 @@
 
         <script src="js/GLTFLoader.js"></script>
         
-        <script src="js/TrackballControls.js"></script>
+        <script src="js/OrbitControls.js"></script>
         
         <script src="js/alloy_touch.js"></script>
 
@@ -613,10 +613,10 @@
 
                 scene.background = new THREE.Color(0xdddddd);
 
+                var axesHelper = new THREE.AxesHelper( 500 );
+                scene.add( axesHelper );
                 
                 camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
-
-                camera.rotation.y = 90/180*Math.PI;
 
                 camera.position.x = 0.121519859005498;
 
@@ -624,10 +624,7 @@
                 
                 camera.position.z = 75.14307996752143;
                 
-                camera.up = new THREE.Vector3(0,0,0);
-                
-                camera.lookAt(new THREE.Vector3(100,100,100));
-
+            
 		
                 renderer = new THREE.WebGLRenderer({antialias:true});
 
@@ -635,6 +632,11 @@
 
                 document.body.appendChild(renderer.domElement);
 
+        
+                
+                // setup controler
+                
+                controls = new THREE.OrbitControls(camera,renderer.domElement);
                 
 		
                 // setup light for the scene
@@ -669,16 +671,8 @@
                     camera.updateProjectionMatrix();
 
                 });
-
-          
-                
-                // setup controler; disable controling by the user (can be adjusted by chaning 'false' to 'true')
-                
-                controls = new THREE.TrackballControls(camera,renderer.domElement);
                
-                
-
-                
+    
           
                 /* setup the spheres which are used to display the users diseases and injuries (one sphere for each)
                 
@@ -709,8 +703,6 @@
                 sphere.date = new Date("2020-05-30");
 
                 scene.add(sphere);
-          
-
 
                 sphere2 = new THREE.Mesh(geom,mat);
 
@@ -956,6 +948,12 @@
                 // both menus are closed
                 
                 open = false;
+                
+               
+                camera.lookAt(0,20,0);
+                
+                controls.target.set(0,20,0);
+                
 
         }
 
@@ -965,10 +963,9 @@
             
         function animate() {
             
-            
             // let the model rotate
             
-            model.rotateZ(0.01);
+           //model.rotateZ(0.01);
             
 
             //remove old connection between info box and sphere and add the new one  
@@ -989,7 +986,22 @@
             
             if(endPoint != undefined){
                 
-                 // find out vectors in order to connect the endPoint (sphere) with the info box (sprite)
+                //update position of sprite
+                
+                sprite = scene.getObjectByName( "sprite" );
+                
+                var lookAtVector = new THREE.Vector3(0,0, -1);
+                lookAtVector.applyQuaternion(camera.quaternion);
+                
+                console.log(lookAtVector);
+                
+                var v = sprite.position;
+                
+                sprite.position.set(v.x,v.y,v.z);
+                
+        
+               
+                // find out vectors in order to connect the endPoint (sphere) with the info box (sprite)
 
                 model.updateMatrixWorld();
 
@@ -1117,7 +1129,13 @@
             sp.scale.set( 14, 7, 1);
 
             sp.position.set(0, 5, 17);
-            
+                
+             //camera.position.x = 0.121519859005498;
+
+             //   camera.position.y = 34.9674507837999;
+                
+              //  camera.position.z = 75.14307996752143;
+                
             scene.add(sp);
                 
             befund = b;
