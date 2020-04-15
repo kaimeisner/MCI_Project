@@ -202,9 +202,16 @@
             </tr>
     </thead>
         <tbody>
-            <tr onclick="onRowClick(event, this)" id= "knee">
+            <tr onclick="onRowClick(event, this)" id= "knee_1">
                 <td>2020-06-04</td>
                 <td>Knie geprellt</td>
+                <td>Dr. Best</td>
+                <td>UniBw München</td>
+            </tr>
+            
+            <tr onclick="onRowClick(event, this)" id= "knee_2">
+                <td>2020-06-04</td>
+                <td>Knie verdreht</td>
                 <td>Dr. Best</td>
                 <td>UniBw München</td>
             </tr>
@@ -235,7 +242,7 @@
                 localStorage.removeItem("befund");
                 
                 if(befund != null){
-                    
+                
                     var item = document.getElementById(befund)
            
                     onRowClick(undefined, item)
@@ -325,8 +332,11 @@
         }
         //initially set tooltip texts
         document.addEventListener("DOMContentLoaded", function(){
-            document.getElementById("knee").setAttribute("tooltiptext", 
+            document.getElementById("knee_1").setAttribute("tooltiptext", 
                                                          "<h4 style = 'color:#e65c00;font-size: 50px;'>Knie geprellt</h4><br>"
+                                                        +"<p style = 'font-size: 50px; margin-top: 10px;'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam </p>");
+            document.getElementById("knee_2").setAttribute("tooltiptext", 
+                                                         "<h4 style = 'color:#e65c00;font-size: 50px;'>Knie verdreht</h4><br>"
                                                         +"<p style = 'font-size: 50px; margin-top: 10px;'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam </p>");
             document.getElementById("hand").setAttribute("tooltiptext", 
                                                          "<h4 style = 'color:#e65c00;font-size: 50px;'>Hand gebrochen</h4><br>"
