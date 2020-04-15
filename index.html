@@ -598,8 +598,11 @@
             // locale variables for 3d-rendering
             
             let scene, camera, renderer, model, line, endPoint, open, domEvents, befund;
-        
+            
+            // lines between sphers
+            var line_1 = [undefined,undefined];
 
+            var line_2 = [undefined,undefined];
             
             
             // initialise scene
@@ -684,6 +687,8 @@
                    .text contains the text, displayed when clicking the sphere */
 
                 var geom = new THREE.SphereGeometry(1,20,20);
+                
+                var geom_large = new THREE.SphereGeometry(1.5,20,20);
 
                 var mat = new THREE.MeshPhongMaterial( {specular: "#fdfb57", color: "#fd2b28",  side: THREE.DoubleSide} );
 
@@ -717,7 +722,7 @@
 
                 sphere2.position.z = 33;
 
-                sphere2.text = "Schulter ausgekugelt";
+                sphere2.text = "Schulter ausgekugelt";  
                 
                 sphere2.date = new Date("2019-12-26");
 
@@ -725,7 +730,7 @@
                 
                 
                 
-                sphere3 = new THREE.Mesh(geom,mat);
+                sphere3 = new THREE.Mesh(geom_large,mat);
 
                 sphere3.name = "knee";
 
@@ -735,12 +740,45 @@
 
                 sphere3.position.z = 12.5;
 
-                sphere3.text = "Knie geprellt";
+                //sphere3.text = "Knie geprellt";
                 
-                sphere3.date = new Date("2020-07-04");
+                //sphere3.date = new Date("2020-07-04");
 
                 scene.add(sphere3);
+                
+                
+                
+                sphere3_1 = new THREE.Mesh(geom,mat);
 
+                sphere3_1.name = "knee_1";
+
+                sphere3_1.position.x = 5.5; 
+
+                sphere3_1.position.y = 0; 
+
+                sphere3_1.position.z = 12.5;
+
+                sphere3_1.text = "Knie geprellt";
+                
+                sphere3_1.date = new Date("2020-07-04");
+                
+                
+                
+                sphere3_2 = new THREE.Mesh(geom,mat);
+
+                sphere3_2.name = "knee_2";
+
+                sphere3_2.position.x = -3.5; 
+
+                sphere3_2.position.y = 0; 
+
+                sphere3_2.position.z = 12.5;
+
+                sphere3_2.text = "Knie verdreht";
+                
+                sphere3_2.date = new Date("2020-07-04");
+
+            
 
         
 
@@ -753,6 +791,10 @@
                     endPoint = scene.getObjectByName( "hand" );
 
                     write(sphere.text, sphere.date, "hand");
+                    
+                    removeSphere(sphere3_1);
+                    
+                    removeSphere(sphere3_2);
 
                 })
 
@@ -762,15 +804,23 @@
                     endPoint = scene.getObjectByName( "hand" );
 
                     write(sphere.text, sphere.date, "hand");
+                    
+                    removeSphere(sphere3_1);
+                    
+                    removeSphere(sphere3_2);
 
                 })
           
 
                 domEvents.addEventListener(sphere2, 'click', event =>{
-
+                    
                     endPoint = scene.getObjectByName( "shoulder" );
 
                     write(sphere2.text, sphere2.date, "shoulder");
+                    
+                    removeSphere(sphere3_1);
+                    
+                    removeSphere(sphere3_2);
 
                 })
           
@@ -780,25 +830,86 @@
                     endPoint = scene.getObjectByName( "shoulder" );
 
                     write(sphere2.text, sphere2.date, "shoulder");
+                    
+                    removeSphere(sphere3_1);
+                    
+                    removeSphere(sphere3_2);
                 })
                 
                 
                 domEvents.addEventListener(sphere3, 'click', event =>{
-
-                    endPoint = scene.getObjectByName( "knee" );
-
-                    write(sphere3.text, sphere3.date, "knee");
+                    
+                    endPoint = undefined;
+                    
+                    scene.add(sphere3_1);
+                    
+                    model.add(sphere3_1);
+                    
+                    scene.add(sphere3_2);
+                    
+                    model.add(sphere3_2);
+                    
+                    line_1[1] = line_2[1] = scene.getObjectByName( "knee" );
+                    
+                    line_1[0] = scene.getObjectByName( "knee_1" );
+                    
+                    line_2[0] = scene.getObjectByName( "knee_2" );
 
                 })
                 
                 
                 domEvents.addEventListener(sphere3, 'touchstart', event =>{
 
-                    endPoint = scene.getObjectByName( "knee" );
+                    scene.add(sphere3_1);
+                    
+                    model.add(sphere3_1);
+                    
+                    scene.add(sphere3_2);
+                    
+                    model.add(sphere3_2);
+                    
+                    line_1[1] = line_2[1] = scene.getObjectByName( "knee" );
+                    
+                    line_1[0] = scene.getObjectByName( "knee_1" );
+                    
+                    line_2[0] = scene.getObjectByName( "knee_2" );
+                })
+                
+                
+                domEvents.addEventListener(sphere3_1, 'click', event =>{
 
-                    write(sphere3.text, sphere3.date, "knee");
+                    endPoint = scene.getObjectByName( "knee_1" );
+
+                    write(sphere2.text, sphere2.date, "knee_1");
+                    
+                })
+                
+                
+                domEvents.addEventListener(sphere3_1, 'touchstart', event =>{
+
+                    endPoint = scene.getObjectByName( "knee_1" );
+
+                    write(sphere2.text, sphere2.date, "knee_1");
+                    
                 })
 
+                
+                domEvents.addEventListener(sphere3_2, 'click', event =>{
+
+                    endPoint = scene.getObjectByName( "knee_2" );
+
+                    write(sphere2.text, sphere2.date, "knee_2");
+                    
+                })
+                
+                  domEvents.addEventListener(sphere3_2, 'touchstart', event =>{
+
+                    endPoint = scene.getObjectByName( "knee_2" );
+
+                    write(sphere2.text, sphere2.date, "knee_2");
+                    
+                })
+                
 
                 // initialise loader and load 3d-model
                 
@@ -852,6 +963,7 @@
             
         function animate() {
             
+            
             // let the model rotate
             
             model.rotateZ(0.01);
@@ -862,6 +974,14 @@
             if(scene.getObjectByName( "line" ) != undefined){
                 
                 scene.remove( scene.getObjectByName( "line" ));
+                
+            }
+            
+            if(scene.getObjectByName( "l_1" ) != undefined){
+                
+                scene.remove( scene.getObjectByName( "l_1" ));
+                
+                scene.remove( scene.getObjectByName( "l_2" ));
                 
             }
             
@@ -878,7 +998,6 @@
                 var vector2 = new THREE.Vector3();
 
                 vector2.setFromMatrixPosition( scene.getObjectByName( "sprite" ).matrixWorld );
-                
                 
                 var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
 
@@ -904,6 +1023,21 @@
                 
             }
             
+            l_1 = getLine(line_1);
+            
+            l_2 = getLine(line_2);
+            
+            if(l_1 != undefined){
+                
+                l_1.name = "l_1";
+                
+                l_2.name = "l_2";
+                
+                scene.add(l_1);
+                
+                scene.add(l_2);
+                
+            }
           
             // render new scene
             
@@ -1030,6 +1164,8 @@
             
         function removeSphere(sphereObj){
             
+            line_1[0] = line_2[0] = undefined;
+            
             var name = sphereObj.name 
             
             if(scene.getObjectByName( name ) != undefined){
@@ -1069,9 +1205,43 @@
         
         }
 
-        function test(){
-           
-            console.log("test");
+        
+            
+        function getLine(line){
+            
+            if(line[0] == undefined){
+                
+                return undefined;
+            
+            }
+               
+            else{
+                
+                model.updateMatrixWorld();
+
+                var vector = new THREE.Vector3();
+
+                vector.setFromMatrixPosition( line[0].matrixWorld );
+
+                var vector2 = new THREE.Vector3();
+
+                vector2.setFromMatrixPosition( line[1].matrixWorld );
+                
+                var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+
+                var points = [];
+
+                points.push(vector2);
+
+                points.push(vector);
+            
+                var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+                line = new THREE.Line( geometry, material );
+
+                return line;
+                
+            }
             
         }
             
