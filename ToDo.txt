@@ -5,6 +5,7 @@
 5. instant change of spheres if you select the year 		(done)
 6. profile of user
 7. click on info to get to 'befunde'				(done)
+8. multiple injuries at same body part      (done)
 
 Provide current state report on May 10th. 
 Final deadline on June 10th.
