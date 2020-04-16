@@ -35,8 +35,6 @@
             
             p,b{
                 
-                text-align: center;
-                
                 font-size: 50px;
                 
                 margin-top: 0;
@@ -168,9 +166,21 @@
                 
                 column-gap: 10px;
                 
-                margin-left: 20px;
+                margin-left: auto;
                 
-                margin-right: 20px;
+                margin-right: auto;
+                
+                text-align: center;
+            }
+            
+            #large{
+                
+                grid-column: 1 / span 2;
+                
+                margin-bottom: 60px;
+                
+                margin-top: 60px
+                
             }
         
         </style>
@@ -220,11 +230,29 @@
     
         <div class="table">
     
+            <b id="large">Allgemeines</b>
+            
             <b>Name:</b> 
             <p>Max Mustermann</p>
             
             <b>Geburtsdatum:</b> 
             <p>01.01.1997</p>
+            
+            <b id="large">Kontaktdaten</b>
+            
+            <b>E-Mail:</b> 
+            <p>mustermann@unibw.de</p>
+            
+            <b>Telefon:</b> 
+            <p>0123 45678910</p>
+            
+            <b id="large">Körperdaten</b>
+            
+            <b>Größe:</b> 
+            <p>1,82 Meter</p>
+            
+            <b>Gewicht:</b> 
+            <p>80 Kilogramm</p>
             
         </div>
         
