@@ -902,23 +902,46 @@
                 
                 domEvents.addEventListener(sphere3, 'touchstart', event =>{
 
-                    endPoint = undefined;
+                     endPoint = undefined;
                     
-                    scene.add(sphere3_1);
+                    var slider_value = parseInt(slider.value);
                     
-                    model.add(sphere3_1);
+                    console.log(slider_value);
                     
-                    scene.add(sphere3_2);
-                    
-                    model.add(sphere3_2);
+                    switch(slider_value){
+                            
+                        case 4: addSphere(sphere3_1);
+                                
+                                addSphere(sphere3_2);
+                            
+                                break;
+                        
+                        case 3: addSphere(sphere3_2);
+                            
+                                removeSphere(sphere3_1);
+                            
+                                break;
+                            
+                        case 2: removeSphere(sphere3_1);
+                                    
+                                removeSphere(sphere3_2);
+                            
+                                break;
+                            
+                        case 1: addSphere(sphere3_1);
+                            
+                                removeSphere(sphere3_2);
+                            
+                                break;
+                            
+                    }    
                     
                     line_1[1] = line_2[1] = scene.getObjectByName( "knee" );
                     
                     line_1[0] = scene.getObjectByName( "knee_1" );
                     
                     line_2[0] = scene.getObjectByName( "knee_2" );
-                    
-                    opened = true;
+
                 })
                 
                 
