@@ -551,7 +551,11 @@
             
             function filter(){
                  
-                var value = parseInt(slider.value);
+                var value = parseInt(slider.value); 
+                
+                removeSphere(sphere3_1);
+                
+                removeSphere(sphere3_2);
                 
                 switch(value){
                     
@@ -586,7 +590,7 @@
                             
                             removeSphere(sphere2);
                         
-                            removeSphere(sphere3);
+                            addSphere(sphere3);
                         
                             break;
                         
@@ -604,6 +608,8 @@
 
             var line_2 = [undefined,undefined];
             
+            var opened = false; // is large sphere clicked? required for filter 
+            
             
             // initialise scene
 
@@ -612,9 +618,6 @@
                 scene = new THREE.Scene();
 
                 scene.background = new THREE.Color(0xdddddd);
-
-                var axesHelper = new THREE.AxesHelper( 500 );
-                scene.add( axesHelper );
                 
                 camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
 
@@ -752,7 +755,7 @@
 
                 sphere3_1.text = "Knie geprellt";
                 
-                sphere3_1.date = new Date("2020-07-04");
+                sphere3_1.date = new Date("2018-07-04");
                 
                 
                 
@@ -833,13 +836,37 @@
                     
                     endPoint = undefined;
                     
-                    scene.add(sphere3_1);
+                    var slider_value = parseInt(slider.value);
                     
-                    model.add(sphere3_1);
+                    console.log(slider_value);
                     
-                    scene.add(sphere3_2);
-                    
-                    model.add(sphere3_2);
+                    switch(slider_value){
+                            
+                        case 4: addSphere(sphere3_1);
+                                
+                                addSphere(sphere3_2);
+                            
+                                break;
+                        
+                        case 3: addSphere(sphere3_2);
+                            
+                                removeSphere(sphere3_1);
+                            
+                                break;
+                            
+                        case 1: addSphere(sphere3_1);
+                            
+                                removeSphere(sphere3_2);
+                            
+                                break;
+                            
+                        default:    removeSphere(sphere3_1);
+                                    
+                                    removeSphere(sphere3_2);
+                            
+                                    break;
+                            
+                    }    
                     
                     line_1[1] = line_2[1] = scene.getObjectByName( "knee" );
                     
@@ -867,6 +894,8 @@
                     line_1[0] = scene.getObjectByName( "knee_1" );
                     
                     line_2[0] = scene.getObjectByName( "knee_2" );
+                    
+                    opened = true;
                 })
                 
                 
@@ -980,6 +1009,10 @@
                 
                 scene.remove( scene.getObjectByName( "l_1" ));
                 
+            }
+            
+            if(scene.getObjectByName( "l_2" ) != undefined){
+                
                 scene.remove( scene.getObjectByName( "l_2" ));
                 
             }
@@ -1044,13 +1077,16 @@
             if(l_1 != undefined){
                 
                 l_1.name = "l_1";
+            
+                scene.add(l_1);
+                
+            }
+            
+            if(l_2 != undefined){
                 
                 l_2.name = "l_2";
                 
-                scene.add(l_1);
-                
                 scene.add(l_2);
-                
             }
           
             // render new scene
