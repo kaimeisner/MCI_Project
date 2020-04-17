@@ -536,7 +536,8 @@
           
             <a id="current" >Übersicht</a>
 
-            <a href="befunde.html">Befunde</a>
+            <!--<a href="befunde.html">Befunde</a>-->
+            <a href="javascript:loadBefunde()">Befunde</a>
 
             <a href="briefe.html">Arztbriefe</a>
 
@@ -1519,6 +1520,14 @@
                 return line;
                 
             }
+            
+        }
+            
+        function loadBefunde(){
+            
+            localStorage.removeItem("befund");
+            
+            location.replace("befunde.html");
             
         }
             
