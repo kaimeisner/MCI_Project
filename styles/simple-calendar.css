@@ -9,8 +9,7 @@
   }
   .calendar a {
     text-decoration: none;
-    color: inherit;
-    }
+    color: inherit; }
   .calendar header .btn {
     display: inline-block;
     position: absolute;
@@ -48,14 +47,14 @@
     padding: 0;
     margin: 0; }
     .calendar header .month .year {
-      font-size: 2em;
+      font-size: 0.9em;
       font-weight: 100; }
   .calendar table {
     width: 100%;
     margin: 20px 0;
     border-spacing: 0px; }
   .calendar thead {
-    font-size: 2em;
+    font-size: 1.2em;
     font-weight: 600; }
   .calendar td {
     padding: .8em .1em; }
