@@ -189,8 +189,24 @@
                  
             }
             
-            
+            .st-bg{
+                font-size: 50px;
+            }
         
+            #container{
+                
+                grid-column: 1 / span 2;
+                
+                width: 50%;
+                
+                margin-left: auto;
+                
+                margin-right: auto;
+                
+                margin-top: 50px;
+                
+            }
+            
         </style>
         
     
@@ -198,6 +214,12 @@
     
     </head>
 
+    
+    <link rel="stylesheet" href="styles/simple-calendar.css">
+    
+    <script src="js/jquery.min.js"></script>
+    
+    <script src="js/jquery.simple-calendar.js"></script>    
     
     <body>
         
@@ -264,10 +286,8 @@
             
             <b>Gewicht:</b> 
             <p>80 Kilogramm</p>
-            
-            <iframe id="large" src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%23d3d3d3&amp;ctz=Europe%2FBerlin&amp;src=bWNpcHJvamVjdDEyMzRAZ21haWwuY29t&amp;color=%23039BE5&amp;showTitle=0&amp;showPrint=0&amp;showTz=0" style="border:solid 0px #777;margin-left:auto;margin-right:auto;font-size:20px" width="90%" height="600" frameborder="0" scrolling="no"></iframe>
           
-            
+            <div id="container"></div>
         </div>
         
         
@@ -303,6 +323,39 @@
 
                 
             }
+        
+        $(function(){
+
+            $("#container").simpleCalendar();
+
+        });
+        
+        
+        $("#container").simpleCalendar({
+
+             events: [
+       
+                 {
+                    
+                     startDate: new Date(new Date().setHours(new Date().getHours() - new Date().getHours() - 12, 0)).toISOString(),
+                     
+                     endDate: new Date(new Date().setHours(new Date().getHours() - new Date().getHours() - 11)).getTime(),
+                     
+                     summary: 'Impftermin Influenza'
+                     
+                 },
+       
+             ],
+            
+            days: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+            
+            months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Okotber', 'November', 'Dezember'],
+            
+            selectCallback: function (selDate) { }, 
+
+            insertCallback: function () { }
+
+        });
         
     </script>
 
