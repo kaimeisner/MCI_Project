@@ -8,6 +8,7 @@
   grid-column: 1 / span 2;
 width: 180%;
     right: 160px;
+    margin-top: 30px;
   }
   .calendar a {
     text-decoration: none;
@@ -21,7 +22,7 @@ width: 180%;
     line-height: 30px;
     color: darkgray;
     border-radius: 50%;
-    border: 2px solid darkgray;
+    border: 5px solid darkgray;
 }
   .calendar header .btn:hover {
     background: darkgray;
@@ -29,12 +30,12 @@ width: 180%;
   .calendar header .btn:before {
     content: '';
     position: absolute;
-    top: 9px;
-    left: 8px;
-    width: 8px;
-    height: 8px;
+    top: 28px;
+    left: 24px;
+    width: 20px;
+    height: 20px;
     border-style: solid;
-    border-width: 3px 3px 0 0;
+    border-width: 5px 5px 0 0;
     transform: rotate(45deg);
     transform-origin: center center; }
   .calendar header .btn-prev {
@@ -47,10 +48,6 @@ width: 180%;
     right: 50; }
     .calendar header .btn-next:before {
       transform: rotate(45deg); }
-
-.calendar header .btn-next a{
-    font-size: 200;
-}
 
   .calendar header .month {
     padding: 0;
@@ -95,10 +92,10 @@ width: 180%;
     .calendar .day.has-event:after {
       content: '';
       position: absolute;
-      top: calc(50% + .6em);
-      left: calc(50% - 2px);
-      width: 4px;
-      height: 4px;
+      top: calc(50% + .8em);
+      left: calc(50% - 8px);
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: #6691CC; }
     .calendar .day.disabled {
