@@ -8,6 +8,12 @@
    
         <link rel="stylesheet" href="styles/flatpickr.css">
         
+        <link rel="stylesheet" href="styles/jquery-ui.css"> 
+        
+        <link rel="stylesheet" href="styles/jquery.timepicker.min.css">
+        
+       <link rel="stylesheet" href="styles/jquery.datetimepicker.min.css"> 
+        
         
         <style>
         
@@ -210,13 +216,12 @@
             
                 font-size: 30px;
                 
-            }
-
-            #date1{
-                
                 text-align: center;
                 
+                cursor: pointer;
+             
             }
+
             
             button{
                 
@@ -224,7 +229,7 @@
                 
                 margin-top: 90px;
                 
-                font-size: 20px
+                font-size: 25px
                 
             }
             
@@ -281,23 +286,35 @@
             
             <input id="date1"  placeholder="TT/MM/JJJJ" data-input />
             
+            <p></p>
             
-             
-          
+            <input class="timepicker" placeholder="Uhrzeit" name="timepicker"/>
+            
     </div>
-    <button type="submit" name="action" value="0">Termin auswählen</button>
-   
-
-
+        
     
+    <button type="submit" name="action" value="0">Termin auswählen</button>
+       
     
     </body>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <!--  Flatpickr  -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script> 
+    <script src="js/jQuery.js"></script>
+            
+    <script src="js/jquery.timepicker.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script> 
+    
     <script>
+        
+        
+     $('input.timepicker').timepicker({
+         
+         'minTime': '8:00pm',
+	   
+         'maxTime': '16:00pm',
+         
+     });
         
          function openNav() {
                 
@@ -322,7 +339,7 @@
     
         
             $("#date1").flatpickr({
-    enableTime: true,
+    enableTime: false,
     dateFormat: "d-m-Y",
     "disable": [
         function(date) {
@@ -333,6 +350,8 @@
         "firstDayOfWeek": 1 // set start day of week to Monday
     }
 });
+        
+  
         
     </script>
 
