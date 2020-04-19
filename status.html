@@ -1,1 +1,357 @@
-<h1>Impfstatus</h1>
+<!-- ToDo: get images for top row and add them to css -->
+
+<html>
+
+<head>
+     
+    <meta charset=UTF-8 />
+
+    <link rel="shortcut icon" href="">
+
+</head>
+
+
+<script src="js/jQuery.js"></script>
+<script src="js/jQuery.datatables.js"></script>
+<script src="js/jQuery.ui.js"></script>
+
+
+<a href="index.html">
+    <img class="logo" alt="Button" src="images/unibw.png" width=75% height=auto>
+</a>    
+    
+<!--<img src="images/unibw.png" width=75% height=auto>-->
+
+<style>
+    body {
+
+                font-family: "Lato", sans-serif;
+
+                transition: background-color .5s;
+        
+                background-color: lightgray;
+        
+                font-size: 20px;
+
+            }
+    
+    img.logo{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+   icon {
+        vertical-align: baseline;
+    }
+    
+
+    .div1{
+        text-align: center;
+        border-top: 2px solid;
+        border-bottom: 2px solid;
+        border-color: darkorange;
+    }   
+    
+    .box{
+        
+        outline: 1px solid;
+        outline-color: dimgrey;
+        
+        
+    }
+    
+    
+    
+button {
+        background-color: grey;
+        border: none;
+        color: white;
+        padding: 15px 92px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 11px 40px;
+        cursor: pointer;
+}
+    
+    
+    h1{
+        text-align: center;
+        font-size: 55px;
+    } 
+    
+    h2{
+        text-align: center;
+        color: #000;
+    }
+    
+    h3{
+        text-align: center
+            
+       
+      
+    }
+    
+    h4{
+        text-align: center;
+        color: #010;
+        text-decoration: underline;
+    }
+  
+    
+  
+    
+     .sidenav {
+
+                height: 100%;
+
+                width: 0;
+
+                position: fixed;
+
+                z-index: 1;
+
+                top: 0;
+
+                left: 0; 
+
+                background-color: gray;
+
+                overflow-x: hidden;
+
+                transition: 0.5s;
+
+                padding-top: 60px;
+
+            }
+
+
+
+            .sidenav a {
+
+                padding: 8px 8px 8px 32px;
+
+                text-decoration: none;
+
+                font-size: 100px;
+
+                color: white;
+
+                display: block;
+
+                transition: 0.3s;
+
+            }
+
+            
+            
+            .sidenav h1 {
+                
+                margin-bottom: 3cm;
+            
+            }
+
+            
+
+            .sidenav a:hover {
+
+                color: #f1f1f1;
+
+            }
+
+
+
+            .sidenav .closebtn {
+
+                position: absolute;
+
+                top: 0;
+
+                right: 25px;
+
+                font-size: 150px;
+
+                margin-left: 50px;
+
+            }
+
+            #current{
+                
+                color: #ee7202;
+                
+            }
+
+            #main {
+
+                transition: margin-left 0.5s; /*change left to right*/
+
+                padding: 16px;
+
+                position: absolute;
+
+                background: 0xdddddd;
+
+                z-index: 99;
+
+                left: 5%; 
+
+                top: 150px;
+
+            }
+
+
+
+            @media screen and (max-height: 450px) {
+
+                .sidenav {padding-top: 15px;}
+
+                .sidenav a {font-size: 18px;}
+
+            }
+    
+            #NavImage{
+                
+                margin-top: 0;
+                
+            }
+
+    
+</style>
+
+<body>
+    
+    
+     <div id="mySidenav" class="sidenav">
+
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+            <a href="profil.html">
+               <img id="NavImage" alt="profile image" src="images/profile.png" width=30% height=auto>
+            </a>
+        
+            <a href="index.html" >Übersicht</a>
+
+            <a id="current">Befunde</a>
+
+            <a href="briefe.html">Arztbriefe</a>
+
+            <a href="status.html">Impfstatus</a>
+
+        </div>
+    
+    
+    <!-- button for side navigation menu -->
+        
+        <div id="main">
+
+            <span style="font-size:150px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
+        </div>
+
+    
+
+    <canvas height="200px"></canvas>
+    
+   
+ 
+        
+
+        
+   
+    <h1 style="color: darkorange">Impfungen</h1>    
+<div class="div1">
+
+
+    <button onclick="showAnstehend()">Anstehend</button>
+    <button>Impfstatus</button>   
+    </div>
+ 
+ 
+    
+    <div id="buttonone" class="box">
+    <h2>
+        Anstehend
+    </h2>
+    <h4>Januar 2020</h4>
+    
+    <h3><img class="icon" alt="SOFORT" src="images/spritze_rot.png" width=20 height=auto > Tetanus </h3>
+        
+    <h4>Dezember 2019</h4>  
+        
+    <h3><img class="icon" alt="SOFORT" src="images/spritze_gelb.png" width=20 height=auto > FSME II </h3>    
+    
+    <h4>Oktober 2019</h4>  
+        
+    <h3><img class="icon" alt="SOFORT" src="images/spritze_grün.png" width=20 height=auto > Influenza </h3> 
+    </div>
+
+
+
+ <script>
+         function openNav() {
+                
+                document.getElementById("mySidenav").style.width = "550px";
+
+                document.getElementById("main").style.marginLeft = "250px"; 
+         
+                document.getElementById("main").style.visibility='hidden';
+
+
+            }
+    
+    
+         function closeNav() {
+
+                document.getElementById("mySidenav").style.width = "0";
+
+                document.getElementById("main").style.marginLeft= "0"; 
+       
+                document.getElementById("main").style.visibility='visible';
+
+                
+            }
+        
+        function showAnstehend() {
+            var x = document.getElementById("buttonone");
+            if (x.style.display === "none") {
+            x.style.display = "block";
+            }
+            else {
+            x.style.display = "none";
+            }
+        }
+      
+    
+    
+
+        
+    </script>
+
+
+
+
+
+
+</body>
+    
+</html>  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
