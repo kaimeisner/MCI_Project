@@ -62,6 +62,14 @@
         
         
     }
+    .box2{
+        
+        outline: 1px solid;
+        outline-color: dimgrey;
+        display: none;
+        
+        
+    }
     
     
     
@@ -267,7 +275,7 @@ button {
 
 
     <button onclick="showAnstehend()">Anstehend</button>
-    <button>Impfstatus</button>   
+    <button onclick="showImpfstatus()">Impfstatus</button>   
     </div>
  
  
@@ -288,8 +296,49 @@ button {
         
     <h3><img class="icon" alt="SOFORT" src="images/spritze_grün.png" width=20 height=auto > Influenza </h3> 
     </div>
+    
+    
+    
+    <div id="button2" class="box2">
+    <h2>
+       Impfstatus; hier kommt eine Tabelle mit erledigten Impfungen
+
+    </h2>
+    
+    </div>
 
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
  <script>
          function openNav() {
@@ -317,13 +366,18 @@ button {
         
         function showAnstehend() {
             var x = document.getElementById("buttonone");
-            if (x.style.display === "none") {
+            var y = document.getElementById("button2");
             x.style.display = "block";
+            y.style.display = "none";
             }
-            else {
+     
+      function showImpfstatus() {
+            var x = document.getElementById("buttonone");
+            var y = document.getElementById("button2");
             x.style.display = "none";
+            y.style.display = "block";
             }
-        }
+        
       
     
     

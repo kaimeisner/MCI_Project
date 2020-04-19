@@ -6,7 +6,10 @@
 6. profile of user						(done)
 7. click on info to get to 'befunde'				(done)
 8. multiple injuries at same body part      			(done)
-9. add missing pages 
+9. add page vaccination status (done)
+10.button "Anstehend" (done)
+11.button "Impfstatus" -> table with example (20.04.2020)
+12.add Arztbriefe -> list with "Überweisungsschein" etc. 
 
 Provide current state report on May 10th. 
 Final deadline on June 10th.
