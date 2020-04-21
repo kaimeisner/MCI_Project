@@ -117,8 +117,8 @@ width: 180%;
       max-height: 100%; }
     .calendar .event-container .close {
       position: absolute;
-      width: 30px;
-      height: 30px;
+      width: 50px;
+      height: 50px;
       top: 20px;
       right: 20px;
       cursor: pointer; }
@@ -144,13 +144,18 @@ width: 180%;
       box-sizing: border-box;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
       text-align: left;
-      color: white; }
+      color: white; 
+      font-size: 40px;
+}
       .calendar .event-container .event-date {
-        margin-bottom: 1em; }
+        margin-bottom: 1em; 
+        
+}
       .calendar .event-container .event-hour {
         float: right; }
       .calendar .event-container .event-summary {
-        font-weight: 600; }
+        font-weight: 600; 
+}
   .calendar .filler {
     position: absolute;
     width: 0;
