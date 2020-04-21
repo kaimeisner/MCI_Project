@@ -328,34 +328,45 @@
 
             $("#container").simpleCalendar();
 
-        });
+        });        
         
+        var j = '{ "events" : [';
         
-        $("#container").simpleCalendar({
-
-             events: [
+        var appointments = JSON.parse(localStorage.getItem("appointments"));
+        
+        for (i = 0; i < appointments.length; i++) { 
+            
+            var appointment = appointments[i];
+            
+            j = j.concat('{ "startDate":"').concat(appointment[1]).concat('",');
+            
+            j = j.concat('"endDate":"').concat(appointment[1]).concat('",');
+            
+            j = j.concat('"summary":"').concat(appointment[0]).concat('"}')
+            
+            if(i != appointments.length-1){
+                
+                j = j.concat(',');
+                
+            }
+            
+        } 
+        
+        j = j.concat('],');
+        
+        j = j.concat('"days": ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],');
+        
+        j = j.concat('"months": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Okotber", "November", "Dezember"],');
+        
+        j = j.concat('"selectCallback": "function (selDate) { }",');
+        
+        j = j.concat('"insertCallback": " function () { }"');
+        
+        j = j.concat('}')
        
-                 {
-                    
-                     startDate: new Date(new Date().setHours(new Date().getHours() - new Date().getHours() - 12, 0)).toISOString(),
-                     
-                     endDate: new Date(new Date().setHours(new Date().getHours() - new Date().getHours() - 11)).getTime(),
-                     
-                     summary: 'Impftermin Influenza'
-                     
-                 },
-       
-             ],
-            
-            days: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-            
-            months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Okotber', 'November', 'Dezember'],
-            
-            selectCallback: function (selDate) { }, 
-
-            insertCallback: function () { }
-
-        });
+        j = JSON.parse(j);
+        
+        $("#container").simpleCalendar(j);
         
     </script>
 

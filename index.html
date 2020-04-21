@@ -538,12 +538,13 @@
           
             <a id="current" >Übersicht</a>
 
-            <!--<a href="befunde.html">Befunde</a>-->
             <a href="javascript:loadBefunde()">Befunde</a>
 
             <a href="briefe.html">Arztbriefe</a>
 
             <a href="status.html">Impfstatus</a>
+            
+            <a href="termin.html">Termin</a>
 
         </div>
 
@@ -654,8 +655,6 @@
         <script src="js/GLTFLoader.js"></script>
         
         <script src="js/OrbitControls.js"></script>
-        
-        <script src="js/alloy_touch.js"></script>
 
         <script src="js/Projector.js"></script>
 
@@ -663,6 +662,18 @@
 
 
         <script>
+            
+            // initialize array in local storage which contains the appointments: (HH-II-DD-MM-YYYY)
+            
+            
+                
+                var appointments=[];
+            
+                localStorage.setItem("appointments", JSON.stringify(appointments));
+                
+           
+            
+            
             
             // function for slider
             

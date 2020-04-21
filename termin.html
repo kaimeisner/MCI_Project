@@ -12,9 +12,6 @@
         
         <link rel="stylesheet" href="styles/jquery.timepicker.min.css">
         
-       <link rel="stylesheet" href="styles/jquery.datetimepicker.min.css"> 
-        
-        
         <style>
         
             body {
@@ -225,11 +222,123 @@
             
             button{
                 
-                margin-left: 75%;
+                margin-left: 72%;
                 
                 margin-top: 90px;
                 
                 font-size: 25px
+                
+            }
+            
+            input {
+                
+                color: transparent;
+                
+                text-shadow: 0 0 0 black;
+            
+            }
+            
+            .tooltipdiv{
+            
+                position:absolute;
+                
+                width: 90%;
+                
+                height: 40%;
+
+                display: none;
+            
+                background-color: darkgray;
+           
+                border-radius: 7px;
+           
+                border-style: outset;
+            
+                border-width: 3px;
+           
+                color: black;
+           
+                border-color: darkgray;
+
+                left: 50%; 
+              
+                transform: translateX(-50%);
+
+                top: 40%;
+            
+            }
+            
+            .tooltipdiv p{
+                
+                text-align: center;
+                
+                margin-top: 10%;
+                
+            }
+           
+            .closetooltip{
+              
+                position: relative;
+           
+                right: 0;
+           
+                top: -30px;
+           
+                width: 20px;
+            
+                float: right;
+            }
+      
+            
+            .closetooltip:hover{
+              
+                cursor: pointer;
+        
+            }
+            
+            #yes{
+                
+                font-size: 40px;
+                
+                width: 200px;
+                
+                margin-top: 15%;
+                
+                margin-left: 24%;
+                
+            }
+            
+            #no{
+                
+                font-size: 40px;
+                
+                width: 200px;
+                
+                margin-left: 10%;
+                
+            }
+            
+            #ok{
+                
+                position: absolute;
+                
+                font-size: 40px;
+                
+                width: 200px;
+                
+                margin-left: 41%;
+                
+                margin-top: 80px;
+                
+                display: none;
+                
+            }
+            
+            canvas{
+                
+                position: relative;
+                
+                text-align: center;
                 
             }
             
@@ -276,26 +385,40 @@
             
             <select id="select">
         
-                 <option value="abap">Untersuchung</option>
+                 <option value="Untersuchung">Untersuchung</option>
   
-                 <option value="basic">Impfen</option>
+                 <option value="Impfen">Impfen</option>
                  
             </select>
             
             <p>Welchen Termin hätten Sie gerne?</p>
             
-            <input id="date1"  placeholder="TT/MM/JJJJ" data-input />
+            <input id="date"  placeholder="TT/MM/JJJJ" data-input />
             
             <p></p>
             
-            <input class="timepicker" placeholder="Uhrzeit" name="timepicker"/>
+            <input id="time" class="timepicker" placeholder="Uhrzeit" name="timepicker"/>
             
     </div>
         
     
-    <button type="submit" name="action" value="0">Termin auswählen</button>
+    <button type="submit" name="action" value="0" onclick="submit()">Termin auswählen</button>
        
+    <div id= "clickToolTip" class = "tooltipdiv">
+        
+        
+        <p>Sind Sie sicher, dass Sie den folgenden Termin wählen wollen?</p>
+        
+        <canvas id="myCanvas" width="880"> </canvas>
+        
+        <button id="yes" type="submit" name="action" value="0" onclick="yes()">Ja</button>
+        <button id="no" type="submit" name="action" value="0" onclick="no()">Nein</button>
+        <button id="ok" type="submit" name="action" value="0" onclick="ok()">OK</button>
     
+    </div>
+        
+    
+        
     </body>
 
 
@@ -307,51 +430,174 @@
     
     <script>
         
-        
-     $('input.timepicker').timepicker({
-         
-         'minTime': '8:00pm',
-	   
-         'maxTime': '16:00pm',
-         
-     });
-        
-         function openNav() {
-                
-                document.getElementById("mySidenav").style.width = "550px";
+        function openNav() {
 
-                document.getElementById("main").style.marginLeft = "250px"; 
-         
-                document.getElementById("main").style.visibility='hidden';
+                    document.getElementById("mySidenav").style.width = "550px";
+
+                    document.getElementById("main").style.marginLeft = "250px"; 
+
+                    document.getElementById("main").style.visibility='hidden';
 
 
-            }
-    
-         function closeNav() {
-
-                document.getElementById("mySidenav").style.width = "0";
-
-                document.getElementById("main").style.marginLeft= "0"; 
-       
-                document.getElementById("main").style.visibility='visible';
-
-            }
-    
-        
-            $("#date1").flatpickr({
-    enableTime: false,
-    dateFormat: "d-m-Y",
-    "disable": [
-        function(date) {
-           return (date.getDay() === 0 || date.getDay() === 6);  // disable weekends
         }
-    ],
-    "locale": {
-        "firstDayOfWeek": 1 // set start day of week to Monday
-    }
-});
+
+
+        function closeNav() {
+
+                    document.getElementById("mySidenav").style.width = "0";
+
+                    document.getElementById("main").style.marginLeft= "0"; 
+
+                    document.getElementById("main").style.visibility='visible';
+
+        }
+
+
+        $('#time').timepicker({
+         
+            'minTime': '8:00am',
+	   
+            'maxTime': '16:00pm',
+         
+            'timeFormat': 'H:i',
+             
+            'disableTextInput': true,
+         
+            'disableTouchKeyboard': true
+         
+        });
         
-  
+        
+        $("#date").flatpickr({
+
+            enableTime: false,
+
+            dateFormat: "d-m-Y",
+            
+            minDate: "today",
+            
+            maxDate: new Date().fp_incr(14),
+
+            "disable": [
+
+                function(date) {
+
+                    return (date.getDay() === 0 || date.getDay() === 6);  
+
+                }
+
+            ],
+
+           "locale": {
+
+               "firstDayOfWeek": 1 
+
+           }
+
+        });
+        
+        
+        function submit(){
+            
+            var time = document.getElementById('time').value;
+            
+            var date = document.getElementById('date').value;
+            
+            if(time.length > 0 && date.length > 0){
+                
+                var tooltip = document.getElementById("clickToolTip");
+                
+                tooltip.style.display = "block";
+                
+                var text = date.substring(0,2)+"."+date.substring(3,5)+"."+date.substring(6,10)+", "+time+" Uhr";
+            
+                var canvas = document.getElementById("myCanvas");
+            
+                var ctx  = canvas.getContext("2d");
+        
+                ctx.textAlign = 'center';
+            
+                ctx.font = '40px serif';
+            
+                ctx.fillText(text, canvas.width/2,canvas.height/2-80);
+                
+            }
+            
+        }
+        
+        
+        function yes(){
+            
+            var time = document.getElementById('time').value;
+            
+            var date = document.getElementById('date').value;
+            
+            var select = document.getElementById('select').value;
+            
+            if(time.length > 0 && date.length > 0){
+                
+                console.log(date);
+                
+                console.log(time);
+                
+                console.log(select);
+                
+                var appointment = date.substring(6,10).concat(date.substring(2,6)).concat(date.substring(0,2)).concat("T")
+                    .concat(time).concat(":00");
+                
+                console.log(appointment);
+                
+                var appointments = JSON.parse(localStorage.getItem("appointments"));
+                
+                appointments.push([select ,appointment]);
+                
+                localStorage.setItem("appointments", JSON.stringify(appointments));
+                
+                console.log(localStorage.getItem("appointments"));
+                
+                var yes = document.getElementById("yes");
+                
+                var no = document.getElementById("no");
+                
+                var ok = document.getElementById("ok");
+                
+                yes.style.display = "none";
+                
+                no.style.display = "none";
+                
+                ok.style.display = "block"
+                
+                var canvas = document.getElementById("myCanvas");
+            
+                var ctx  = canvas.getContext("2d");
+        
+                ctx.textAlign = 'center';
+            
+                ctx.font = '40px serif';
+                
+                ctx.fillStyle = '#ee7202';
+            
+                ctx.fillText("", canvas.width/2,canvas.height/2);
+               
+                ctx.fillText("Der Termin wurde zu Ihrem Kalender hinzugefügt!", canvas.width/2,canvas.height/2);
+                
+            }
+            
+        }
+        
+        function no(){
+            
+            var tooltip = document.getElementById("clickToolTip");
+                
+            tooltip.style.display = "none";
+            
+        }
+        
+        function ok(){
+            
+            no();
+            
+        }
         
     </script>
 

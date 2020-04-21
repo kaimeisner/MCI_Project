@@ -13,7 +13,7 @@
       fixedStartDay: true, // Week begin always by monday
       displayEvent: true, // display existing event
       disableEventDetails: false, // disable showing event details
-      disableEmptyDetails: false, // disable showing empty date details
+      disableEmptyDetails: true, // disable showing empty date details
       events: [], // List of event
       onInit: function (calendar) {}, // Callback after first initialization
       onMonthChange: function (month, year) {}, // Callback on month change
