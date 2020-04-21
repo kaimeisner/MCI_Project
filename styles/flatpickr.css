@@ -10,7 +10,7 @@
           animation: none;
   direction: ltr;
   border: 0;
-  font-size: 14px;
+  font-size: 30px;
   line-height: 24px;
   border-radius: 5px;
   position: absolute;
@@ -64,7 +64,7 @@
   border-left: 0;
 }
 .flatpickr-calendar.showTimeInput.hasTime .flatpickr-time {
-  height: 40px;
+  height: 60px;
   border-top: 1px solid #3f4458;
 }
 .flatpickr-calendar.noCalendar.hasTime .flatpickr-time {
@@ -125,7 +125,7 @@
   background: transparent;
   color: #fff;
   fill: #fff;
-  height: 28px;
+  height: 65px;
   line-height: 1;
   text-align: center;
   position: relative;
@@ -142,7 +142,7 @@
   position: absolute;
   top: 0px;
   line-height: 16px;
-  height: 28px;
+  height: 35px;
   padding: 10px calc(3.57% - 1.5px);
   z-index: 3;
 }
@@ -192,7 +192,7 @@
 }
 .flatpickr-prev-month svg,
 .flatpickr-next-month svg {
-  width: 14px;
+  width: 40px;
 }
 .flatpickr-prev-month svg path,
 .flatpickr-next-month svg path {
@@ -372,11 +372,11 @@
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 28px;
+  height: 48px;
 }
 span.flatpickr-weekday {
   cursor: default;
-  font-size: 20px;
+  font-size: 40px;
   background: transparent;
   color: #fff;
   line-height: 1;
@@ -401,7 +401,7 @@ span.flatpickr-weekday {
   display: -ms-flexbox;
   display: flex;
   width: 600px;
-  font-size: 20px;
+  font-size: 4<0px;
 }
 .flatpickr-days:focus {
   outline: 0;
@@ -467,8 +467,8 @@ span.flatpickr-weekday {
       -ms-flex-preferred-size: 14.2857143%;
           flex-basis: 14.2857143%;
   max-width: 95px; /*size*/
-  height: 39px;
-  line-height: 39px;
+  height: 60px;
+  line-height:49px;
   margin: 0;
   display: inline-block;
   position: relative;
@@ -496,7 +496,8 @@ span.flatpickr-weekday {
   border-color: rgba(100,108,140,0.98);
 }
 .flatpickr-day.today {
-  border-color: #eee;
+  border-color: #eee;  
+  border-width: thick;;
 }
 .flatpickr-day.today:hover,
 .flatpickr-day.today:focus {
@@ -633,7 +634,7 @@ span.flatpickr-weekday {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
- font-size: 20px;
+ font-size: 40px;
 }
 .flatpickr-time:after {
   content: "";
