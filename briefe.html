@@ -1,48 +1,563 @@
+
 <html>
+
 <head>
-<script type="text/javascript">
-function toggle(rowCount) {
-    myHead = document.getElementById("td-header");
-    myRowSpan = myHead.rowSpan;
-    
-    if (myHead.rowSpan==rowCount+1) {
-    // zuklappen
-        for (i=1;i<=rowCount;i++) {
-            currentTr = document.getElementById("td-data-"+i);     
-            currentTr.style.display = "none";
-        }
-        myHead.rowSpan=1;
+     
+    <meta charset=UTF-8 />
 
-    } else {
-        // aufklappen
-        for (i=1;i<=rowCount;i++) {
-            currentTr = document.getElementById("td-data-"+i);     
-            currentTr.style.display = "";
-        }
-        myHead.rowSpan=rowCount+1;
-    }    
-}
+    <link rel="shortcut icon" href="">
 
-
-</script>
-<title>Tabelle aufklappen</title>
 </head>
-<body>
 
-<table border="1">
-  <tr>
-    <td id="td-header" rowSpan="1">...</td>
-    <td>...</td>
-    <td>...</td>
-  </tr>
-  <tr id="td-data-1" style="display:none">
-    <td>...</td>
-    <td>...</td>
-  </tr>
-  <tr id="td-data-2" style="display:none">
-     <td>...</td>
-     <td>...</td>
-   </tr>
-</table>
-<a href="#" onclick="toggle(2)">Toggle</a>
+
+<script src="js/jQuery.js"></script>
+<script src="js/jQuery.datatables.js"></script>
+<script src="js/jQuery.ui.js"></script>
+
+
+<a href="index.html">
+    <img class="logo" alt="Button" src="images/unibw.png" width=75% height=auto>
+</a>    
+    
+<!--<img src="images/unibw.png" width=75% height=auto>-->
+
+<style>
+    body {
+
+                font-family: "Lato", sans-serif;
+
+                transition: background-color .5s;
+        
+                background-color: lightgray;
+        
+                font-size: 20px;
+
+            }
+    
+    img.logo{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+   icon {
+        vertical-align: baseline;
+    }
+    
+
+    .div1{
+        text-align: center;
+        border-top: 2px solid;
+        border-bottom: 2px solid;
+        border-color: darkorange;
+    }   
+    
+    .box{
+        
+        outline: 1px solid;
+        outline-color: dimgrey;
+        
+        
+    }
+    .box2{
+        
+        outline: 1px solid;
+        outline-color: dimgrey;
+        display: none;
+        
+        
+    }
+    
+    
+    h1{
+        text-align: center;
+        font-size: 55px;
+    } 
+    
+    h2{
+        text-align: center;
+        color: #000;
+    }
+    
+    h3{
+        text-align: center
+            
+       
+      
+    }
+    
+    h4{
+        text-align: center;
+        color: #010;
+        text-decoration: underline;
+    }
+  
+    
+  
+    
+     .sidenav {
+
+                height: 100%;
+
+                width: 0;
+
+                position: fixed;
+
+                z-index: 1;
+
+                top: 0;
+
+                left: 0; 
+
+                background-color: gray;
+
+                overflow-x: hidden;
+
+                transition: 0.5s;
+
+                padding-top: 60px;
+
+            }
+
+
+
+            .sidenav a {
+
+                padding: 8px 8px 8px 32px;
+
+                text-decoration: none;
+
+                font-size: 100px;
+
+                color: white;
+
+                display: block;
+
+                transition: 0.3s;
+
+            }
+
+            
+            
+            .sidenav h1 {
+                
+                margin-bottom: 3cm;
+            
+            }
+
+            
+
+            .sidenav a:hover {
+
+                color: #f1f1f1;
+
+            }
+
+
+
+            .sidenav .closebtn {
+
+                position: absolute;
+
+                top: 0;
+
+                right: 25px;
+
+                font-size: 150px;
+
+                margin-left: 50px;
+
+            }
+
+            #current{
+                
+                color: #ee7202;
+                
+            }
+
+            #main {
+
+                transition: margin-left 0.5s; /*change left to right*/
+
+                padding: 16px;
+
+                position: absolute;
+
+                background: 0xdddddd;
+
+                z-index: 99;
+
+                left: 5%; 
+
+                top: 150px;
+
+            }
+
+
+
+            @media screen and (max-height: 450px) {
+
+                .sidenav {padding-top: 15px;}
+
+                .sidenav a {font-size: 18px;}
+
+            }
+    
+            #NavImage{
+                
+                margin-top: 0;
+                
+            }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      .tooltipdiv{
+            position:absolute;
+            display: none;
+            background-color: darkgray;
+            border-radius: 7px;
+            border-style: outset;
+            border-width: 3px;
+            color: black;
+            border-color: darkgray;
+            max-width: 75%;/*500px;*/  
+        }
+        .closetooltip{
+            position: relative;
+            right: 0;
+            top: 5px;
+            width: 20px;
+            float: right;
+        }
+        .closetooltip:hover{
+            cursor: pointer;
+        }
+    
+        
+        #myTable thead .sorting_asc {
+            background-color: orange;
+        }
+        
+        #myTable thead .sorting_desc {
+            background-color: orange;
+            icon: url(/images/filter.png);
+            background-size: 20px 20px;
+        }
+        #myTable .sorting {
+            background-color: lightgray;
+        }
+        
+        .dataTables_wrapper .ui-toolbar{
+                font-size: 40px !important;
+            
+            }
+       
+        .dataTables_filter input { 
+                width: 350px; 
+                height: 40px;
+                top: 30px;
+                float: right;
+                font-size: 30px;
+        }
+        
+        
+        
+
+    
+
+
+
+    
+</style>
+
+<body>
+    
+    
+     <div id="mySidenav" class="sidenav">
+
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+            <a href="profil.html">
+               <img id="NavImage" alt="profile image" src="images/profile.png" width=30% height=auto>
+            </a>
+        
+            <a href="index.html" >Übersicht</a>
+
+            <a href="befunde.html">Befunde</a>
+
+            <a id="current" >Arztbriefe</a>
+
+            <a href="status.html">Impfstatus</a>
+            
+            <a href="termin.html">Termin</a>
+
+        </div>
+    
+    
+    <!-- button for side navigation menu -->
+        
+        <div id="main">
+
+            <span style="font-size:150px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
+        </div>
+
+    
+
+    <canvas height="200px"></canvas>
+    
+   
+ 
+        
+
+        
+   
+    <h1 style="color: darkorange">Arztbriefe <br>
+    Überweisungsscheine</h1>    
+<div class="div1">
+    </div>
+ 
+  <table class="cell-border stripe hover" id="myTable" style="width:100%">
+    <thead>
+        <link rel="stylesheet" type="text/css"href="styles/jquery-ui.css"> 
+        <link rel="stylesheet" type="text/css"href="styles/dataTables.jqueryui.min.css">
+         
+          <tr>
+                <th>Datum</th>
+                <th>Befund</th>
+                <th>Arzt</th>
+                <th>Einheit</th>
+            </tr>
+    </thead>
+        <tbody>
+            <tr onclick="onRowClick(event, this)" id= "knee_1">
+                <td>2020-06-04</td>
+                <td>Knie geprellt</td>
+                <td>Dr. Best</td>
+                <td>UniBw München</td>
+            </tr>
+            
+            <tr onclick="onRowClick(event, this)" id= "knee_2">
+                <td>2020-06-04</td>
+                <td>Knie verdreht</td>
+                <td>Dr. Best</td>
+                <td>UniBw München</td>
+            </tr>
+            
+            <tr onclick="onRowClick(event, this)" id= "hand">
+                <td>2020-04-30</td>
+                <td>Hand gebrochen</td>
+                <td>Dr. Best</td>
+                <td>UniBw München</td>
+            </tr>
+         
+            <tr onclick="onRowClick(event, this)" id= "shoulder">
+                <td>2019-11-26</td>
+                <td>Schulter ausgekugelt</td>
+                <td>Dr. Best</td>
+                <td>UniBw München</td>
+            </tr>
+            
+            
+        </tbody>
+    
+       <script> 
+        
+       window.onload = function() {
+        
+                var befund = localStorage.getItem("befund");
+                
+                localStorage.removeItem("befund");
+                
+                if(befund != null){
+                
+                    var item = document.getElementById(befund)
+           
+                    onRowClick(undefined, item)
+                    
+                }    
+        };
+         
+    </script>  
+        
+    <script>
+        let table;
+        
+        $(document).ready(function() {
+           table =  $('#myTable').DataTable({
+                columnDefs: [
+                    {
+                        targets: "_all",
+                        className: 'dt-center', 
+                    }
+                    
+                ],
+                
+            "bPaginate": false,
+    "bLengthChange": false,
+    "bFilter": true,
+    "bInfo": false,
+    "bAutoWidth": false});
+            });
+    
+       
+        
+        
+        $('#myTable').on('click', 'tbody td', function() {
+            
+            console.log(this); 
+              
+        })
+        
+    
+    </script>
+    </table>
+
+ <script>
+         function openNav() {
+                
+                document.getElementById("mySidenav").style.width = "550px";
+
+                document.getElementById("main").style.marginLeft = "250px"; 
+         
+                document.getElementById("main").style.visibility='hidden';
+
+
+            }
+    
+    
+         function closeNav() {
+
+                document.getElementById("mySidenav").style.width = "0";
+
+                document.getElementById("main").style.marginLeft= "0"; 
+       
+                document.getElementById("main").style.visibility='visible';
+
+                
+            }
+       function onRowClick(e, that) {
+            var tooltip = document.getElementById("clickToolTip");
+            console.log(that.getAttribute("tooltiptext"));
+            tooltip.querySelector("#innertooltip").innerHTML = that.getAttribute("tooltiptext");
+            var ttwidth = tooltip.clientWidth;
+            tooltip.style.left = window.innerHeight/2-window.innerHeight*0.75/2;//e.clientX-ttwidth/2;
+            tooltip.style.top = window.innerHeight/4//;e.clientY;
+            tooltip.style.display = "block";
+            tooltip.style.zIndex = 1000;
+            
+            
+        }
+        function closeToolTip(){
+            var tooltip = document.getElementById("clickToolTip");
+            tooltip.style.display = "none";
+            tooltip.style.zIndex = -1000;
+            
+        }
+        //initially set tooltip texts
+        document.addEventListener("DOMContentLoaded", function(){
+            document.getElementById("knee_1").setAttribute("tooltiptext", 
+                                                         "<h4 style = 'color:#e65c00;font-size: 50px;'> Überweisungsschein Knie</h4><br>"
+                                                        +"<img  alt='Signature' src='images/Ueberweisungsschein.png' width=1000 height=auto >"    );
+            document.getElementById("knee_2").setAttribute("tooltiptext", 
+                                                         "<h4 style = 'color:#e65c00;font-size: 50px;'> Überweisungsschein Knie</h4><br>"
+                                                        +"<img  alt='Signature' src='images/Ueberweisungsschein.png' width=1000 height=auto >"    );
+            document.getElementById("hand").setAttribute("tooltiptext", 
+                                                         "<h4 style = 'color:#e65c00;font-size: 50px;'> Überweisungsschein Hand</h4><br>"
+                                                        +"<img  alt='Signature' src='images/Ueberweisungsschein.png' width=1000 height=auto >"    );
+            document.getElementById("shoulder").setAttribute("tooltiptext", 
+                                                         "<h4 style = 'color:#e65c00;font-size: 50px;'> Überweisungsschein Schulter</h4><br>"
+                                                        +"<img  alt='Signature' src='images/Ueberweisungsschein.png' width=1000 height=auto >"    );
+        });
+        
+    </script>
+     <div id= "clickToolTip" class = "tooltipdiv">
+        <div class = "closetooltip" onclick="closeToolTip()"><p style = 'font-size: 80px; margin-top: 10px; margin-left:-50px;'>x</p></div>
+        <div id = "innertooltip"></div>
+    </div>
+    <style>
+        .tooltipdiv{
+            position:absolute;
+            display: none;
+            background-color: darkgray;
+            border-radius: 7px;
+            border-style: outset;
+            border-width: 3px;
+            color: black;
+            border-color: darkgray;
+            max-width: 75%;/*500px;*/  
+        }
+        .closetooltip{
+            position: relative;
+            right: 0;
+            top: 5px;
+            width: 20px;
+            float: right;
+        }
+        .closetooltip:hover{
+            cursor: pointer;
+        }
+    
+        
+        #myTable thead .sorting_asc {
+            background-color: orange;
+        }
+        
+        #myTable thead .sorting_desc {
+            background-color: orange;
+            icon: url(/images/filter.png);
+            background-size: 20px 20px;
+        }
+        #myTable .sorting {
+            background-color: lightgray;
+        }
+        
+        .dataTables_wrapper .ui-toolbar{
+                font-size: 40px !important;
+            
+            }
+       
+        .dataTables_filter input { 
+                width: 350px; 
+                height: 40px;
+                top: 30px;
+                float: right;
+                font-size: 30px;
+        }
+        
+        
+        
+
+        
+    </style>
+    
+        
+
+        
+      
+    
+    
+
+        
+    
+
+
+
+
+
+
 </body>
+    
+</html>  
+    
