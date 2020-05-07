@@ -507,17 +507,27 @@
                  
                 background-color: red;
                 
-            } 
+        } 
             
         #orangeCircle{
                  
                 background-color: orange;
                 
-            } 
+        } 
+            
+        #blueCircle{
+                 
+                width: 75px;
+            
+                height: 75px;
+                
+                background-color: darkblue;
+                
+        } 
             
          button{
                      
-                margin-left: 10%;
+                margin-top: -500px;
                 
                 font-size: 40px;
                     
@@ -651,6 +661,10 @@
                 <div class="circle"></div>
         
                 <a>Die betroffene Stelle ist verheilt.</a>  
+                
+                <div class="circle" id="blueCircle"></div>
+        
+                <a>An dieser Stelle sind mehrere Verletzungen.</a> 
             
             </div>
         
@@ -937,11 +951,21 @@
                 
                 var geom_large = new THREE.SphereGeometry(1.5,20,20);
 
+                //red
+                
                 var mat = new THREE.MeshPhongMaterial( {specular: "#fd2b28", color: "#fd2b28",  side: THREE.DoubleSide} );
+                
+                //orange
                 
                 var mat1 = new THREE.MeshPhongMaterial( {specular: "#ff8000", color: "#ff8000",  side: THREE.DoubleSide} );
 
+                //green
+                
                 var mat2 = new THREE.MeshPhongMaterial( {specular: "#30bb0e", color: "#30bb0e",  side: THREE.DoubleSide} );
+                
+                //
+                
+                var mat3 = new THREE.MeshPhongMaterial( {specular: "#001489", color: "#001489",  side: THREE.DoubleSide} );
                 
                 sphere = new THREE.Mesh(geom,mat1);
                 
@@ -977,7 +1001,7 @@
                 
                 
                 
-                sphere3 = new THREE.Mesh(geom_large,mat);
+                sphere3 = new THREE.Mesh(geom_large,mat3);
 
                 sphere3.name = "knee";
 
@@ -1283,6 +1307,7 @@
                 sprite = scene.getObjectByName( "sprite" );
                 
                 var lookAtVector = new THREE.Vector3(0,0, -1);
+                
                 lookAtVector.applyQuaternion(camera.quaternion);
                 
                 console.log(lookAtVector);
@@ -1401,6 +1426,24 @@
                 context.fillText(text, width / 2, height * 2 / 4);
                 
                 context.fillText("Für Befund klicken", width / 2, height * 3 / 4);
+                
+                var w = 670;
+                
+                var x = 180;
+                
+                var y = 420;
+                
+                context.beginPath();
+                
+                context.strokeStyle = 'white';
+  
+                context.lineWidth = 4;
+  
+                context.moveTo(x,y);
+  
+                context.lineTo(x+w,y);
+  
+                context.stroke();
                 
                 var amap = new THREE.Texture(canvas);
 
