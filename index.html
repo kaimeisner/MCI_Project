@@ -515,6 +515,18 @@
                 
             } 
             
+         button{
+                     
+                margin-left: 10%;
+                
+                font-size: 40px;
+                    
+                width: 200px;
+                
+                height: 150px;
+                
+            }
+            
         </style>
 
     
@@ -605,12 +617,13 @@
         
         <div id="info">
             
-            <span style="font-size:100px;cursor:pointer" onclick="openInfo()"> 
+           <!-- <span style="font-size:100px;cursor:pointer" onclick="openInfo()"> 
                 
                 <img src="images/info.png" width="20%" height="auto"> 
            
-            </span>
+            </span> -->
 
+        <button type="submit" name="action" value="0" onclick="openInfo()">Infos</button>
             
 
         </div>
@@ -877,7 +890,8 @@
                 
                 controls = new THREE.OrbitControls(camera,renderer.domElement);
                 
-		
+		        controls.enablePan = false;
+                
                 // setup light for the scene
 
                 hlight = new THREE.AmbientLight (0x404040,3);
@@ -923,11 +937,13 @@
                 
                 var geom_large = new THREE.SphereGeometry(1.5,20,20);
 
-                var mat = new THREE.MeshPhongMaterial( {specular: "#fdfb57", color: "#fd2b28",  side: THREE.DoubleSide} );
+                var mat = new THREE.MeshPhongMaterial( {specular: "#fd2b28", color: "#fd2b28",  side: THREE.DoubleSide} );
+                
+                var mat1 = new THREE.MeshPhongMaterial( {specular: "#ff8000", color: "#ff8000",  side: THREE.DoubleSide} );
 
+                var mat2 = new THREE.MeshPhongMaterial( {specular: "#30bb0e", color: "#30bb0e",  side: THREE.DoubleSide} );
                 
-                
-                sphere = new THREE.Mesh(geom,mat);
+                sphere = new THREE.Mesh(geom,mat1);
                 
                 sphere.name = "hand";
 
@@ -943,7 +959,7 @@
 
                 scene.add(sphere);
 
-                sphere2 = new THREE.Mesh(geom,mat);
+                sphere2 = new THREE.Mesh(geom,mat2);
 
                 sphere2.name = "shoulder";
 
