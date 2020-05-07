@@ -667,9 +667,6 @@
                 <a>An dieser Stelle sind mehrere Verletzungen.</a> 
             
             </div>
-        
-            
-            
 
         </div>
             
@@ -950,22 +947,54 @@
                 var geom = new THREE.SphereGeometry(1,20,20);
                 
                 var geom_large = new THREE.SphereGeometry(1.5,20,20);
+                
+                var blind = localStorage.getItem("blind");
+                
+                console.log(blind)
+                
+                if(blind == "false" || blind == undefined){ //ToDo
+                    
+                    console.log("false")
+                    
+                    //red
+                
+                    var mat = new THREE.MeshPhongMaterial( {specular: "#fd2b28", color: "#fd2b28",  side: THREE.DoubleSide} );
+                
+                    //orange
+                
+                    var mat1 = new THREE.MeshPhongMaterial( {specular: "#ff8000", color: "#ff8000",  side: THREE.DoubleSide} );
 
-                //red
+                     //green
                 
-                var mat = new THREE.MeshPhongMaterial( {specular: "#fd2b28", color: "#fd2b28",  side: THREE.DoubleSide} );
-                
-                //orange
-                
-                var mat1 = new THREE.MeshPhongMaterial( {specular: "#ff8000", color: "#ff8000",  side: THREE.DoubleSide} );
+                    var mat2 = new THREE.MeshPhongMaterial( {specular: "#30bb0e", color: "#30bb0e",  side: THREE.DoubleSide} );
 
-                //green
+                    //
                 
-                var mat2 = new THREE.MeshPhongMaterial( {specular: "#30bb0e", color: "#30bb0e",  side: THREE.DoubleSide} );
+                    var mat3 = new THREE.MeshPhongMaterial( {specular: "#001489", color: "#001489",  side: THREE.DoubleSide} );
+                    
+                }
+
+                else{
+                    
+                    console.log("true")
+                    
+                    //red
                 
-                //
+                    var mat = new THREE.MeshPhongMaterial( {specular: "#fd2b28", color: "#fd2b28",  side: THREE.DoubleSide} );
                 
-                var mat3 = new THREE.MeshPhongMaterial( {specular: "#001489", color: "#001489",  side: THREE.DoubleSide} );
+                    //orange
+                
+                    var mat1 = new THREE.MeshPhongMaterial( {specular: "#fd2b28", color: "#fd2b28",  side: THREE.DoubleSide} );
+
+                     //green
+                
+                    var mat2 = new THREE.MeshPhongMaterial( {specular: "#fd2b28", color: "#fd2b28",  side: THREE.DoubleSide} );
+
+                    //
+                
+                    var mat3 = new THREE.MeshPhongMaterial( {specular: "#fd2b28", color: "#fd2b28",  side: THREE.DoubleSide} );
+                    
+                }
                 
                 sphere = new THREE.Mesh(geom,mat1);
                 
