@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <meta 
+              
+              charset=UTF-8 
+        
+        />
+
+        
+        <link rel="shortcut icon" href="">
+
+        
+        <style>
+
+            body {
+
+                font-family: "Lato", sans-serif;
+
+                transition: background-color .5s;
+                
+                background-color: lightgray;
+
+            }
+
+            /* style for navigation menu */
+            
+            .sidenav {
+
+                height: 100%;
+
+                width: 0;
+
+                position: fixed;
+
+                z-index: 1;
+
+                top: 0;
+
+                left: 0; 
+
+                background-color: gray;
+
+                opacity: 1;
+
+                overflow-x: hidden;
+
+                transition: 0.5s;
+
+                padding-top: 60px;
+
+            }
+
+
+
+            .sidenav a {
+
+                padding: 8px 8px 8px 32px;
+
+                text-decoration: none;
+
+                font-size: 100px;
+
+                color: white;
+
+                display: block;
+
+                transition: 0.3s;
+
+            }
+
+            
+            
+            .sidenav h1 {
+                
+                margin-bottom: 3cm;
+            
+            }
+
+            
+
+            .sidenav a:hover {
+
+                color: #f1f1f1;
+
+            }
+
+
+
+            .sidenav .closebtn {
+
+                position: absolute;
+
+                top: 0;
+
+                right: 25px;
+
+                font-size: 150px;
+
+                margin-left: 50px;
+
+            }
+
+            #current{
+                
+                color: #ee7202;
+                
+            }
+
+            #main {
+
+                transition: margin-left 0.5s; /*change left to right*/
+
+                padding: 16px;
+
+                position: absolute;
+
+                background: 0xdddddd;
+
+                z-index: 99;
+
+                left: 5%; 
+
+                top: 5%;
+
+            }
+
+            #info{
+                
+                padding: 16px;
+
+                position: absolute;
+
+                background: 0xdddddd;
+
+                z-index: 99;
+
+                left: 5%; 
+
+                top: 80%;
+                
+            }
+
+            @media screen and (max-height: 450px) {
+
+                .sidenav {padding-top: 15px;}
+
+                .sidenav a {font-size: 18px;}
+
+            }
+            
+            
+            
+            /* style for filter menu */ 
+            
+           .filter {
+
+                height: 100%;
+
+                width: 0;
+
+                position: fixed;
+
+                z-index: 1;
+
+                top: 0;
+
+                right: 0; 
+
+                background-color: gray;
+
+                opacity: 1;
+
+                overflow-x: hidden;
+
+                transition: 0.5s;
+
+                padding-top: 60px;
+
+            }
+
+
+
+            .filter a {
+
+                padding: 8px 8px 8px 32px;
+
+                text-decoration: none;
+
+                font-size: 100px;
+
+                color: white;
+
+                display: block;
+
+                transition: 0.3s;
+
+            }
+
+            
+            
+            .filter h1 {
+                
+                margin-bottom: 3cm;
+            
+            }
+
+            
+
+            .filter a:hover {
+
+                color: #f1f1f1;
+
+            }
+
+
+
+            .filter .closebtn {
+
+                position: absolute;
+
+                top: 0;
+
+                right: 25px;
+
+                font-size: 150px;
+
+                margin-left: 50px;
+
+            }
+
+
+            
+             #main2 {
+
+                transition: margin-right 0.5s; 
+
+                padding: 16px;
+
+                position: absolute;
+
+                background: 0xdddddd;
+
+                z-index: 99;
+
+                right: 5%; 
+                 
+                top: 7.5%;
+                 
+                
+
+            }
+            
+            
+            .slidecontainer {
+                
+                width: 100%;
+            }
+            
+               
+            .slider {
+                
+                -webkit-appearance: none;  
+                
+                -webkit-transform: rotate(-90deg); 
+                
+                width: 140%; 
+                
+                height: 40px; 
+                
+                margin-top: 450px;
+                
+                border-radius: 5px;
+                
+                background: #d3d3d3; 
+                
+                outline: none; 
+                
+                opacity: 1;
+                
+                -webkit-transition: .2s; 
+                
+                transition: opacity .2s;
+       
+            }
+        
+            
+            
+            .year18 {
+                
+                text-indent: 24px;
+                
+                color: white;
+                
+                font-size: 70px;
+                
+                position:absolute;
+                
+                left: 20px;
+                
+                top: 810px;
+            }
+            
+            
+            
+            .year19 {
+                
+                text-indent: 24px;
+                
+                color: white;
+                
+                font-size: 70px;
+                
+                position:absolute;
+                
+                left: 20px;
+                
+                top: 595px;
+                
+                
+            }
+            
+            
+            
+            .year20 {
+                
+                text-indent: 24px;
+                
+                color: white;
+                
+                font-size: 70px;
+                
+                position:absolute;
+                
+                left: 20px;
+                
+                top: 385px;
+            
+            }
+        
+            
+            
+            .all {
+                
+                text-indent: 52px;
+                
+                color: white;
+                
+                font-size: 70px;
+                
+                position:absolute;
+                
+                left: 20px;
+                
+                top: 170px;
+            
+            }
+            
+        
+
+            .slider::-webkit-slider-thumb {
+               
+                -webkit-appearance: none; 
+                
+                appearance: none;
+                
+                width: 130px; 
+                
+                height: 130px;
+                
+                border-radius: 50%;
+                
+                background: #ee7202;
+                
+                cursor: pointer; 
+            
+            }
+            
+             #NavImage{
+                
+                  display: block;
+                
+                margin-left: auto;
+                
+                margin-right: auto;
+                
+                margin-top: 250px;
+                
+                margin-bottom: 20px;
+                 
+                 margin-top: 0;
+                 
+                
+                
+            }
+            
+    
+            .tooltipdiv{
+            
+                position:absolute;
+                
+                width: 60%;
+                
+                height: 40%;
+
+                display: none;
+            
+                background-color: darkgray;
+           
+                border-radius: 7px;
+           
+                border-style: outset;
+            
+                border-width: 3px;
+           
+                color: black;
+           
+                border-color: darkgray;
+
+                left: 50%; 
+              
+                transform: translateX(-50%);
+
+                top: 40%;
+            
+            }
+            
+            #clickToolTip-blind{
+                
+                background-color: white;
+                
+            }
+        
+            .closetooltip{
+           
+            position: relative;
+           
+            right: 0;
+           
+            top: -30px;
+           
+            width: 20px;
+           
+            float: right;
+        }
+      
+            
+        .closetooltip:hover{
+           
+            cursor: pointer;
+        
+        }
+            
+        .table{
+                
+                display: grid;
+                
+                grid-template-columns: repeat(2, 1fr);
+                
+                text-align: center;
+                
+                margin-left: auto;
+                
+                margin-right: auto;
+                
+                
+        }
+            
+        #large{
+                
+                grid-column: 1 / span 2;
+                
+                margin-bottom: 30px;
+                
+                margin-top: 40px;
+                    
+                font-size: 50px;
+                
+                text-align: center;
+                
+        }
+            
+        a{
+        
+            font-size: 30px;
+            
+            margin-bottom: 15px;
+        
+        }
+            
+        .circle {
+            
+            background-color: green;
+  
+            width: 50px;
+   
+            height: 50px;
+   
+            text-align: center;
+   
+            border-radius: 100px;
+            
+            margin-left: 150px;
+            
+            margin-bottom: 10px;
+            
+            margin-left: auto;
+            
+            margin-right: auto;
+
+        }
+            
+        #redCircle{
+                 
+            background-color: red;
+                
+        } 
+            
+        #orangeCircle{
+                 
+            background-color: orange;
+                
+        } 
+            
+        #blueCircle{
+                 
+            width: 75px;
+            
+            height: 75px;
+                
+            background-color: darkblue;
+                
+        } 
+            
+        #blackCircle{
+                
+            background-color: black;
+                
+        }
+            
+        #darkGrayCircle{
+                
+            background-color: darkgray;  
+                
+        }
+            
+        #lightGrayCircle{
+                
+            background-color: lightgray;      
+            
+        }
+            
+        #blackLargeCircle{
+                
+            width: 75px;
+            
+            height: 75px;
+                
+            background-color: black;
+            
+                
+        }
+            
+        button{
+                     
+            margin-top: -500px;
+                
+            font-size: 40px;
+                    
+            width: 200px;
+                
+            height: 150px;
+                
+        }
+            
+        </style>
+
+    
+
+    </head>
+
+    
+    
+    <body>
+        
+        <!-- side navigation menu -->
+        
+        <div id="mySidenav" class="sidenav">
+
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+            
+            <a href="profil.html">
+                    <img id="NavImage" alt="profile image" src="images/profile.png" width=30% height=auto>
+            </a>
+          
+            <a id="current" >Übersicht</a>
+
+            <a href="javascript:loadBefunde()">Befunde</a>
+
+            <a href="briefe.html">Arztbriefe</a>
+
+            <a href="status.html">Impfstatus</a>
+            
+            <a href="termin.html">Termin</a>
+
+        </div>
+
+
+
+        <!-- button for side navigation menu -->
+        
+        <div id="main">
+
+            <span style="font-size:150px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
+        </div>
+
+        
+        
+        <!-- filter menu  -->
+        
+        <div id="myFilter" class="filter">
+            
+            <a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">&times;</a>
+            
+        
+            <!-- slider -->
+            
+            <div class="slidecontainer">
+            
+                <span class="year18">&ensp;&ensp;2018&nbsp;&nbsp;&nbsp; &#8722;&#8722;</span>
+                
+                <span class="year19">&ensp;&ensp;2019&nbsp;&nbsp;&nbsp; &#8722;&#8722;</span>
+                
+                <span class="year20">&ensp;&ensp;2020&nbsp;&nbsp;&nbsp; &#8722;&#8722;</span>
+                
+                <span class="all">&ensp;&nbsp;alle&ensp;&nbsp;&nbsp;&nbsp; &#8722;&#8722;</span>
+                
+                <input type="range" min="1" max="4" value="4" class="slider" id="myRange">
+            
+            </div>
+            
+            
+        </div>
+        
+        
+      
+        <!-- button for filter menu  -->
+        
+        <div id="main2">
+
+            <span style="font-size:150px;cursor:pointer" onclick="openFilter()"> 
+                
+                <img src="images/filter.png" width="160px"> 
+           
+            </span>
+
+        </div>
+        
+        
+         <!-- button for side info menu -->
+        
+        <div id="info">
+            
+           <!-- <span style="font-size:100px;cursor:pointer" onclick="openInfo()"> 
+                
+                <img src="images/info.png" width="20%" height="auto"> 
+           
+            </span> -->
+
+        <button type="submit" name="action" value="0" onclick="openInfo()">Infos</button>
+            
+
+        </div>
+        
+        <div id= "clickToolTip" class = "tooltipdiv">
+            
+           <div class = "closetooltip" onclick="closeInfo()">
+            
+                <p style = 'font-size: 80px; margin-top: 10px; margin-left:-50px;'>x</p>
+            
+            </div>
+    
+            <div class="table">
+    
+                <b id="large">Legende</b>
+            
+                <div class="circle" id="redCircle"></div>
+        
+                <a>Die betroffene Stelle sollte geschont werden.</a>
+                
+                <div class="circle" id="orangeCircle"></div>
+        
+                <a>Die betroffene Stelle kann leicht beansprucht werden.</a>        
+                
+                <div class="circle"></div>
+        
+                <a>Die betroffene Stelle ist verheilt.</a>  
+                
+                <div class="circle" id="blueCircle"></div>
+        
+                <a>An dieser Stelle sind mehrere Verletzungen.</a> 
+            
+            </div>
+
+        </div>
+        
+        <div id= "clickToolTip-blind" class = "tooltipdiv">
+            
+           <div class = "closetooltip" onclick="closeInfo()">
+            
+                <p style = 'font-size: 80px; margin-top: 10px; margin-left:-50px;'>x</p>
+            
+            </div>
+    
+            <div class="table">
+    
+                <b id="large">Legende</b>
+            
+                <div class="circle" id="blackCircle"></div>
+        
+                <a>Die betroffene Stelle sollte geschont werden.</a>
+                
+                <div class="circle" id="darkGrayCircle"></div>
+        
+                <a>Die betroffene Stelle kann leicht beansprucht werden.</a>        
+                
+                <div class="circle" id="lightGrayCircle"></div>
+        
+                <a>Die betroffene Stelle ist verheilt.</a>  
+                
+                <div class="circle" id="blackLargeCircle"></div>
+        
+                <a>An dieser Stelle sind mehrere Verletzungen.</a> 
+            
+            </div>
+
+        </div>
+            
+        
+
+        <!-- scripts from Three.js; used to import, display and interact with the 3D-model -->
+
+        <script src="js/three.min.js"></script>
+
+        <script src="js/GLTFLoader.js"></script>
+        
+        <script src="js/OrbitControls.js"></script>
+
+        <script src="js/Projector.js"></script>
+
+        <script src="js/threex.domevents.js"></script>  
+
+
+        <script>
+        
+            // function for slider
+            
+            var slider = document.getElementById("myRange");
+            
+            slider.oninput = function() {
+                
+                filter();
+                
+            }
+            
+            // function for opening the side menu 
+                
+            function openNav() {
+                
+                if(open == true){
+                    
+                    closeFilter();
+                }
+                
+                var info = document.getElementById("info");
+                
+                info.style.display = "none";
+                
+                document.getElementById("mySidenav").style.width = "550px";
+
+                document.getElementById("main").style.marginLeft = "250px"; 
+         
+                document.getElementById("main").style.visibility='hidden';
+                    
+                open = true;
+
+            }
+            
+            // function for opening info box
+            
+            function openInfo(){
+                
+                var blind = localStorage.getItem("blind");
+                
+                console.log(blind);
+                
+                if(blind == "false" || blind == undefined){
+                    
+                    var tooltip = document.getElementById("clickToolTip");
+            
+                }
+                
+                else{
+                    
+                    var tooltip = document.getElementById("clickToolTip-blind");
+                    
+                }
+                
+                tooltip.style.display = "block";
+            
+            }
+            
+            // function for closing info box
+            
+            function closeInfo(){
+                
+                var tooltip = document.getElementById("clickToolTip");
+                
+                tooltip.style.display = "none";
+                
+                var tooltip = document.getElementById("clickToolTip-blind");
+                
+                tooltip.style.display = "none";
+                
+            }
+            
+            
+            // function for opening filter menu
+            
+             function openFilter() {
+
+                if(open == true){
+                    
+                    closeNav();
+                    
+                }
+                 
+                document.getElementById("myFilter").style.width = "550px";
+
+                document.getElementById("main2").style.marginRight = "250px";
+         
+                document.getElementById("main2").style.visibility='hidden';
+                    
+                open = true;
+
+            }
+
+            
+            
+            // function for closing the side menu 
+
+            function closeNav() {
+
+                var info = document.getElementById("info");
+                
+                info.style.display = "block";
+                
+                document.getElementById("mySidenav").style.width = "0";
+
+                document.getElementById("main").style.marginLeft= "0"; 
+       
+                document.getElementById("main").style.visibility='visible';
+                
+                open = false;
+
+            }
+            
+            
+            
+            // function for closing filter menu
+            
+            function closeFilter() {
+
+                document.getElementById("myFilter").style.width = "0";
+
+                document.getElementById("main2").style.marginRight= "0"; 
+       
+                document.getElementById("main2").style.visibility='visible';
+                
+                open = false;
+                
+            }
+            
+            function filter(){
+                 
+                var value = parseInt(slider.value); 
+                
+                removeSphere(sphere3_1);
+                
+                removeSphere(sphere3_2);
+                
+                switch(value){
+                    
+                    case 4: addSphere(sphere);      // all
+                            
+                            addSphere(sphere2);
+                            
+                            addSphere(sphere3);
+                        
+                            break;
+                    
+                        
+                    case 3: addSphere(sphere);      // 2020
+                            
+                            removeSphere(sphere2);
+                        
+                            addSphere(sphere3);
+                        
+                            break;
+                        
+                        
+                    case 2: removeSphere(sphere);   // 2019
+                            
+                            addSphere(sphere2);
+                        
+                            removeSphere(sphere3);
+                        
+                            break;
+                        
+                        
+                    case 1: removeSphere(sphere);   // 2018
+                            
+                            removeSphere(sphere2);
+                        
+                            addSphere(sphere3);
+                        
+                            break;
+                        
+                }
+            }
+
+        
+            
+            // locale variables for 3d-rendering
+            
+            let scene, camera, renderer, model, line, endPoint, open, domEvents, befund;
+            
+            // lines between sphers
+            var line_1 = [undefined,undefined];
+
+            var line_2 = [undefined,undefined];
+            
+            var opened = false; // is large sphere clicked? required for filter 
+            
+            
+            // initialise scene
+
+            function init() {
+                
+                scene = new THREE.Scene();
+
+                scene.background = new THREE.Color(0xdddddd);
+                
+                camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
+
+                camera.position.x = 0.121519859005498;
+
+                camera.position.y = 34.9674507837999;
+                
+                camera.position.z = 75.14307996752143;
+                
+            
+		
+                renderer = new THREE.WebGLRenderer({antialias:true});
+
+                renderer.setSize(window.innerWidth,window.innerHeight);
+
+                document.body.appendChild(renderer.domElement);
+
+        
+                
+                // setup controler
+                
+                controls = new THREE.OrbitControls(camera,renderer.domElement);
+                
+		        controls.enablePan = false;
+                
+                // setup light for the scene
+
+                hlight = new THREE.AmbientLight (0x404040,3);
+
+                scene.add(hlight);
+
+                
+                directionalLight = new THREE.DirectionalLight(0xffffff,3);
+
+                directionalLight.position.set(0,1,0);
+                
+                directionalLight.castShadow = true;
+
+                scene.add(directionalLight);
+                
+
+                
+                // make sure scene gets adjusted to window size  
+
+                window.addEventListener('resize', function(){
+
+                    var width = window.innerWidth;
+
+                    var height = window.innerHeight;
+
+                    renderer.setSize(width, height);
+
+                    camera.aspect = width / height;
+
+                    camera.updateProjectionMatrix();
+
+                });
+               
+    
+          
+                /* setup the spheres which are used to display the users diseases and injuries (one sphere for each)
+                
+                   .name contains the name, used to find the element within the scene 
+                
+                   .text contains the text, displayed when clicking the sphere */
+
+                var geom = new THREE.SphereGeometry(1,20,20);
+                
+                var geom_large = new THREE.SphereGeometry(1.5,20,20);
+                
+                var blind = localStorage.getItem("blind");
+                
+                if(blind == "false" || blind == undefined){ //ToDo
+                    
+                    //red
+                
+                    var mat = new THREE.MeshPhongMaterial( {specular: "#fd2b28", color: "#fd2b28",  side: THREE.DoubleSide} );
+                
+                    //orange
+                
+                    var mat1 = new THREE.MeshPhongMaterial( {specular: "#ff8000", color: "#ff8000",  side: THREE.DoubleSide} );
+
+                     //green
+                
+                    var mat2 = new THREE.MeshPhongMaterial( {specular: "#30bb0e", color: "#30bb0e",  side: THREE.DoubleSide} );
+
+                    //
+                
+                    var mat3 = new THREE.MeshPhongMaterial( {specular: "#001489", color: "#001489",  side: THREE.DoubleSide} );
+                    
+                }
+
+                else{
+          
+                    //red
+                
+                    var mat = new THREE.MeshBasicMaterial( {specular: "#000000", color: "#000000", side: THREE.DoubleSide} );
+                
+                    //orange
+                
+                    var mat1 = new THREE.MeshBasicMaterial( {specular: "#212121", color: "#2f2f2f",side: THREE.DoubleSide} );
+
+                     //green
+                
+                    var mat2 = new THREE.MeshBasicMaterial( {specular: "#000000", color: "#9d9d9d",  side: THREE.DoubleSide} );
+
+                    //
+                
+                    var mat3 = new THREE.MeshBasicMaterial( {specular: "#000000", color: "#000000",  side: THREE.DoubleSide} );
+                    
+                }
+                
+                sphere = new THREE.Mesh(geom,mat1);
+                
+                sphere.name = "hand";
+
+                sphere.position.x = 6.5; 
+
+                sphere.position.y = 0; 
+
+                sphere.position.z = 20;  
+
+                sphere.text = "Hand gebrochen";
+                
+                sphere.date = new Date("2020-05-30");
+
+                scene.add(sphere);
+
+                sphere2 = new THREE.Mesh(geom,mat2);
+
+                sphere2.name = "shoulder";
+
+                sphere2.position.x = 3.5; 
+
+                sphere2.position.y = 1; 
+
+                sphere2.position.z = 33;
+
+                sphere2.text = "Schulter ausgekugelt";  
+                
+                sphere2.date = new Date("2019-12-26");
+
+                scene.add(sphere2);
+                
+                
+                
+                sphere3 = new THREE.Mesh(geom_large,mat3);
+
+                sphere3.name = "knee";
+
+                sphere3.position.x = 1.5; 
+
+                sphere3.position.y = 0; 
+
+                sphere3.position.z = 12.5;
+
+                //sphere3.text = "Knie geprellt";
+                
+                //sphere3.date = new Date("2020-07-04");
+
+                scene.add(sphere3);
+                
+                
+                
+                sphere3_1 = new THREE.Mesh(geom,mat);
+
+                sphere3_1.name = "knee_1";
+
+                sphere3_1.position.x = 5.5; 
+
+                sphere3_1.position.y = 0; 
+
+                sphere3_1.position.z = 12.5;
+
+                sphere3_1.text = "Knie geprellt";
+                
+                sphere3_1.date = new Date("2018-07-04");
+                
+                
+                
+                sphere3_2 = new THREE.Mesh(geom,mat);
+
+                sphere3_2.name = "knee_2";
+
+                sphere3_2.position.x = -3.5; 
+
+                sphere3_2.position.y = 0; 
+
+                sphere3_2.position.z = 12.5;
+
+                sphere3_2.text = "Knie verdreht";
+                
+                sphere3_2.date = new Date("2020-07-04");
+
+            
+
+        
+
+                // domEvents handles clicking on a sphere (as well as touching)
+                
+                domEvents = new THREEx.DomEvents(camera,renderer.domElement);
+
+                domEvents.addEventListener(sphere, 'click', event =>{
+
+                    endPoint = scene.getObjectByName( "hand" );
+
+                    write(sphere.text, sphere.date, "hand");
+                    
+                    removeSphere(sphere3_1);
+                    
+                    removeSphere(sphere3_2);
+
+                })
+
+                
+                domEvents.addEventListener(sphere, 'touchstart', event =>{
+
+                    endPoint = scene.getObjectByName( "hand" );
+
+                    write(sphere.text, sphere.date, "hand");
+                    
+                    removeSphere(sphere3_1);
+                    
+                    removeSphere(sphere3_2);
+
+                })
+          
+
+                domEvents.addEventListener(sphere2, 'click', event =>{
+                    
+                    endPoint = scene.getObjectByName( "shoulder" );
+
+                    write(sphere2.text, sphere2.date, "shoulder");
+                    
+                    removeSphere(sphere3_1);
+                    
+                    removeSphere(sphere3_2);
+
+                })
+          
+
+                domEvents.addEventListener(sphere2, 'touchstart', event =>{
+
+                    endPoint = scene.getObjectByName( "shoulder" );
+
+                    write(sphere2.text, sphere2.date, "shoulder");
+                    
+                    removeSphere(sphere3_1);
+                    
+                    removeSphere(sphere3_2);
+                })
+                
+                
+                domEvents.addEventListener(sphere3, 'click', event =>{
+                    
+                    endPoint = undefined;
+                    
+                    var slider_value = parseInt(slider.value);
+                    
+                    console.log(slider_value);
+                    
+                    switch(slider_value){
+                            
+                        case 4: addSphere(sphere3_1);
+                                
+                                addSphere(sphere3_2);
+                            
+                                break;
+                        
+                        case 3: addSphere(sphere3_2);
+                            
+                                removeSphere(sphere3_1);
+                            
+                                break;
+                            
+                        case 2: removeSphere(sphere3_1);
+                                    
+                                removeSphere(sphere3_2);
+                            
+                                break;
+                            
+                        case 1: addSphere(sphere3_1);
+                            
+                                removeSphere(sphere3_2);
+                            
+                                break;
+                            
+                    }    
+                    
+                    line_1[1] = line_2[1] = scene.getObjectByName( "knee" );
+                    
+                    line_1[0] = scene.getObjectByName( "knee_1" );
+                    
+                    line_2[0] = scene.getObjectByName( "knee_2" );
+
+                })
+                
+                
+                domEvents.addEventListener(sphere3, 'touchstart', event =>{
+
+                     endPoint = undefined;
+                    
+                    var slider_value = parseInt(slider.value);
+                    
+                    console.log(slider_value);
+                    
+                    switch(slider_value){
+                            
+                        case 4: addSphere(sphere3_1);
+                                
+                                addSphere(sphere3_2);
+                            
+                                break;
+                        
+                        case 3: addSphere(sphere3_2);
+                            
+                                removeSphere(sphere3_1);
+                            
+                                break;
+                            
+                        case 2: removeSphere(sphere3_1);
+                                    
+                                removeSphere(sphere3_2);
+                            
+                                break;
+                            
+                        case 1: addSphere(sphere3_1);
+                            
+                                removeSphere(sphere3_2);
+                            
+                                break;
+                            
+                    }    
+                    
+                    line_1[1] = line_2[1] = scene.getObjectByName( "knee" );
+                    
+                    line_1[0] = scene.getObjectByName( "knee_1" );
+                    
+                    line_2[0] = scene.getObjectByName( "knee_2" );
+
+                })
+                
+                
+                domEvents.addEventListener(sphere3_1, 'click', event =>{
+
+                    endPoint = scene.getObjectByName( "knee_1" );
+
+                    write(sphere3_1.text, sphere3_1.date, "knee_1");
+                    
+                })
+                
+                
+                domEvents.addEventListener(sphere3_1, 'touchstart', event =>{
+
+                    endPoint = scene.getObjectByName( "knee_1" );
+
+                    write(sphere3_1.text, sphere3_1.date, "knee_1");
+                    
+                })
+
+                
+                domEvents.addEventListener(sphere3_2, 'click', event =>{
+
+                    endPoint = scene.getObjectByName( "knee_2" );
+
+                    write(sphere3_2.text, sphere3_2.date, "knee_2");
+                    
+                })
+                
+                  domEvents.addEventListener(sphere3_2, 'touchstart', event =>{
+
+                    endPoint = scene.getObjectByName( "knee_2" );
+
+                    write(sphere3_2.text, sphere3_2.date, "knee_2");
+                    
+                })
+                
+
+                // initialise loader and load 3d-model
+                
+                let loader = new THREE.GLTFLoader();
+
+                loader.load('skeleton/scene.gltf', function(gltf){
+
+                    model = gltf.scene.children[0];
+                    
+                    model.scale.set(1,1,1);
+
+                    model.add(sphere);
+
+                    model.add(sphere2);
+                    
+                    model.add(sphere3);
+
+                    scene.add(gltf.scene);
+                    
+                    animate();
+
+                });
+                
+                
+                
+                // both menus are closed
+                
+                open = false;
+                
+               
+                camera.lookAt(0,20,0);
+                
+                controls.target.set(0,20,0);
+                
+
+        }
+
+        
+        
+        // animate is called every frame and renders the scene
+            
+        function animate() {
+            
+            // let the model rotate
+            
+           //model.rotateZ(0.01);
+            
+
+            //remove old connection between info box and sphere and add the new one  
+
+            if(scene.getObjectByName( "line" ) != undefined){
+                
+                scene.remove( scene.getObjectByName( "line" ));
+                
+            }
+            
+            if(scene.getObjectByName( "l_1" ) != undefined){
+                
+                scene.remove( scene.getObjectByName( "l_1" ));
+                
+            }
+            
+            if(scene.getObjectByName( "l_2" ) != undefined){
+                
+                scene.remove( scene.getObjectByName( "l_2" ));
+                
+            }
+            
+            if(endPoint != undefined){
+                
+                //update position of sprite
+                
+                sprite = scene.getObjectByName( "sprite" );
+                
+                var lookAtVector = new THREE.Vector3(0,0, -1);
+                
+                lookAtVector.applyQuaternion(camera.quaternion);
+                
+                console.log(lookAtVector);
+                
+                var v = sprite.position;
+                
+                sprite.position.set(v.x,v.y,v.z);
+                
+        
+               
+                // find out vectors in order to connect the endPoint (sphere) with the info box (sprite)
+
+                model.updateMatrixWorld();
+
+                var vector = new THREE.Vector3();
+
+                vector.setFromMatrixPosition( endPoint.matrixWorld );
+
+                var vector2 = new THREE.Vector3();
+
+                vector2.setFromMatrixPosition( scene.getObjectByName( "sprite" ).matrixWorld );
+                
+                var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+
+                var points = [];
+
+                points.push(vector2);
+
+                points.push(vector);
+            
+                var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+                line = new THREE.Line( geometry, material );
+
+                line.name = "line";
+
+                scene.add( line );
+           
+            }
+            
+            else{
+                
+                write(undefined, undefined, undefined);
+                
+            }
+            
+            l_1 = getLine(line_1);
+            
+            l_2 = getLine(line_2);
+            
+            if(l_1 != undefined){
+                
+                l_1.name = "l_1";
+            
+                scene.add(l_1);
+                
+            }
+            
+            if(l_2 != undefined){
+                
+                l_2.name = "l_2";
+                
+                scene.add(l_2);
+            }
+          
+            // render new scene
+            
+            renderer.render(scene,camera);
+
+            requestAnimationFrame(animate);
+
+        }
+
+        
+
+        // function which allows to write text into info box 
+        
+        function write(text, date, b){
+            
+            scene.remove( scene.getObjectByName( "sprite" ));
+            
+            var canvas = document.createElement('canvas');
+
+            var width = 1024;
+            
+            var height = 512;
+
+            canvas.width = width;
+
+            canvas.height = height;
+
+            var context = canvas.getContext('2d');
+
+          
+            context.rect(0, 0, width, height);
+
+            context.fillStyle = "gray";
+
+            context.fill();
+        
+
+            context.fillStyle = 'white'; 
+
+            context.textAlign = 'center';
+            
+            context.textBaseline = "middle";
+
+            context.font = '80px Arial';
+            
+            if(text != undefined ){ 
+                
+                var dateText = date.getDate().toString() + '.' + date.getMonth().toString() + '.' + date.getFullYear().toString();
+            
+                context.fillText(dateText, width / 2, height * 1 / 4);
+            
+                context.fillText(text, width / 2, height * 2 / 4);
+                
+                context.fillText("Für Befund klicken", width / 2, height * 3 / 4);
+                
+                var w = 670;
+                
+                var x = 180;
+                
+                var y = 420;
+                
+                context.beginPath();
+                
+                context.strokeStyle = 'white';
+  
+                context.lineWidth = 4;
+  
+                context.moveTo(x,y);
+  
+                context.lineTo(x+w,y);
+  
+                context.stroke();
+                
+                var amap = new THREE.Texture(canvas);
+
+                amap.needsUpdate = true;
+
+                var mat = new THREE.SpriteMaterial({
+
+                    map: amap,
+
+                    transparent: false,
+
+                    color: 0xffffff 
+
+            });
+
+
+            var sp = new THREE.Sprite(mat);    
+
+            sp.name = "sprite";
+
+            sp.scale.set( 14, 7, 1);
+
+            sp.position.set(0, 5, 17);
+                
+             //camera.position.x = 0.121519859005498;
+
+             //   camera.position.y = 34.9674507837999;
+                
+              //  camera.position.z = 75.14307996752143;
+                
+            scene.add(sp);
+                
+            befund = b;
+                
+            localStorage.setItem("befund", befund);
+                
+            //event listener for clicking on infobox and get to "befunde.html"
+                
+            domEvents.addEventListener(sp, 'click', event =>{
+                    
+                    //if there is a local storage, then there is a sprite shown which is clickable
+                
+                    if(localStorage.getItem("befund") != null){
+                        
+                         location.replace("befunde.html");
+                        
+                    }
+                   
+            })
+                    
+            domEvents.addEventListener(sp, 'touchstart', event =>{
+                    
+                    //if there is a local storage, then there is a sprite shown which is clickable
+                
+                    if(localStorage.getItem("befund") != null){
+                        
+                         location.replace("befunde.html");
+                        
+                    }
+                       
+            })
+             
+            }
+
+           else{
+               
+               localStorage.removeItem("befund");
+           }
+
+             
+        }    
+            
+            
+        
+        // function to remove a specific sphere from the scene
+            
+        function removeSphere(sphereObj){
+            
+            line_1[0] = line_2[0] = undefined;
+            
+            var name = sphereObj.name 
+            
+            if(scene.getObjectByName( name ) != undefined){
+                        
+                        var obj = scene.getObjectByName( name )
+                        
+                        if(obj == endPoint){
+                            
+                            endPoint = undefined;
+                            
+                        }
+                        
+                        model.remove( obj );
+                        
+                        scene.remove( obj );
+                    
+                    }
+                  
+        }
+            
+            
+            
+        // function to add existing sphere to the scene
+            
+        function addSphere(sphereObj){
+              
+            var name = sphereObj.name;
+                
+            if(scene.getObjectByName(name) == undefined){
+                        
+                scene.add(sphereObj);
+
+
+                model.add(sphereObj);
+                        
+            }
+        
+        }
+
+        
+            
+        function getLine(line){
+            
+            if(line[0] == undefined){
+                
+                return undefined;
+            
+            }
+               
+            else{
+                
+                model.updateMatrixWorld();
+
+                var vector = new THREE.Vector3();
+
+                vector.setFromMatrixPosition( line[0].matrixWorld );
+
+                var vector2 = new THREE.Vector3();
+
+                vector2.setFromMatrixPosition( line[1].matrixWorld );
+                
+                var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+
+                var points = [];
+
+                points.push(vector2);
+
+                points.push(vector);
+            
+                var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+                line = new THREE.Line( geometry, material );
+
+                return line;
+                
+            }
+            
+        }
+            
+        function loadBefunde(){
+            
+            localStorage.removeItem("befund");
+            
+            location.replace("befunde.html");
+            
+        }
+            
+        init();
+
+    </script>
+
+  </body>
+
+</html>
