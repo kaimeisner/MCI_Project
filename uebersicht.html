@@ -680,7 +680,7 @@
            
             </span> -->
 
-        <button type="submit" name="action" value="0" onclick="openInfo()">Infos</button>
+        <button id="info_button" type="submit" name="action" value="0" onclick="openInfo()">Infos</button>
             
 
         </div>
@@ -820,6 +820,8 @@
                 }
                 
                 tooltip.style.display = "block";
+                
+                document.getElementById("info_button").style.display = "none";
             
             }
             
@@ -834,6 +836,8 @@
                 var tooltip = document.getElementById("clickToolTip-blind");
                 
                 tooltip.style.display = "none";
+                
+                document.getElementById("info_button").style.display = "initial";
                 
             }
             
